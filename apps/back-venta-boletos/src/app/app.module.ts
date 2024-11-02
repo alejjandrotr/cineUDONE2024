@@ -3,6 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { Paymentinfo } from './paymentinfo/paymentinfo.entity';
+import { PaymentinfoModule } from './paymentinfo/paymentinfo.module';
 
 @Module({
   imports: [
@@ -16,7 +17,7 @@ import { Paymentinfo } from './paymentinfo/paymentinfo.entity';
       entities: [Paymentinfo],
       synchronize: true
     }),
-    TypeOrmModule.forFeature([Paymentinfo])],
+    PaymentinfoModule],
   controllers: [AppController],
   providers: [AppService],
 })

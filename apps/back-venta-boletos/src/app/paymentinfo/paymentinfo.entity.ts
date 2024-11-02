@@ -1,26 +1,25 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({name: 'paymentinfo'})
 export class Paymentinfo{
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column({unique: true})
+    @Column()
     referencia: string;
 
     @Column()
     banco_emisor: string;
 
     @Column()
-    metodo_pago: String;
+    metodo: string;
 
     @Column({type: 'date'})
-    fecha_pago: Date;
+    fecha: Date;
 
     @Column()
-    monto_pagado: number;
+    monto: number;
 
     @Column({default: 'pendiente'})
-    estado_pago: string;
-
+    estado: string;
 }
