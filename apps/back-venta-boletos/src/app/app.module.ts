@@ -4,6 +4,8 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { Paymentinfo } from './paymentinfo/paymentinfo.entity';
 import { PaymentinfoModule } from './paymentinfo/paymentinfo.module';
+import {createpagomovil} from './pago-movil/pago-movil.entity';
+import {pago_movil_module} from './pago-movil/pago-movil.module';
 
 @Module({
   imports: [
@@ -12,12 +14,14 @@ import { PaymentinfoModule } from './paymentinfo/paymentinfo.module';
       host: 'localhost',
       port: 3306,
       username: 'root',
-      password: 'teamverdemysql',
+      password: '',
       database: 'cine',
-      entities: [Paymentinfo],
+      entities: [Paymentinfo, createpagomovil],
       synchronize: true
     }),
-    PaymentinfoModule],
+    PaymentinfoModule,
+    pago_movil_module,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
