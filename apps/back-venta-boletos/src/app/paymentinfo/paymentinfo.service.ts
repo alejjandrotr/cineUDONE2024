@@ -15,4 +15,9 @@ export class PaymentinfoService {
         const newPaymentinfo = this.paymentinfoRepository.create(paymentinfo)
         return this.paymentinfoRepository.save(newPaymentinfo)
     }
+
+    getPaymentinfo(){
+        return this.paymentinfoRepository.find({
+            where: { estado: 'pendiente' } })
+    }
 }
