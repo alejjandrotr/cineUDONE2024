@@ -22,7 +22,7 @@
       "{workspaceRoot}/.github/workflows/ci.yml"
     ]
   },
-  "nxCloudId": "671812b2038ad6225e8a5353",
+  "nxCloudId": "67252cca4e38902cf3ec83da",
   "plugins": [
     {
       "plugin": "@nx/vite/plugin",
@@ -94,4 +94,8 @@
     }
   },
   "defaultBase": "main"
+<<<<<<< Updated upstream
 }
+=======
+}
+>>>>>>> Stashed changes

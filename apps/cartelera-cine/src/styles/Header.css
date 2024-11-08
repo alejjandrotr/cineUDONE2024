@@ -3,7 +3,6 @@
   padding: 10px;
   text-align: left;
   border-radius: 0 0 20px 20px;
-
 }
 
 .banner-content {
@@ -11,6 +10,7 @@
   align-items: center; /* Centrar verticalmente */
   justify-content: center; /* Centrar horizontalmente */
   gap: 20px; /* Espacio entre el logo y el título */
+  flex-wrap: wrap; /* Permitir que los elementos se envuelvan */
 }
 
 .banner-logo {
@@ -21,10 +21,9 @@
   margin: 0;
   font-size: 3rem;
   color: #ffffff;
-  font-weight:Bold;
+  font-weight: bold;
   font-family: 'Poppins', monospace;
 }
-
 
 .search-bar {
   display: flex;
@@ -32,6 +31,51 @@
   gap: 10px; /* Espacio entre la entrada y el botón */
 }
 
+/* Media Queries para hacer el banner responsivo */
+@media (max-width: 768px) {
+  .banner-title {
+    font-size: 2rem; /* Reducir el tamaño de la fuente en pantallas más pequeñas */
+  }
+
+  .banner-logo {
+    height: 70px; /* Reducir el tamaño del logo en pantallas más pequeñas */
+  }
+
+  .banner-content {
+    flex-direction: column; /* Alinear los elementos verticalmente en pantallas más pequeñas */
+    text-align: center; /* Centrar el texto */
+  }
+
+  .search-bar {
+    width: 100%; /* Hacer que la barra de búsqueda ocupe el 100% del ancho */
+    justify-content: center; /* Centrar la barra de búsqueda */
+  }
+
+  .search-bar input[type="text"] {
+    width: 70%; /* Ajustar el ancho del input */
+  }
+
+  .search-bar button {
+    width: 20%; /* Ajustar el ancho del botón */
+  }
+}
+
+@media (max-width: 480px) {
+  .banner-title {
+    font-size: 1.5rem; /* Reducir aún más el tamaño de la fuente en pantallas muy pequeñas */
+  }
+
+  .banner-logo {
+    height: 50px; /* Reducir aún más el tamaño del logo en pantallas muy pequeñas */
+  }
+
+  .search-bar input[type="text"], 
+  .search-bar button {
+    width: auto; /* Ajustar el ancho del input y del botón para pantallas muy pequeñas */
+  }
+}
+
+/* Estilos para el input y el botón de la barra de búsqueda */
 .search-bar input[type="text"] {
   padding: 5px 10px; /* Espaciado interno */
   border: 2px solid #8555B4;

@@ -33,3 +33,38 @@
 .search-bar button:hover {
   background-color: rgb(125, 124, 121);
 }
+
+/* Media Queries para hacer la barra de búsqueda responsiva */
+@media (max-width: 768px) {
+  .search-bar {
+    flex-direction: column; /* Alinear los elementos verticalmente en pantallas pequeñas */
+    gap: 5px; /* Reducir el espacio entre los elementos */
+    max-width: 100%; /* Asegurarse de que ocupe el 100% del ancho disponible */
+    margin: 10px 0; /* Reducir el margen en pantallas pequeñas */
+  }
+
+  .search-bar input[type="text"] {
+    width: 100%; /* Ajustar el ancho del input para que ocupe el 100% */
+    box-shadow: 0 0 10px #512c71; /* Reducir el tamaño de la sombra */
+  }
+
+  .search-bar button {
+    width: 100%; /* Ajustar el ancho del botón para que ocupe el 100% */
+  }
+}
+
+@media (max-width: 480px) {
+  .search-bar {
+    gap: 2px; /* Reducir aún más el espacio entre los elementos en pantallas muy pequeñas */
+    margin: 5px 0; /* Reducir el margen en pantallas muy pequeñas */
+  }
+
+  .search-bar input[type="text"] {
+    padding: 8px; /* Reducir el padding del input */
+    box-shadow: 0 0 5px #512c71; /* Reducir aún más el tamaño de la sombra */
+  }
+
+  .search-bar button {
+    padding: 8px 10px; /* Reducir el padding del botón */
+  }
+}

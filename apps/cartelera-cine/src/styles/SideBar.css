@@ -89,3 +89,35 @@
 .sidebar-menu li {
   overflow: hidden;
 }
+
+/* Estilos responsivos para pantallas pequeñas */
+@media (max-width: 600px) {
+  .sidebar {
+    width: 60px; /* Ajustar ancho en pantallas pequeñas */
+  }
+
+  .sidebar:hover {
+    width: 200px; /* Ajustar ancho expandido en pantallas pequeñas */
+  }
+
+  .sidebar-menu li {
+    font-size: 1.2rem; /* Ajustar tamaño de la letra */
+    padding: 8px; /* Ajustar padding */
+  }
+
+  .sidebar-menu li svg {
+    font-size: 1.2rem; /* Ajustar tamaño del icono */
+  }
+
+  .sidebar-menu li:hover {
+    background-color: #6a1b9a; /* Ajustar color de fondo en hover */
+  }
+
+  .sidebar-header {
+    font-size: 1rem; /* Ajustar tamaño del texto del header */
+  }
+
+  .sidebar:hover .sidebar-menu li span {
+    font-size: 1rem; /* Ajustar tamaño del texto expandido */
+  }
+}
