@@ -38,36 +38,38 @@
   left: 0;
   right: 0;
   background-color: rgba(0, 0, 0, 0.7); /* Fondo negro semi-transparente */
-  padding: 5px; /* Aumentar el padding para mejor presentación */
-  border-radius: 0 0 10px 10px;
+  padding: 10px; /* Espacio alrededor del texto */
+  border-radius: 10px 10px 0 0; /* Redondear las esquinas superiores */
   text-align: left;
   color: #fff; /* Color del texto blanco */
   opacity: 0; /* Comenzar oculto */
-  transition: opacity 0.3s ease; /* Añadir transición */
+  transition: opacity 0.3s ease, box-shadow 0.3s ease; /* Transición suave */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Sombra ligera */
 }
 
 .movie-card:hover .movie-overlay {
   opacity: 1; /* Mostrar al hacer hover */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7); /* Sombra más pronunciada con efecto ovalado */
 }
 
 .movie-title {
-  font-size: 1.4rem; /* Aumentar tamaño del título */
-  color: #fff; /* Color dorado para mejor contraste */
+  font-size: 1.2rem; /* Reducir el tamaño del título */
+  color: #fff; /* Color blanco */
   margin: 0;
-  font-family: 'Poppins', sans-serif; /* Cambiar la fuente del título */
-  font-weight: bold; /* Hacer el título en negrita */
+  font-family: 'Poppins', sans-serif; /* Fuente del título */
+  font-weight: 500; /* Menos grueso */
 }
 
 .movie-details {
   display: flex;
   justify-content: space-between;
   margin-top: 5px;
-  font-size: 0.9rem; /* Tamaño del texto para género y duración */
-  font-family: 'Verdana', sans-serif; /* Cambiar la fuente para los detalles */
+  font-size: 0.8rem; /* Reducir el tamaño del texto para detalles */
+  font-family: 'Verdana', sans-serif;
 }
 
 .movie-genre, .movie-duration {
-  color: #fff; /* Texto blanco para mejor contraste */
+  color: #fff; /* Texto blanco */
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* Sombra para dar profundidad */
 }
 

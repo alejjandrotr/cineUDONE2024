@@ -1,7 +1,7 @@
 import React from 'react';
 import '../styles/SideBar.css';
 import logo from '../assets/logo.png';
-import { FaHome, FaFilm, FaUtensils, FaStar, FaShareAlt } from 'react-icons/fa';
+import { FaHome, FaFilm, FaUtensils, FaStar, FaInstagram, FaFacebook } from 'react-icons/fa';
 
 const Sidebar = () => {
   return (
@@ -13,7 +13,7 @@ const Sidebar = () => {
         <ul>
           <li>
             <FaHome />
-            <span>&nbsp;Home</span> {/* Este texto estaará oculto cuando esté contraídoo */}
+            <span>&nbsp;Home</span>
           </li>
           <li>
             <FaFilm />
@@ -27,9 +27,14 @@ const Sidebar = () => {
             <FaStar />
             <span>&nbsp;Próximos Estrenos</span>
           </li>
+          {/* Redes sociales */}
           <li>
-            <FaShareAlt />
-            <span>&nbsp;Redes del Cine</span>
+            <FaInstagram />
+            <span>&nbsp;Instagram</span>
+          </li>
+          <li>
+            <FaFacebook />
+            <span>&nbsp;Facebook</span>
           </li>
         </ul>
       </nav>

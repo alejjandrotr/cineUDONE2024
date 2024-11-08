@@ -1,3 +1,4 @@
+/* Estilos para el sidebar */
 .sidebar {
   width: 80px; /* Ancho contraído */
   background-color: #1C1a19;
@@ -41,7 +42,8 @@
   display: flex;
   align-items: center;
   white-space: nowrap; /* Prevenir que el texto se envuelva */
-  background-color: #1b1a1b; /* Asegurar el fondo coherente */
+  background-color: #1b1a1b; /* Fondo coherente */
+  color: #8555B4; /* Texto morado */
 }
 
 /* Ocultar el texto en estado contraído */
@@ -51,11 +53,19 @@
 
 .sidebar-menu li:hover {
   background-color: #8555B4;
+  color: #fff; /* Color blanco en el texto cuando el item está en hover */
 }
 
 .sidebar-menu li svg {
   margin: 0;
   font-size: 1.50rem; /* Aumentar tamaño del icono */
+  color: #8555B4; /* Icono morado */
+  transition: color 0.3s ease;
+}
+
+/* Cambiar color de los iconos cuando el item está en hover */
+.sidebar-menu li:hover svg {
+  color: #fff; /* Los iconos se vuelven blancos en hover */
 }
 
 /* Mostrar texto y logo cuando se expande */

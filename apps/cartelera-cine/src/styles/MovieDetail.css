@@ -5,7 +5,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.90); /* Fondo oscuro semi-transparente */
+  background: rgba(0, 0, 0, 0.7); /* Fondo oscuro semi-transparente */
   z-index: 999; /* Detrás del modal */
 }
 
@@ -18,104 +18,132 @@
   background-color: #1C1a19; /* Mismo fondo que antes */
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 0 50px #28143A;
-  max-width: 80%; /* Ancho máximo para hacer el modal más horizontal */
-  width: 600px; /* Ajustar el ancho para hacerlo más horizontal */
+  box-shadow: 0 0 15px rgba(255, 254, 255, 0.3); /* Sombra más suave */
+  max-width: 85%; /* Aumentamos el ancho máximo */
+  width: 800px; /* Ancho fijo para que sea más grande */
   z-index: 1000;
   overflow-y: auto; /* Habilitar desplazamiento vertical si el contenido es demasiado alto */
   max-height: 90vh; /* Máxima altura del modal */
+  display: flex; /* Usamos flexbox para alinear la imagen y el contenido */
 }
 
-/* Botón de cerrar */
+/* Contenedor para la imagen y el contenido */
+.movie-content {
+  display: flex; /* Alinea imagen y contenido horizontalmente */
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+}
+
+/* Estilo para el poster grande de la película */
+.movie-poster-large {
+  width: 35%; /* La imagen ocupa el 35% del ancho del modal */
+  height: auto;
+  margin-right: 20px; /* Espacio entre la imagen y el contenido */
+  border-radius: 8px; /* Bordes redondeados */
+}
+
+/* Estilo para el contenido de la película (título, sinopsis, etc.) */
+.movie-info {
+  flex: 1; /* El contenido ocupa el resto del espacio disponible */
+  color: #f0f0f0; /* Texto claro */
+}
+
+/* Título de la película */
+.movie-title-large {
+  font-size: 28px; /* Aumentar el tamaño del título */
+  margin-top: 10px; /* Espacio superior para no quedar pegado al botón de cerrar */
+  margin-bottom: 10px; /* Espacio inferior para separarlo de los detalles */
+  color: #ffffff; /* Color blanco para mayor contraste */
+  word-wrap: break-word; /* Hacer que el título se ajuste si es largo */
+}
+
+/* Sinopsis de la película */
+.movie-synopsis {
+  font-size: 16px;
+  margin-top: 20px; /* Separar sinopsis de los detalles */
+  color: #f0f0f0; /* Color claro para mejor legibilidad */
+}
+
+/* Detalles adicionales de la película (horario, tipo, clasificación) */
+.movie-additional-details {
+  display: flex; /* Usamos flexbox para mostrar los detalles en fila */
+  justify-content: space-between; /* Distribuye los items a lo largo del espacio */
+  margin-bottom: 20px;
+  color: #f0f0f0; /* Color claro para mejor legibilidad */
+}
+
+/* Detalle individual en fila */
+.movie-detail {
+  font-size: 16px;
+  color: #f0f0f0;
+  margin-right: 15px; /* Espacio entre los detalles */
+}
+
+/* Botón de cerrar con "X" */
 .close-button {
   position: absolute;
   top: 10px;
   right: 10px;
-  background: #f44336;
+  background: transparent; /* Fondo transparente */
   color: #fff;
+  font-size: 32px; /* Tamaño de la "X" más grande */
   border: none;
-  border-radius: 5px;
-  padding: 5px 10px;
   cursor: pointer;
+  transition: transform 0.3s ease, color 0.3s ease; /* Transiciones suaves */
 }
 
 .close-button:hover {
-  background: #e53935;
+  color: #f44336; /* Rojo en hover */
+  transform: rotate(90deg); /* Girar la "X" al pasar el mouse */
 }
 
-/* Estilos para el poster y detalles */
-.movie-poster-large {
-  width: 30%; /* Ajustar el ancho de la imagen */
-  height: auto;
-  margin-right: 20px; /* Espacio a la derecha */
-  float: left; /* Flotante a la izquierda */
-}
-
-.movie-title-large {
-  font-size: 24px;
-  margin: 10px 0;
-  color: #ffffff; /* Color blanco para mayor contraste */
-}
-
-.movie-synopsis {
-  font-size: 16px;
-  margin-bottom: 20px;
-  color: #f0f0f0; /* Color claro para mejor legibilidad */
-}
-
-.movie-additional-details {
-  margin-bottom: 20px;
-  color: #f0f0f0; /* Color claro para mejor legibilidad */
-}
-
-.movie-detail {
-  margin-bottom: 10px;
-  color: #f0f0f0; /* Color claro para mejor legibilidad */
-}
-
-/* Estilos para el botón de comprar entrada */
+/* Estilo para el botón de compra */
 .buy-button {
-  background-color: #4CAF50; /* Color verde para el botón */
+  background-color: #6a1b9a; /* Color morado oscuro para el botón */
   color: white;
   border: none;
-  padding: 8px 16px; /* Tamaño de padding más pequeño */
+  padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 14px; /* Tamaño de fuente más pequeño */
-  margin-top: 20px; /* Espacio superior */
-  width: auto; /* Ancho automático */
+  font-size: 16px;
+  margin-top: 20px;
+  width: auto;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .buy-button:hover {
-  background-color: #45a049; /* Color más oscuro al pasar el mouse */
+  background-color: #4a148c; /* Color más oscuro al pasar el mouse */
+  transform: translateY(-2px); /* Elevar el botón al hacer hover */
+}
+
+.buy-button:active {
+  transform: translateY(0); /* Vuelve a la posición original cuando se hace clic */
 }
 
 /* Ajustes para móviles */
 @media (max-width: 600px) {
   .movie-detail-view {
-    padding: 10px; /* Menos padding en móviles */
-    max-width: 95%; /* Mayor ancho en móviles */
-    width: auto; /* Ancho automático en móviles */
+    padding: 10px;
+    max-width: 95%;
+    width: auto;
   }
 
   .movie-poster-large {
-    width: 100%; /* Imagen ocupa el 100% en móviles */
-    float: none; /* Desactivar el flotante */
-    margin-bottom: 20px; /* Espacio inferior */
+    width: 100%;
+    margin-bottom: 20px;
   }
 
   .movie-title-large {
-    font-size: 20px; /* Tamaño de fuente más pequeño en móviles */
-    color: #ffffff; /* Color blanco para mayor contraste */
+    font-size: 20px;
   }
 
   .movie-synopsis,
   .movie-detail {
-    font-size: 14px; /* Tamaño de fuente más pequeño en móviles */
-    color: #f0f0f0; /* Color claro para mejor legibilidad */
+    font-size: 14px;
   }
 
   .buy-button {
-    padding: 6px 12px; /* Menos padding en móviles */
+    padding: 8px 16px;
   }
 }

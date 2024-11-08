@@ -3,7 +3,7 @@
     {
       "id": 1,
       "title": "El Señor de los Anillos: La Comunidad del Anillo",
-      "synopsis": "Un hobbit, Frodo, se embarca en una peligrosa misión para destruir un anillo que puede traer el mal a la Tierra Media.",
+      "synopsis": "Frodo Bolsón, un hobbit tranquilo de la Comarca, se ve arrastrado a una peligrosa misión cuando su tío Bilbo le deja un misterioso anillo. Este anillo es la clave para que el malvado Sauron recupere su poder absoluto y someta la Tierra Media. Junto con un grupo de aliados, entre los que se incluyen el mago Gandalf, el guerrero Aragorn, y otros héroes como Legolas y Gimli, Frodo debe atravesar tierras peligrosas, enfrentándose a orcos, traiciones y tentaciones, con el objetivo de destruir el anillo en el Monte del Destino. Sin embargo, Sauron no descansará hasta tenerlo nuevamente en sus manos, y la amistad y el coraje serán probados a cada paso en esta épica aventura.",
       "genre": "Fantasía/Aventura",
       "schedule": "19:00",
       "type": "Estreno",
@@ -14,7 +14,7 @@
     {
       "id": 2,
       "title": "El Hobbit",
-      "synopsis": "Bilbo Bolsón se embarca en una aventura épica para ayudar a un grupo de enanos a reclamar su hogar.",
+      "synopsis": "Bilbo Bolsón, un hobbit que disfruta de su tranquila vida en la Comarca, es inesperadamente reclutado por el mago Gandalf y un grupo de enanos para una peligrosa misión. Juntos deben recuperar Erebor, un reino enano perdido que ha caído bajo el control del dragón Smaug, quien guarda un tesoro invaluable. Durante su viaje, Bilbo se enfrenta a trolls, goblins, elfos y criaturas fantásticas, mientras descubre una valía interna que jamás imaginó poseer. Además, encuentra el Anillo Único, un objeto de increíble poder que jugará un papel crucial en los eventos que marcarán la historia de la Tierra Media. Esta aventura es solo el principio de una gran lucha contra el mal.",
       "genre": "Fantasía/Aventura",
       "schedule": "22:30",
       "type": "Estreno",
@@ -25,7 +25,7 @@
     {
       "id": 3,
       "title": "Van Helsing",
-      "synopsis": "El cazador de monstruos Van Helsing se enfrenta a Drácula y sus criaturas en Europa.",
+      "synopsis": "Gabriel Van Helsing, un cazador de monstruos al servicio del Vaticano, es enviado a Transilvania para acabar con el legendario conde Drácula, quien ha estado trayendo terror al mundo durante siglos. Acompañado por Anna Valerious, una mujer decidida a vengar la muerte de su familia a manos de Drácula, Van Helsing se enfrenta a hordas de vampiros, hombres lobo y otras criaturas sobrenaturales en un intento por detener los planes del conde. A medida que avanzan, descubren que las fuerzas oscuras que Drácula ha desatado están más allá de lo que podrían imaginar, y la batalla final entre la luz y las tinieblas se acerca rápidamente.",
       "genre": "Acción/Fantasía",
       "schedule": "15:00",
       "type": "Estreno",
@@ -36,7 +36,7 @@
     {
       "id": 4,
       "title": "Harry Potter y el Cáliz de Fuego",
-      "synopsis": "Harry Potter se ve obligado a competir en el Torneo de los Tres Magos mientras una oscura amenaza se cierne sobre Hogwarts.",
+      "synopsis": "Harry Potter se ve forzado a participar en el Torneo de los Tres Magos, un desafío extremadamente peligroso que enfrenta a estudiantes de diferentes escuelas de magia. A medida que Harry supera una serie de pruebas mortales, descubre que un oscuro complot se está gestando en Hogwarts. Mientras tanto, la amenaza del regreso de Lord Voldemort, el mago tenebroso que mató a sus padres, comienza a tomar forma. El regreso de Voldemort marcará el inicio de una nueva era de terror en el mundo mágico. Harry y sus amigos deberán enfrentarse a peligros mucho mayores de lo que jamás imaginaron, mientras luchan por proteger lo que queda de su mundo.",
       "genre": "Aventura/Fantasía",
       "schedule": "22:00",
       "type": "Estreno",
@@ -47,7 +47,7 @@
     {
       "id": 5,
       "title": "La Monja",
-      "synopsis": "Una monja se suicida en un convento en Rumania, lo que lleva a un sacerdote y una novicia a investigar.",
+      "synopsis": "En un convento aislado en Rumanía, una joven monja se suicida bajo circunstancias misteriosas, lo que lleva al sacerdote Burke y a la novicia Irene a investigar. Lo que descubren es un secreto oscuro y aterrador relacionado con la entidad demoníaca Valak, quien posee la capacidad de corromper y destruir a todo aquel que entre en contacto con ella. A medida que la investigación se adentra en el pasado del convento, ambos se enfrentan a una batalla por sus vidas y almas, mientras buscan una forma de derrotar a la demoníaca fuerza que se cierne sobre ellos. La terrorífica historia de la monja es solo una de las piezas del puzzle que conecta con los horrores del universo de *El Conjuro*.",
       "genre": "Terror",
       "schedule": "20:00",
       "type": "Reestreno",
@@ -58,7 +58,7 @@
     {
       "id": 6,
       "title": "Annabelle",
-      "synopsis": "Una pareja es atacada por una entidad demoníaca que posee una muñeca antigua.",
+      "synopsis": "Después de un violento ataque de una entidad demoníaca, una joven pareja, John y Mia Form, descubre que su casa está siendo aterrorizada por una muñeca poseída, Annabelle. La muñeca, aparentemente inofensiva, está conectada a una serie de eventos oscuros que ponen en peligro la vida de la familia y sus seres queridos. Mientras la presencia maligna se intensifica, los Form luchan por protegerse de una fuerza invisible y destructiva. *Annabelle* forma parte del universo extendido de *El Conjuro*, donde el mal se manifiesta a través de objetos aparentemente inofensivos pero extremadamente peligrosos.",
       "genre": "Terror",
       "schedule": "16:00",
       "type": "Estreno",
@@ -69,7 +69,7 @@
     {
       "id": 7,
       "title": "Terrifier",
-      "synopsis": "Un asesino enmascarado aterrador acecha a un grupo de jóvenes en la noche de Halloween.",
+      "synopsis": "Durante la noche de Halloween, un grupo de jóvenes se encuentra atrapado en un evento macabro cuando un asesino enmascarado conocido como Art el payaso comienza a acecharlos. Art es una figura aterradora y despiadada que disfruta torturando y matando a sus víctimas de maneras grotescas y escalofriantes. A medida que los sobrevivientes intentan escapar, se dan cuenta de que no están simplemente huyendo de un hombre; están enfrentando a una verdadera encarnación del terror, y escapar de Art será una lucha sangrienta y desesperada por la vida.",
       "genre": "Terror",
       "schedule": "18:00",
       "type": "Estreno",
@@ -80,7 +80,7 @@
     {
       "id": 8,
       "title": "John Wick",
-      "synopsis": "Un exasesino a sueldo regresa al mundo del crimen para vengarse de los hombres que le quitaron todo.",
+      "synopsis": "Después de la muerte de su esposa, John Wick, un exasesino a sueldo, vive una vida tranquila con su perro. Sin embargo, su mundo se desmorona cuando un grupo de criminales rusos roba su coche y mata a su perro, el último regalo que le dejó su esposa. Desbordado por la rabia y el dolor, John regresa al mundo del crimen para buscar venganza, desatando una ola de violencia y caos. Con habilidades letales y una reputación temida por todos, John enfrenta a aquellos que se atrevieron a provocarlo, mientras trata de sobrevivir en un mundo que está lleno de reglas y códigos letales.",
       "genre": "Acción/Thriller",
       "schedule": "19:30",
       "type": "Reestreno",
@@ -91,7 +91,7 @@
     {
       "id": 9,
       "title": "Volver al Futuro III",
-      "synopsis": "Marty McFly viaja al viejo oeste para salvar a Doc Brown de un peligro inminente.",
+      "synopsis": "Marty McFly viaja al viejo oeste de 1885 para salvar a su amigo y mentor, el Dr. Emmett Brown, quien ha quedado atrapado en el pasado debido a un accidente en la máquina del tiempo. Mientras trata de encontrar una manera de regresar a su tiempo, Marty se ve envuelto en un enredo con bandidos y situaciones peligrosas en el salvaje oeste. Con la ayuda de Doc, Marty tendrá que enfrentarse a nuevos desafíos mientras intenta encontrar la forma de regresar al futuro, todo mientras lucha contra la amenaza de un asesino que está decidido a cambiar la historia.",
       "genre": "Ciencia Ficción/Aventura",
       "schedule": "20:30",
       "type": "Reestreno",
@@ -102,7 +102,7 @@
     {
       "id": 10,
       "title": "Shrek 2",
-      "synopsis": "Shrek y Fiona visitan a los padres de Fiona, pero las cosas no salen como esperaban.",
+      "synopsis": "Después de casarse con la princesa Fiona, Shrek y ella deciden visitar a los padres de Fiona en el reino de Muy Muy Lejano. Lo que comienza como una visita familiar se convierte rápidamente en un desastre, ya que los padres de Fiona, especialmente el rey, no aprueban a Shrek. A lo largo de la película, Shrek se enfrenta a situaciones cómicas y desafíos que ponen a prueba su relación con Fiona y su propia autoestima. Con la ayuda de sus amigos, como Donkey y el Gato con Botas, Shrek deberá demostrar que no importa cómo se ve, sino quién es realmente.",
       "genre": "Animación/Comedia",
       "schedule": "17:00",
       "type": "Estreno",
@@ -113,7 +113,7 @@
     {
       "id": 11,
       "title": "Piratas del Caribe: La Maldición de la Perla Negra",
-      "synopsis": "El capitán Jack Sparrow busca recuperar su barco y salvar a una joven secuestrada por un barco fantasma.",
+      "synopsis": "El capitán Jack Sparrow, un pirata astuto y enigmático, se encuentra en busca de venganza y su barco perdido, la Perla Negra, que ha caído en manos del malvado Capitán Barbosa. Junto con el herrero Will Turner y la hija del gobernador, Elizabeth Swann, Jack se embarca en una peligrosa aventura por el mar, enfrentándose a la maldición que afecta a la tripulación de Barbosa, quienes han sido transformados en esqueletos inmortales por un tesoro maldito. La acción, el humor y el romance se entrelazan en esta emocionante historia de piratas, traiciones y tesoros perdidos.",
       "genre": "Aventura/Acción",
       "schedule": "21:00",
       "type": "Reestreno",
@@ -124,7 +124,7 @@
     {
       "id": 12,
       "title": "Escuela de Rock",
-      "synopsis": "Un músico fracasado se convierte en profesor sustituto y forma una banda de rock con sus estudiantes.",
+      "synopsis": "Dewey Finn, un músico fracasado y algo irresponsable, se ve obligado a disfrazarse como profesor sustituto en una escuela privada. Al darse cuenta de que los estudiantes tienen un talento musical increíble, Dewey decide formar una banda de rock con ellos para participar en un concurso de música y ganar el premio en efectivo. A pesar de sus métodos poco convencionales, Dewey logra inspirar a los niños, quienes aprenden a confiar en sí mismos y a luchar por sus sueños. La película es una divertida y emotiva comedia sobre la música, la pasión y el poder de la enseñanza.",
       "genre": "Comedia/Música",
       "schedule": "18:30",
       "type": "Estreno",
