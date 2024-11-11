@@ -8,6 +8,7 @@ import {createpagomovil} from './pago-movil/pago-movil.entity';
 import {PagoTransferencia} from './pago-transferencia/pago-transferencia.entity'
 import {pago_movil_module} from './pago-movil/pago-movil.module';
 import { PagoTransferenciaModule } from './pago-transferencia/pago-transferencia.module';
+import { PrecioModule } from './precio/precio.module';
 
 @Module({
   imports: [
