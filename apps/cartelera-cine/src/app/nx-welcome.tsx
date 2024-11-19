@@ -529,7 +529,7 @@ export function NxWelcome({ title }: { title: string }) {
                     />
                   </svg>
                   <span>
-                    Blog
+                    Post
                     <span> Changelog, features & events </span>
                   </span>
                   <svg
