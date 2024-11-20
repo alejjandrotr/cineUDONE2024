@@ -1,6 +1,5 @@
-/* Estilos para el sidebar */
 .sidebar {
-  width: 80px; /* Ancho contraído */
+  width: 80px; 
   background-color: #1C1a19;
   color: rgb(255, 255, 255);
   padding: 10px;
@@ -35,50 +34,46 @@
 .sidebar-menu li {
   padding: 10px;
   cursor: pointer;
-  font-size: 1.4rem; /* Aumentar tamaño de la letra */
+  font-size: 1.4rem; 
   margin: 8px 0;
   border-radius: 5px;
   transition: background-color 0.3s;
   display: flex;
   align-items: center;
-  white-space: nowrap; /* Prevenir que el texto se envuelva */
-  background-color: #1b1a1b; /* Fondo coherente */
-  color: #8555B4; /* Texto morado */
+  white-space: nowrap; 
+  background-color: #1b1a1b; 
+  color: #8555B4; 
 }
 
-/* Ocultar el texto en estado contraído */
 .sidebar-menu li span {
   display: none;
 }
 
 .sidebar-menu li:hover {
   background-color: #8555B4;
-  color: #fff; /* Color blanco en el texto cuando el item está en hover */
+  color: #fff;
 }
 
 .sidebar-menu li svg {
   margin: 0;
-  font-size: 1.50rem; /* Aumentar tamaño del icono */
-  color: #8555B4; /* Icono morado */
+  font-size: 1.50rem; 
+  color: #8555B4; 
   transition: color 0.3s ease;
 }
 
-/* Cambiar color de los iconos cuando el item está en hover */
 .sidebar-menu li:hover svg {
-  color: #fff; /* Los iconos se vuelven blancos en hover */
+  color: #fff; 
 }
 
-/* Mostrar texto y logo cuando se expande */
 .sidebar:hover .sidebar-header {
   display: flex;
 }
 
 .sidebar:hover .sidebar-menu li span {
   display: inline;
-  font-size: 1.2rem; /* Aumentar tamaño del texto al expandirse */
+  font-size: 1.2rem; 
 }
 
-/* Asegurarse de que el contenido no se desborde */
 .sidebar-content {
   height: 100%;
   display: flex;
@@ -90,34 +85,33 @@
   overflow: hidden;
 }
 
-/* Estilos responsivos para pantallas pequeñas */
 @media (max-width: 600px) {
   .sidebar {
-    width: 60px; /* Ajustar ancho en pantallas pequeñas */
+    width: 60px; 
   }
 
   .sidebar:hover {
-    width: 200px; /* Ajustar ancho expandido en pantallas pequeñas */
+    width: 200px; 
   }
 
   .sidebar-menu li {
-    font-size: 1.2rem; /* Ajustar tamaño de la letra */
-    padding: 8px; /* Ajustar padding */
+    font-size: 1.2rem; 
+    padding: 8px; 
   }
 
   .sidebar-menu li svg {
-    font-size: 1.2rem; /* Ajustar tamaño del icono */
+    font-size: 1.2rem; 
   }
 
   .sidebar-menu li:hover {
-    background-color: #6a1b9a; /* Ajustar color de fondo en hover */
+    background-color: #6a1b9a; 
   }
 
   .sidebar-header {
-    font-size: 1rem; /* Ajustar tamaño del texto del header */
+    font-size: 1rem; 
   }
 
   .sidebar:hover .sidebar-menu li span {
-    font-size: 1rem; /* Ajustar tamaño del texto expandido */
+    font-size: 1rem; 
   }
 }

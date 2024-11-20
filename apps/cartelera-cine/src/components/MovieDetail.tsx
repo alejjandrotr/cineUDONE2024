@@ -1,7 +1,7 @@
 import React from 'react';
-import '../styles/MovieDetail.css'; // Asegúrate de que la ruta sea correcta
-import { MdClose } from 'react-icons/md'; // Importa el ícono de la X para cerrar
-import { Movie } from './MovieList'; // Importar el tipo Movie
+import '../styles/MovieDetail.css';
+import { MdClose } from 'react-icons/md';
+import { Movie } from '../core/models/Movie';
 
 const MovieDetail: React.FC<{ movie: Movie; onClose: () => void }> = ({ movie, onClose }) => {
   return (

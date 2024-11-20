@@ -1,18 +1,7 @@
 import React from 'react';
 import '../styles/MovieList.css';
 import MovieDetail from './MovieDetail';
-
-export type Movie = {
-  id: number;
-  title: string;
-  genre: string;
-  schedule: string;
-  type: string;
-  rating: string;
-  duration: number;
-  poster?: string;
-  synopsis: string;
-};
+import { Movie } from '../core/models/Movie';
 
 const MovieCard = ({ movie, onSelect }: { movie: Movie; onSelect: (movie: Movie) => void }) => {
   return (

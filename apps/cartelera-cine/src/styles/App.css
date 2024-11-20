@@ -6,10 +6,10 @@
 .content {
   flex-grow: 1;
   padding: 20px;
-  padding-left: 80px; /* Espacio para la barra lateral cuando está contraída */
+  padding-left: 80px; 
   background:#1C1A19;
-  min-height: 100vh; /* Para que ocupe toda la pantalla */
-  z-index: 1; /* Asegura que el contenido esté detrás de la sidebar */
+  min-height: 100vh; 
+  z-index: 1; 
 }
 
 .App-header {

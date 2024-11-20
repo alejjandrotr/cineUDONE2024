@@ -4,102 +4,92 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.7); /* Fondo oscuro semi-transparente */
-  z-index: 999; /* Detrás del modal */
+  background: rgba(0, 0, 0, 0.7); 
+  z-index: 999; 
 }
 
-/* Estilo para la vista de detalles de la película */
 .movie-detail-view {
-  position: fixed; /* Fijo para superponerse */
+  position: fixed; 
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #1C1a19; /* Mismo fondo que antes */
+  background-color: #1C1a19; 
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 0 15px rgba(255, 254, 255, 0.3); /* Sombra más suave */
-  max-width: 85%; /* Aumentamos el ancho máximo */
-  width: 800px; /* Ancho fijo para que sea más grande */
+  box-shadow: 0 0 15px rgba(255, 254, 255, 0.3); 
+  max-width: 85%; 
+  width: 800px; 
   z-index: 1000;
-  overflow-y: auto; /* Habilitar desplazamiento vertical si el contenido es demasiado alto */
-  max-height: 90vh; /* Máxima altura del modal */
-  display: flex; /* Usamos flexbox para alinear la imagen y el contenido */
+  overflow-y: auto; 
+  max-height: 90vh; 
+  display: flex; 
 }
 
-/* Contenedor para la imagen y el contenido */
 .movie-content {
-  display: flex; /* Alinea imagen y contenido horizontalmente */
+  display: flex; 
   justify-content: flex-start;
   align-items: flex-start;
   width: 100%;
 }
 
-/* Estilo para el poster grande de la película */
 .movie-poster-large {
-  width: 35%; /* La imagen ocupa el 35% del ancho del modal */
+  width: 35%; 
   height: auto;
-  margin-right: 20px; /* Espacio entre la imagen y el contenido */
-  border-radius: 8px; /* Bordes redondeados */
+  margin-right: 20px; 
+  border-radius: 8px; 
 }
 
-/* Estilo para el contenido de la película (título, sinopsis, etc.) */
 .movie-info {
-  flex: 1; /* El contenido ocupa el resto del espacio disponible */
-  color: #f0f0f0; /* Texto claro */
+  flex: 1; 
+  color: #f0f0f0; 
 }
 
-/* Título de la película */
 .movie-title-large {
-  font-size: 28px; /* Aumentar el tamaño del título */
-  margin-top: 10px; /* Espacio superior para no quedar pegado al botón de cerrar */
-  margin-bottom: 10px; /* Espacio inferior para separarlo de los detalles */
-  color: #ffffff; /* Color blanco para mayor contraste */
-  word-wrap: break-word; /* Hacer que el título se ajuste si es largo */
+  font-size: 28px; 
+  margin-top: 10px; 
+  margin-bottom: 10px; 
+  color: #ffffff; 
+  word-wrap: break-word; 
 }
 
-/* Sinopsis de la película */
 .movie-synopsis {
   font-size: 16px;
-  margin-top: 20px; /* Separar sinopsis de los detalles */
-  color: #f0f0f0; /* Color claro para mejor legibilidad */
+  margin-top: 20px; 
+  color: #f0f0f0; 
 }
 
-/* Detalles adicionales de la película (horario, tipo, clasificación) */
 .movie-additional-details {
-  display: flex; /* Usamos flexbox para mostrar los detalles en fila */
-  justify-content: space-between; /* Distribuye los items a lo largo del espacio */
+  display: flex; 
+  justify-content: space-between; 
   margin-bottom: 20px;
-  color: #f0f0f0; /* Color claro para mejor legibilidad */
+  color: #f0f0f0; 
 }
 
-/* Detalle individual en fila */
 .movie-detail {
   font-size: 16px;
   color: #f0f0f0;
-  margin-right: 15px; /* Espacio entre los detalles */
+  margin-right: 15px; 
 }
 
-/* Botón de cerrar con "X" */
 .close-button {
   position: absolute;
   top: 10px;
   right: 10px;
-  background: transparent; /* Fondo transparente */
+  background: transparent; 
   color: #fff;
-  font-size: 32px; /* Tamaño de la "X" más grande */
+  font-size: 32px; 
   border: none;
   cursor: pointer;
-  transition: transform 0.3s ease, color 0.3s ease; /* Transiciones suaves */
+  transition: transform 0.3s ease, color 0.3s ease; 
 }
 
 .close-button:hover {
-  color: #f44336; /* Rojo en hover */
-  transform: rotate(90deg); /* Girar la "X" al pasar el mouse */
+  color: #f44336; 
+  transform: rotate(90deg); 
 }
 
-/* Estilo para el botón de compra */
 .buy-button {
-  background-color: #6a1b9a; /* Color morado oscuro para el botón */
+  background-color: #6a1b9a; 
   color: white;
   border: none;
   padding: 10px 20px;
@@ -113,55 +103,53 @@
 }
 
 .buy-button:hover {
-  background-color: #4a148c; /* Color más oscuro al pasar el mouse */
-  transform: translateY(-2px); /* Elevar el botón al hacer hover */
+  background-color: #4a148c; 
+  transform: translateY(-2px); 
 }
 
 .buy-button:active {
-  transform: translateY(0); /* Vuelve a la posición original cuando se hace clic */
+  transform: translateY(0); 
 }
 
-/* Ajustes para móviles */
 @media (max-width: 600px) {
   .movie-detail-view {
-    padding: 15px; /* Reducir padding para más espacio */
+    padding: 15px; 
     max-width: 100%;
-    width: 100%; /* Asegura que el modal se ajuste a la pantalla */
+    width: 100%; 
   }
 
   .movie-content {
-    flex-direction: column; /* Cambiar a columna para pantallas pequeñas */
-    align-items: center; /* Centrar el contenido */
+    flex-direction: column;
+    align-items: center; 
   }
 
   .movie-poster-large {
-    width: 50%; /* Reducir aún más el ancho de la imagen */
+    width: 50%; 
     margin-bottom: 15px;
-    margin-right: 0; /* Eliminar margen derecho */
+    margin-right: 0;
   }
 
   .movie-title-large {
-    font-size: 18px; /* Reducir el tamaño del título */
-    text-align: center; /* Alinear el título al centro */
+    font-size: 18px; 
+    text-align: center; 
   }
 
   .movie-synopsis {
-    font-size: 14px; /* Ajustar tamaño de la fuente de la sinopsis */
+    font-size: 14px; 
     margin-top: 10px;
   }
 
   .movie-detail {
-    font-size: 14px; /* Ajustar el tamaño de los detalles */
+    font-size: 14px; 
     margin-top: 8px;
   }
 
-  /* Mejoras para el botón de compra en móviles */
   .buy-button {
-    padding: 12px 24px; /* Ajustar el tamaño del padding para ser más equilibrado */
-    font-size: 16px; /* Mantener tamaño de la fuente cómodo */
-    width: auto; /* Mantener el ancho automático */
-    max-width: 300px; /* Limitar el ancho máximo del botón */
-    margin: 15px auto; /* Centramos el botón y agregamos margen superior e inferior */
-    display: block; /* Aseguramos que el botón sea un bloque centrado */
+    padding: 12px 24px; 
+    font-size: 16px; 
+    width: auto; 
+    max-width: 300px; 
+    margin: 15px auto; 
+    display: block; 
   }
 }

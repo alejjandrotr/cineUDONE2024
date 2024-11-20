@@ -1,5 +1,5 @@
 .banner {
-  background-color: #1C1A19; /* Color oscuro para el banner */
+  background-color: #1C1A19;
   padding: 10px;
   text-align: left;
   border-radius: 0 0 20px 20px;
@@ -7,10 +7,10 @@
 
 .banner-content {
   display: flex;
-  align-items: center; /* Centrar verticalmente */
-  justify-content: center; /* Centrar horizontalmente */
-  gap: 20px; /* Espacio entre el logo y el título */
-  flex-wrap: wrap; /* Permitir que los elementos se envuelvan */
+  align-items: center; 
+  justify-content: center; 
+  gap: 20px; 
+  flex-wrap: wrap; 
 }
 
 .banner-logo {
@@ -27,66 +27,65 @@
 
 .search-bar {
   display: flex;
-  align-items: center; /* Alinear elementos verticalmente */
-  gap: 10px; /* Espacio entre la entrada y el botón */
+  align-items: center; 
+  gap: 10px; 
 }
 
-/* Media Queries para hacer el banner responsivo */
 @media (max-width: 768px) {
   .banner-title {
-    font-size: 2rem; /* Reducir el tamaño de la fuente en pantallas más pequeñas */
+    font-size: 2rem; 
   }
 
   .banner-logo {
-    height: 70px; /* Reducir el tamaño del logo en pantallas más pequeñas */
+    height: 70px; 
   }
 
   .banner-content {
-    flex-direction: column; /* Alinear los elementos verticalmente en pantallas más pequeñas */
-    text-align: center; /* Centrar el texto */
+    flex-direction: column; 
+    text-align: center; 
   }
 
   .search-bar {
-    width: 100%; /* Hacer que la barra de búsqueda ocupe el 100% del ancho */
-    justify-content: center; /* Centrar la barra de búsqueda */
+    width: 100%; 
+    justify-content: center; 
   }
 
   .search-bar input[type="text"] {
-    width: 70%; /* Ajustar el ancho del input */
+    width: 70%; 
   }
 
   .search-bar button {
-    width: 20%; /* Ajustar el ancho del botón */
+    width: 20%; 
   }
 }
 
 @media (max-width: 480px) {
   .banner-title {
-    font-size: 1.5rem; /* Reducir aún más el tamaño de la fuente en pantallas muy pequeñas */
+    font-size: 1.5rem; 
   }
 
   .banner-logo {
-    height: 50px; /* Reducir aún más el tamaño del logo en pantallas muy pequeñas */
+    height: 50px; 
   }
 
   .search-bar input[type="text"], 
   .search-bar button {
-    width: auto; /* Ajustar el ancho del input y del botón para pantallas muy pequeñas */
+    width: auto; 
   }
 }
 
-/* Estilos para el input y el botón de la barra de búsqueda */
+
 .search-bar input[type="text"] {
-  padding: 5px 10px; /* Espaciado interno */
+  padding: 5px 10px; 
   border: 2px solid #8555B4;
   border-radius: 5px;
   outline: none;
 }
 
 .search-bar button {
-  padding: 5px 10px; /* Espaciado interno */
-  background-color: #4CAF50; /* Color de fondo */
-  color: #fff; /* Color del texto */
+  padding: 5px 10px; 
+  background-color: #4CAF50; 
+  color: #fff; 
   border: none;
   border-radius: 5px;
   cursor: pointer;
