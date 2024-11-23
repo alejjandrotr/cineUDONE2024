@@ -9,10 +9,12 @@ export class createpagomovil{
   banco: string;
 
   @Column()
+  codigo_banco: string;
+
+  @Column()
+  cedula: string;
+
+  @Column()
   numero_telef: string;
 }
 
-
-
-//NOTA: LOS ARCHIVOS QUE SON .SPEC SON ARCHIVOS DE PRUEBA DE ARCHIVOS ARTERIORES, BASICAMENTE ES PARA SABER
-// SI FUNCIONAN BIEN.

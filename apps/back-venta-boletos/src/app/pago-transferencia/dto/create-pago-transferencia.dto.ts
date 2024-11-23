@@ -13,7 +13,7 @@ export class CreatePagoTransferenciadto {
   @IsNotEmpty()
   @IsString()
   @Length(20,20)
-  nro_cuenta: string;
+  NumeroCuenta: string;
 
   @ApiProperty({example: '28567843', description: 'Identificacion Personal (ID)'})
   @IsNotEmpty()

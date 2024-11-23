@@ -7,7 +7,7 @@ export class PagoTransferenciaController {
   constructor(private readonly pagoTransferenciaService: PagoTransferenciaService) {}
 
   @Post()
-  createPagoTransferencia(@Body() newPagoTransferencia: CreatePagoTransferenciadto) {
+  createTransferencia(@Body() newPagoTransferencia: CreatePagoTransferenciadto) {
     return this.pagoTransferenciaService.createPagoTransferencia(newPagoTransferencia);
   }
 }
