@@ -1,4 +1,4 @@
-import { IsAlpha, IsDate, IsDecimal, IsNotEmpty, IsNumberString, IsString, Length } from 'class-validator'
+import { IsAlpha, IsDate, IsDecimal, IsEnum, IsNotEmpty, IsNumber, IsNumberString, IsString, Length } from 'class-validator'
 import { Type } from 'class-transformer'
 import { ApiProperty } from '@nestjs/swagger'
 
@@ -9,16 +9,16 @@ export class CreatePaymentinfoDto{
     @Length(4, 20)
     referencia: string;
 
-    @ApiProperty({example: 'Banco Mercantil', description: 'Nombre de la entidad bancaria'})
+    @ApiProperty({example: '0105', description: 'Codigo de la entidad bancaria'})
     @IsNotEmpty()
-    @IsString()
-    @Length(3, 60)
-    banco_emisor: string;
+    @IsNumberString()
+    @Length(4, 4)
+    banco_codigo: string;
 
     @ApiProperty({example: 'Pago Móvil', description: 'Tipo de Método de Pago'})
     @IsNotEmpty()
     @IsString()
-    @Length(3, 20)
+    @IsEnum(['Pago Movil', 'Transferencia'])
     metodo: string;
 
     @ApiProperty({example: '2024-11-07', description: 'Fecha de la realización del Pago'})
@@ -27,14 +27,14 @@ export class CreatePaymentinfoDto{
     @Type(() => Date)
     fecha: Date;
 
-    @ApiProperty({example: '2.99', description: 'Monto pagado'})
+    @ApiProperty({example: '3.99', description: 'Monto pagado'})
     @IsNotEmpty()
-    @IsDecimal()
+    @IsNumber()
     monto: number;
 
-    @ApiProperty({example: 'Pendiente', description: 'Estado del pago (Pendiente, Confirmado, Rechazado'})
+    @ApiProperty({example: 'Confirmado', description: 'Estado del pago (Pendiente, Confirmado, Rechazado'})
     @IsNotEmpty()
     @IsAlpha()
-    @Length(2, 10)
-    estado: string;
+    @IsEnum(['Pendiente', 'Corfirmado', 'Rechazado'])
+    estado: string = 'Pendiente';
 }
