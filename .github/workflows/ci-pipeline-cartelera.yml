@@ -1,4 +1,4 @@
-name: CI
+name: CI/CD  Equipo Amarillo
 
 on:
   push:
@@ -8,27 +8,50 @@ on:
     branches:
       - main
 
-permissions:
-  actions: read
-  contents: read
-
 jobs:
-  main:
+  setup:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          fetch-depth: 0
+          node-version: '20'
 
-      - run: npx nx-cloud start-ci-run --distribute-on="3 linux-medium-js" --stop-agents-after="build"
+      - name: Install dependencies
+        run: npm install
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20.18.0'
-          cache: 'npm'
+  build:
+    runs-on: ubuntu-latest
+    needs: setup
+    steps:
+      - name: Build app
+        run: npx nx run cartelera-cine:build
 
-      - run: npm ci --legacy-peer-deps
+  test:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Run tests
+        run: npx nx run cartelera-cine:test
 
-      - uses: nrwl/nx-set-shas@v4
+  lint:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: Run lint
+        run: npx nx run cartelera-cine:lint
 
-      - run: npx nx affected -t lint,test,build
+  deploy:
+    needs: lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build app for deployment
+        run: npx nx run cartelera-cine:build
+
+      # Este paso está comentado hasta que se configure el servicio de despliegue
+      # - name: Deploy to Hosting Service
+      #   run: |
+      #     # Aquí iría el comando para desplegar la app al servicio de hosting
