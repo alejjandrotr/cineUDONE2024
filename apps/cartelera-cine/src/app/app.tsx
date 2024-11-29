@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Route, Routes, Link } from 'react-router-dom';
-import MovieList, { Movie } from '../components/MovieList';
+import MovieList from '../components/MovieList';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Sidebar from '../components/SideBar';
@@ -8,6 +8,7 @@ import SearchBar from '../components/SearchBar';
 import MovieDetail from '../components/MovieDetail';
 import moviesData from '../movies.json';
 import { movieImages } from '../constants/images';
+import { Movie } from '../core/models/Movie';
 import '../styles/App.css';
 
 

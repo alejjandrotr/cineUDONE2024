@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import '../styles/SearchBar.css';
 
 interface SearchBarProps {
@@ -6,33 +6,21 @@ interface SearchBarProps {
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
-  const [query, setQuery] = useState('');
-  const [debouncedQuery, setDebouncedQuery] = useState(query);
+  const [query, setQuery] = useState(''); // Solo necesitamos un estado para `query`
 
-  useEffect(() => {
-    const handler = setTimeout(() => {
-      setDebouncedQuery(query);
-    }, 300);
-
-    return () => {
-      clearTimeout(handler);
-    };
-  }, [query]);
-
-  useEffect(() => {
-    onSearch(debouncedQuery);
-  }, [debouncedQuery, onSearch]);
-
+  // Cada vez que el valor del input cambia, se llama a `onSearch`
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setQuery(event.target.value);
+    const newQuery = event.target.value;
+    setQuery(newQuery);  // Actualizamos el estado de `query`
+    onSearch(newQuery);  // Pasamos el valor de `query` a `onSearch` directamente
   };
 
   return (
     <div className="search-bar">
       <input
         type="text"
-        value={query}
-        onChange={handleChange}
+        value={query} // El valor del input está controlado por `query`
+        onChange={handleChange} // Llamamos a `handleChange` cada vez que se escribe
         placeholder="Buscar en cartelera..."
       />
     </div>
