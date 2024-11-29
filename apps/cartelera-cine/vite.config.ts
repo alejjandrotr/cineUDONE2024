@@ -9,7 +9,7 @@ export default defineConfig({
   cacheDir: '../../node_modules/.vite/apps/cartelera-cine',
   server: {
     port: 4201,
-    host: 'localhost',
+    host: '0.0.0.0',
   },
   preview: {
     port: 4301,

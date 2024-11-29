@@ -1,0 +1,155 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7); 
+  z-index: 999; 
+}
+
+.movie-detail-view {
+  position: fixed; 
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #1C1a19; 
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(255, 254, 255, 0.3); 
+  max-width: 85%; 
+  width: 800px; 
+  z-index: 1000;
+  overflow-y: auto; 
+  max-height: 90vh; 
+  display: flex; 
+}
+
+.movie-content {
+  display: flex; 
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.movie-poster-large {
+  width: 35%; 
+  height: auto;
+  margin-right: 20px; 
+  border-radius: 8px; 
+}
+
+.movie-info {
+  flex: 1; 
+  color: #f0f0f0; 
+}
+
+.movie-title-large {
+  font-size: 28px; 
+  margin-top: 10px; 
+  margin-bottom: 10px; 
+  color: #ffffff; 
+  word-wrap: break-word; 
+}
+
+.movie-synopsis {
+  font-size: 16px;
+  margin-top: 20px; 
+  color: #f0f0f0; 
+}
+
+.movie-additional-details {
+  display: flex; 
+  justify-content: space-between; 
+  margin-bottom: 20px;
+  color: #f0f0f0; 
+}
+
+.movie-detail {
+  font-size: 16px;
+  color: #f0f0f0;
+  margin-right: 15px; 
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent; 
+  color: #fff;
+  font-size: 32px; 
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s ease, color 0.3s ease; 
+}
+
+.close-button:hover {
+  color: #f44336; 
+  transform: rotate(90deg); 
+}
+
+.buy-button {
+  background-color: #6a1b9a; 
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+  width: auto;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  text-align: center;
+}
+
+.buy-button:hover {
+  background-color: #4a148c; 
+  transform: translateY(-2px); 
+}
+
+.buy-button:active {
+  transform: translateY(0); 
+}
+
+@media (max-width: 600px) {
+  .movie-detail-view {
+    padding: 15px; 
+    max-width: 100%;
+    width: 100%; 
+  }
+
+  .movie-content {
+    flex-direction: column;
+    align-items: center; 
+  }
+
+  .movie-poster-large {
+    width: 50%; 
+    margin-bottom: 15px;
+    margin-right: 0;
+  }
+
+  .movie-title-large {
+    font-size: 18px; 
+    text-align: center; 
+  }
+
+  .movie-synopsis {
+    font-size: 14px; 
+    margin-top: 10px;
+  }
+
+  .movie-detail {
+    font-size: 14px; 
+    margin-top: 8px;
+  }
+
+  .buy-button {
+    padding: 12px 24px; 
+    font-size: 16px; 
+    width: auto; 
+    max-width: 300px; 
+    margin: 15px auto; 
+    display: block; 
+  }
+}
