@@ -1,15 +1,13 @@
-import { BaseApi } from "../Base/api";
-import { mockSalaData } from "../mockData/sala";
-import { Sala } from "./sala";
+import { BaseApi } from '../Base/api';
+import { RepositoryType } from '../Base/enums/RepositoryType';
+import { BaseRepositoryFactory } from '../Base/repository.abstract';
+import { ENTITIES_KEYS } from '../enums/entity-keys';
+import { mockSalaData } from '../mockData/data-salas';
+import { Sala } from './sala';
 
-class SalaApi extends BaseApi<Sala>{
-  constructor(){
-    super({path: 'sala'})
+/*class SalaApi extends BaseRepositoryFactory<Sala> {
+  constructor() {
+    super({ path: 'sala', type: RepositoryType.MOCK });
   }
-
-  async get(){
-    return mockSalaData()
-  }
-}
-
-export const salaApi = new SalaApi();
+}*/
+export const salaRepository =  BaseRepositoryFactory.factoryRepository({ path: ENTITIES_KEYS.SALA, type: RepositoryType.MOCK });

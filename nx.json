@@ -17,7 +17,7 @@
     ],
     "sharedGlobals": ["{workspaceRoot}/.github/workflows/ci.yml"]
   },
-  "nxCloudId": "671812b2038ad6225e8a5353",
+  "nxCloudId": "6727a30c08cc1306a835a1e6",
   "plugins": [
     {
       "plugin": "@nx/vite/plugin",
@@ -85,5 +85,6 @@
         "linter": "eslint"
       }
     }
-  }
+  },
+  "defaultBase": "main"
 }

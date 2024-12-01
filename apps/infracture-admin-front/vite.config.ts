@@ -15,6 +15,7 @@ export default defineConfig({
     port: 4300,
     host: 'localhost',
   },
+  
   plugins: [react(), nxViteTsPaths(), nxCopyAssetsPlugin(['*.md'])],
   // Uncomment this if you are using workers.
   // worker: {
@@ -34,6 +35,7 @@ export default defineConfig({
     environment: 'jsdom',
     include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
     reporters: ['default'],
+    setupFiles: './src/setupTests.ts',
     coverage: {
       reportsDirectory: '../../coverage/apps/infracture-admin-front',
       provider: 'v8',

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Sala } from './core/Sala/sala';
-import { salaApi } from './core/Sala/sala.api';
+import { salaRepository } from './core/Sala/sala.api';
 
 /*
  * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -13,7 +13,7 @@ export function NxWelcome({ title }: { title: string }) {
   const [salas, setSalas] = useState<Sala[]>([]);
 
   useEffect(() => {
-    salaApi.get().then((data) => {console.log(data); setSalas(data)});
+    salaRepository.get().then((data) => {console.log(data); setSalas(data)});
   }, []);
   return (
     <>

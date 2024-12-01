@@ -16,6 +16,7 @@ import Tables from './pages/Tables';
 import Alerts from './pages/UiElements/Alerts';
 import Buttons from './pages/UiElements/Buttons';
 import DefaultLayout from './layout/DefaultLayout';
+import SalasAdminPage from '../../../app/pages/Salas/sala-admin.page';
 
 function AppTemplate() {
   const [loading, setLoading] = useState<boolean>(true);
@@ -43,6 +44,19 @@ function AppTemplate() {
             </>
           }
         />
+
+        <Route
+          path="/sala"
+          element={
+            <>
+              <PageTitle title="Salas del Cine | CineAdmin" />
+              <SalasAdminPage />
+            </>
+          }
+        />
+
+
+
         <Route
           path="/calendar"
           element={
