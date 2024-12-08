@@ -21,11 +21,11 @@ export class Paymentinfo{
     referencia: string;
 
     @ManyToOne(() => Banco)
-    @JoinColumn({ name: 'banco_codigo' })
+    @JoinColumn({ name: 'bancoCodigo' })
     banco_emisor: Banco;
 
     @Column()
-    banco_codigo: string;
+    bancoCodigo: string;
 
     @Column({
         type: 'enum',

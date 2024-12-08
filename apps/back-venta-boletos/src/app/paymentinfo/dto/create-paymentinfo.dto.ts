@@ -13,7 +13,7 @@ export class CreatePaymentinfoDto{
     @IsNotEmpty()
     @IsNumberString()
     @Length(4, 4)
-    banco_codigo: string;
+    bancoCodigo: string;
 
     @ApiProperty({example: 'Pago Móvil', description: 'Tipo de Método de Pago'})
     @IsNotEmpty()
