@@ -1,0 +1,96 @@
+.banner {
+  background-color: #1C1A19;
+  padding: 10px;
+  text-align: left;
+  border-radius: 0 0 20px 20px;
+}
+
+.banner-content {
+  display: flex;
+  align-items: center; 
+  justify-content: center; 
+  gap: 20px; 
+  flex-wrap: wrap; 
+}
+
+.banner-logo {
+  height: 90px;
+}
+
+.banner-title {
+  margin: 0;
+  font-size: 3rem;
+  color: #ffffff;
+  font-weight: bold;
+  font-family: 'Poppins', monospace;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center; 
+  gap: 10px; 
+}
+
+@media (max-width: 768px) {
+  .banner-title {
+    font-size: 2rem; 
+  }
+
+  .banner-logo {
+    height: 70px; 
+  }
+
+  .banner-content {
+    flex-direction: column; 
+    text-align: center; 
+  }
+
+  .search-bar {
+    width: 100%; 
+    justify-content: center; 
+  }
+
+  .search-bar input[type="text"] {
+    width: 70%; 
+  }
+
+  .search-bar button {
+    width: 20%; 
+  }
+}
+
+@media (max-width: 480px) {
+  .banner-title {
+    font-size: 1.5rem; 
+  }
+
+  .banner-logo {
+    height: 50px; 
+  }
+
+  .search-bar input[type="text"], 
+  .search-bar button {
+    width: auto; 
+  }
+}
+
+
+.search-bar input[type="text"] {
+  padding: 5px 10px; 
+  border: 2px solid #8555B4;
+  border-radius: 5px;
+  outline: none;
+}
+
+.search-bar button {
+  padding: 5px 10px; 
+  background-color: #4CAF50; 
+  color: #fff; 
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.search-bar button:hover {
+  background-color: #45a049;
+}
