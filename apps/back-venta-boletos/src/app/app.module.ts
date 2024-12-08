@@ -9,6 +9,8 @@ import {PagoTransferencia} from './pago-transferencia/pago-transferencia.entity'
 import {pago_movil_module} from './pago-movil/pago-movil.module';
 import { PagoTransferenciaModule } from './pago-transferencia/pago-transferencia.module';
 import { PrecioModule } from './precio/precio.module';
+import { Factura } from './lista-factura/lista-factura.entity';
+import { FacturaModule } from './lista-factura/lista-factura.module';
 
 @Module({
   imports: [
@@ -19,12 +21,13 @@ import { PrecioModule } from './precio/precio.module';
       username: 'root',
       password: '',
       database: 'cine',
-      entities: [Paymentinfo, createpagomovil, PagoTransferencia],
+      entities: [Paymentinfo, createpagomovil, PagoTransferencia, Factura],
       synchronize: true
     }),
     PaymentinfoModule,
     pago_movil_module,
     PagoTransferenciaModule,
+    FacturaModule,
   ],
   controllers: [AppController],
   providers: [AppService],
