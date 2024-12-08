@@ -5,6 +5,10 @@ import { ConfigModule, ConfigService } from '@nestjs/config'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { Banco, Paymentinfo } from './paymentinfo/paymentinfo.entity';
 import { PaymentinfoModule } from './paymentinfo/paymentinfo.module';
+import {createpagomovil} from './pago-movil/pago-movil.entity';
+import {PagoTransferencia} from './pago-transferencia/pago-transferencia.entity'
+import {pago_movil_module} from './pago-movil/pago-movil.module';
+import { PagoTransferenciaModule } from './pago-transferencia/pago-transferencia.module';
 import { PrecioModule } from './precio/precio.module';
 
 @Module({
@@ -26,8 +30,10 @@ import { PrecioModule } from './precio/precio.module';
         synchronize: true
       }),
     }),
-    PaymentinfoModule, PrecioModule],
-
+    PaymentinfoModule,
+    pago_movil_module,
+    PagoTransferenciaModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
