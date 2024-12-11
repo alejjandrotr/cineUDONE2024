@@ -4,152 +4,195 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.7); 
-  z-index: 999; 
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 999;
 }
 
 .movie-detail-view {
-  position: fixed; 
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #1C1a19; 
+  background-color: #1c1a19;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 0 15px rgba(255, 254, 255, 0.3); 
-  max-width: 85%; 
-  width: 800px; 
+  box-shadow: 0 0 15px rgba(86, 36, 101, 0.988);
+  max-width: 90%;
+  width: 900px;
   z-index: 1000;
-  overflow-y: auto; 
-  max-height: 90vh; 
-  display: flex; 
+  overflow-y: auto;
+  max-height: 90vh;
+  display: flex;
 }
 
 .movie-content {
-  display: flex; 
+  float: left;
   justify-content: flex-start;
   align-items: flex-start;
-  width: 100%;
+  width: 30%;
+  margin: 20px;
+}
+.movie-content2 {
+  margin-bottom: 20px;
+  width: 70%;
 }
 
 .movie-poster-large {
-  width: 35%; 
+  width: 100%;
   height: auto;
-  margin-right: 20px; 
-  border-radius: 8px; 
+  margin-right: 20px;
+  border-radius: 8px;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.movie-poster-large:hover {
+  border: 2px solid #6a1b9a;
+  transform: scale(1.05);
+}
+
+.play-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 128px;
+  color: rgba(255, 255, 255, 0.8);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.movie-poster-large:hover .play-icon {
+  opacity: 1;
 }
 
 .movie-info {
-  flex: 1; 
-  color: #f0f0f0; 
+  flex: 1;
+  color: #f0f0f0;
 }
 
 .movie-title-large {
-  font-size: 28px; 
-  margin-top: 10px; 
-  margin-bottom: 10px; 
-  color: #ffffff; 
-  word-wrap: break-word; 
+  font-family: 'Roboto', sans-serif; 
+  font-weight: 700;
+  font-size: 28px;
+  color: #ffffff;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  word-wrap: break-word;
 }
 
 .movie-synopsis {
+  font-family: 'Open Sans', sans-serif;
   font-size: 16px;
-  margin-top: 20px; 
-  color: #f0f0f0; 
+  margin-top: 20px;
+  margin-bottom: 20px;
+  color: #f0f0f0;
 }
 
 .movie-additional-details {
-  display: flex; 
-  justify-content: space-between; 
+  display: flex;
+  justify-content: space-between;
   margin-bottom: 20px;
-  color: #f0f0f0; 
+  color: #f0f0f0;
 }
 
 .movie-detail {
+  font-family: 'Arial', sans-serif; 
   font-size: 16px;
   color: #f0f0f0;
-  margin-right: 15px; 
+  margin-right: 15px;
 }
 
 .close-button {
   position: absolute;
   top: 10px;
   right: 10px;
-  background: transparent; 
+  background: transparent;
   color: #fff;
-  font-size: 32px; 
+  font-size: 32px;
   border: none;
   cursor: pointer;
-  transition: transform 0.3s ease, color 0.3s ease; 
+  transition: transform 0.3s ease, color 0.3s ease;
+  margin-bottom: 20px;
 }
 
 .close-button:hover {
-  color: #f44336; 
-  transform: rotate(90deg); 
+  color: #f44336;
+  transform: rotate(90deg);
 }
 
 .buy-button {
-  background-color: #6a1b9a; 
+  background-color: #6a1b9a;
   color: white;
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
-  margin-top: 20px;
+  margin-top: 3px;
   width: auto;
   transition: background-color 0.3s ease, transform 0.3s ease;
   text-align: center;
 }
 
 .buy-button:hover {
-  background-color: #4a148c; 
-  transform: translateY(-2px); 
+  background-color: #4a148c;
+  transform: translateY(-2px);
 }
 
 .buy-button:active {
-  transform: translateY(0); 
+  transform: translateY(0);
+}
+
+.movie-price-buy-container {
+  display: block; 
+  margin-top: 20px; 
+  margin-bottom: 20px;
+  width: 100%; 
 }
 
 @media (max-width: 600px) {
   .movie-detail-view {
-    padding: 15px; 
+    padding: 15px;
     max-width: 100%;
-    width: 100%; 
+    width: 100%;
   }
 
   .movie-content {
     flex-direction: column;
-    align-items: center; 
+    align-items: center;
   }
 
   .movie-poster-large {
-    width: 50%; 
+    width: 80%;
     margin-bottom: 15px;
     margin-right: 0;
   }
 
   .movie-title-large {
-    font-size: 18px; 
-    text-align: center; 
+    font-size: 22px;
+    text-align: center;
   }
 
   .movie-synopsis {
-    font-size: 14px; 
+    font-size: 14px;
     margin-top: 10px;
   }
 
   .movie-detail {
-    font-size: 14px; 
+    font-size: 14px;
     margin-top: 8px;
   }
 
   .buy-button {
-    padding: 12px 24px; 
-    font-size: 16px; 
-    width: auto; 
-    max-width: 300px; 
-    margin: 15px auto; 
-    display: block; 
+    padding: 12px 24px;
+    font-size: 16px;
+    width: auto;
+    max-width: 90%;
+    margin: 15px auto;
+    display: block;
   }
+
 }
