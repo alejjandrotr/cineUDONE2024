@@ -1,6 +1,8 @@
-import { TypeOrmModule } from '@nestjs/typeorm'
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { Banco, Paymentinfo } from '../paymentinfo/paymentinfo.entity';
-import { ConfigModule, ConfigService } from '@nestjs/config'
+import { PagoTransferencia } from '../pago-transferencia/pago-transferencia.entity';
+import { createpagomovil } from '../pago-movil/pago-movil.entity';
 
 export const typeORMConfig = TypeOrmModule.forRootAsync({
     imports: [ConfigModule],
@@ -12,7 +14,7 @@ export const typeORMConfig = TypeOrmModule.forRootAsync({
       username: configService.get<string>('DB_USER'),
       password: configService.get<string>('DB_PASS'),
       database: configService.get<string>('DB_NAME'),
-      entities: [Banco,Paymentinfo],
+      entities: [Banco,Paymentinfo,PagoTransferencia,createpagomovil],
       synchronize: true
     })
   })
