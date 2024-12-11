@@ -1,27 +1,14 @@
-import pelicula1 from '../assets/lord_of_the_rings.jpg';
-import pelicula2 from '../assets/el_hobbit.jpg';
-import pelicula3 from '../assets/van_helsing.jpg';
-import pelicula4 from '../assets/harry_potter.jpg';
-import pelicula5 from '../assets/la_monja.jpg';
-import pelicula6 from '../assets/annabelle.jpg';
-import pelicula7 from '../assets/terrifier.jpg';
-import pelicula8 from '../assets/john_wick.jpg';
-import pelicula9 from '../assets/volver_al_futuro_3.jpg';
-import pelicula10 from '../assets/shrek_2.jpg';
-import pelicula11 from '../assets/piratas_del_caribe.jpg';
-import pelicula12 from '../assets/school_of_rock.jpg';
-
 export const movieImages: { [key: number]: string } = {
-  1: pelicula1,
-  2: pelicula2,
-  3: pelicula3,
-  4: pelicula4,
-  5: pelicula5,
-  6: pelicula6,
-  7: pelicula7,
-  8: pelicula8,
-  9: pelicula9,
-  10: pelicula10,
-  11: pelicula11,
-  12: pelicula12,
+  1: "https://imgcartelera.s3.us-east-2.amazonaws.com/assets/lord_of_the_rings.jpg",
+  2: "https://imgcartelera.s3.us-east-2.amazonaws.com/assets/el_hobbit.jpg",
+  3: "https://imgcartelera.s3.us-east-2.amazonaws.com/assets/van_helsing.jpg",
+  4: "https://imgcartelera.s3.us-east-2.amazonaws.com/assets/harry_potter.jpg",
+  5: "https://imgcartelera.s3.us-east-2.amazonaws.com/assets/la_monja.jpg",
+  6: "https://imgcartelera.s3.us-east-2.amazonaws.com/assets/annabelle.jpg",
+  7: "https://imgcartelera.s3.us-east-2.amazonaws.com/assets/terrifier.jpg",
+  8: "https://imgcartelera.s3.us-east-2.amazonaws.com/assets/john_wick.jpg",
+  9: "https://imgcartelera.s3.us-east-2.amazonaws.com/assets/volver_al_futuro_3.jpg",
+  10: "https://imgcartelera.s3.us-east-2.amazonaws.com/assets/shrek_2.jpg",
+  11: "https://imgcartelera.s3.us-east-2.amazonaws.com/assets/piratas_del_caribe.jpg",
+  12: "https://imgcartelera.s3.us-east-2.amazonaws.com/assets/school_of_rock.jpg",
 };
