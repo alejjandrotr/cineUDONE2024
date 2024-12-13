@@ -18,6 +18,6 @@ export class PaymentinfoService {
 
     getPaymentinfo(){
         return this.paymentinfoRepository.find({
-            where: { estado: 'pendiente' } })
+            where: { estado: 'Pendiente' } })
     }
 }
