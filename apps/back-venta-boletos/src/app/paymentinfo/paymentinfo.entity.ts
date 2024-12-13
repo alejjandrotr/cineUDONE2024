@@ -8,7 +8,7 @@ export class Banco{
     @Column()
     nombre: string;
 
-    @OneToMany(() => Paymentinfo, paymentinfo => paymentinfo.banco_emisor)
+    @OneToMany(() => Paymentinfo, paymentinfo => paymentinfo.bancoCodigo)
     paymentinfos: Paymentinfo[];
 }
 
@@ -20,11 +20,7 @@ export class Paymentinfo{
     @Column()
     referencia: string;
 
-    @ManyToOne(() => Banco)
-    @JoinColumn({ name: 'bancoCodigo' })
-    banco_emisor: Banco;
-
-    @Column()
+    @ManyToOne(() => Banco, (bancoCodigo) => bancoCodigo.paymentinfos)
     bancoCodigo: string;
 
     @Column({
