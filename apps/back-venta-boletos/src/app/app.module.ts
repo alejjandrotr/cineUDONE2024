@@ -1,26 +1,20 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { Paymentinfo } from './paymentinfo/paymentinfo.entity';
+import { ConfigModule } from '@nestjs/config'
 import { PaymentinfoModule } from './paymentinfo/paymentinfo.module';
+import {pago_movil_module} from './pago-movil/pago-movil.module';
+import { PagoTransferenciaModule } from './pago-transferencia/pago-transferencia.module';
 import { PrecioModule } from './precio/precio.module';
-import { CorreoModule } from './correo/correo.module';
+import { typeORMConfig } from './config/typeorm.config';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'root',
-      password: 'teamverdemysql',
-      database: 'cine',
-      entities: [Paymentinfo],
-      synchronize: true
+    ConfigModule.forRoot({
+      isGlobal: true
     }),
-    PaymentinfoModule, PrecioModule, CorreoModule],
-
+    typeORMConfig,
+    PaymentinfoModule, PrecioModule,PagoTransferenciaModule,pago_movil_module],
   controllers: [AppController],
   providers: [AppService],
 })

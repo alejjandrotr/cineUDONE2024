@@ -1,0 +1,69 @@
+/* SearchBar.css */
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 20px 0;
+  max-width: 600px; 
+  margin-left: auto; 
+  margin-right: auto; 
+}
+
+.search-bar input[type="text"] {
+  padding: 10px; 
+  border: 2px solid rgba(238, 236, 236, 0.8);
+  box-shadow: 0 0 20px #512c71;
+  border-radius: 5px;
+  outline: none;
+  flex-grow: 1; 
+  background-color: rgba(30, 30, 30, 0.8);
+  color: #fff;
+}
+
+.search-bar button {
+  padding: 10px 15px;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #000;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.search-bar button:hover {
+  background-color: rgb(125, 124, 121);
+}
+
+@media (max-width: 768px) {
+  .search-bar {
+    flex-direction: column;
+    gap: 5px; 
+    max-width: 100%; 
+    margin: 10px 0; 
+  }
+
+  .search-bar input[type="text"] {
+    width: 100%; 
+    box-shadow: 0 0 10px #512c71; 
+  }
+
+  .search-bar button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .search-bar {
+    gap: 2px; 
+    margin: 5px 0; 
+  }
+
+  .search-bar input[type="text"] {
+    padding: 8px;
+    box-shadow: 0 0 5px #512c71; 
+  }
+
+  .search-bar button {
+    padding: 8px 10px; 
+  }
+}
