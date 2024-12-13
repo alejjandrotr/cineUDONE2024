@@ -1,48 +1,23 @@
-import NxWelcome from './nx-welcome';
-
+import TituloPelicula from '../components/TituloPelicula';
+import DetallesPelicula from '../components/DetallesPelicula';
 import { Route, Routes, Link } from 'react-router-dom';
 
 export function App() {
   return (
-    <div>
-      <NxWelcome title="venta-boletos" />
-
-      {/* START: routes */}
-      {/* These routes and navigation have been generated for you */}
-      {/* Feel free to move and update them to fit your needs */}
-      <br />
-      <hr />
-      <br />
-      <div role="navigation">
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/page-2">Page 2</Link>
-          </li>
-        </ul>
+    <div className="fondo">
+      <div className='banner-container'>
+        <div className="banner"></div>
       </div>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <div>
-              This is the generated root route.{' '}
-              <Link to="/page-2">Click here for page 2.</Link>
-            </div>
-          }
-        />
-        <Route
-          path="/page-2"
-          element={
-            <div>
-              <Link to="/">Click here to go back to root page.</Link>
-            </div>
-          }
-        />
-      </Routes>
-      {/* END: routes */}
+      <div className="grid grid-cols-2 grid-rows-3 h-screen content">
+        <DetallesPelicula />
+        <TituloPelicula />
+        <div className="col-span-1 row-span-1 bg-red-500 p-4 mx-16 my-4">
+          Elemento Derecho Inferior
+        </div>
+        <div className="col-span-1 row-span-1 bg-red-500 p-4 mx-16 my-4">
+          Elemento Derecho Inferior
+        </div>
+      </div>
     </div>
   );
 }

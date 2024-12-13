@@ -1,0 +1,17 @@
+.detalles{
+    color: #ffffff;
+    font-weight: bold;
+    width: 250px;
+    height: 600px;
+    border-radius: 25px;
+    background-color: #2B2B2B;
+}
+
+.detalles > h1 {
+    margin: 16px 0;
+}
+
+img{
+    width: 100%;
+    border-radius: 16px;
+}

@@ -2,3 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 /* You can add global styles to this file, and also import other style files */
+
+body {
+  background-color: #121212;
+}
+.fondo {
+  height: 100%;
+}
+.banner-container {
+  display: flex;
+  justify-content: center;
+}
+.banner {
+  position: absolute;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0)),
+    url('./assets/Spiderman.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 270px;
+  width: 90%;
+  margin: 0 auto;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+}
+.content {
+  position: relative;
+  z-index: 1;
+  padding: 20px;
+}

@@ -1,0 +1,10 @@
+@font-face {
+    font-family: 'Morganite';
+    src: url('../components/Morganite.tff') format('truetype');
+}
+
+.titulo{
+    font-family: Morganite;
+    font-size: 70px;
+    
+}
