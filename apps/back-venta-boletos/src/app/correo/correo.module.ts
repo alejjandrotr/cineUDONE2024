@@ -13,15 +13,15 @@ import { join } from 'path';
         port: 587,
         secure: false,
         auth: {
-          user: 'equipoalfadinamitaverde@gmail.com',
-          pass: 'teamverde10',
+          user: 'khristianhfs06@gmail.com',
+          pass: 'uuur sjfk tafg fiym',
         },
       },
       defaults: {
         from: '"No Reply" <noreply@example.com>',
       },
       template: {
-        dir: join(__dirname, 'templates'),
+        dir: join(__dirname, '../../apps/back-venta-boletos/src/app/correo/templates'),
         adapter: new HandlebarsAdapter(),
         options: {
           strict: true,
