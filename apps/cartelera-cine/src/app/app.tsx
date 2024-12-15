@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Route, Routes, Link } from 'react-router-dom';
-import MovieList, { Movie } from '../components/MovieList';
+import MovieList from '../components/MovieList';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Sidebar from '../components/SideBar';
@@ -8,8 +8,9 @@ import SearchBar from '../components/SearchBar';
 import MovieDetail from '../components/MovieDetail';
 import moviesData from '../movies.json';
 import { movieImages } from '../constants/images';
+import { Movie } from '../core/models/Movie';
+import { genres } from '../constants/genres'; 
 import '../styles/App.css';
-
 
 const App: React.FC = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
@@ -22,9 +23,9 @@ const App: React.FC = () => {
       poster: movieImages[movie.id] || '',
     }));
     setMovies(updatedMovies);
-    setFilteredMovies(updatedMovies); 
+    setFilteredMovies(updatedMovies);
   }, []);
-  
+
   const handleSearch = (query: string) => {
     const filtered = movies.filter((movie) =>
       movie.title.toLowerCase().includes(query.toLowerCase())
@@ -40,6 +41,15 @@ const App: React.FC = () => {
     setSelectedMovie(null);
   };
 
+  const getGenreNames = (genreIds: number[]): string => {
+    return genreIds
+      .map(id => {
+        const genre = genres.find(g => g.id === id);
+        return genre ? genre.name : "Desconocido";
+      })
+      .join(", ");
+  };
+
   return (
     <div className="app-container">
       <Sidebar />
@@ -49,7 +59,7 @@ const App: React.FC = () => {
         <Routes>
           <Route
             path="/"
-            element={<MovieList movies={filteredMovies} onSelect={handleSelectMovie} />}
+            element={<MovieList movies={filteredMovies} onSelect={handleSelectMovie} getGenreNames={getGenreNames} />}
           />
           <Route
             path="/page-2"
