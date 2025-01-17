@@ -6,12 +6,21 @@ type MovieScheduleProps = {
   scheduleByDate: Record<string, Schedule[]>;
 };
 
+const formatTimeForUser = (date: Date) => {  
+  return date.toLocaleTimeString('es-VE', { hour: '2-digit', minute: '2-digit', hour12: true });
+};
+
+const formatDateForUser = (date: Date) => {
+  return date.toLocaleDateString('es-VE', { day: '2-digit', month: 'short' });
+};
+
+
 const MovieSchedule: React.FC<MovieScheduleProps> = ({ scheduleByDate }) => {
   const [activeDate, setActiveDate] = useState<string | null>(null);
-  
-  const handleDateClick = (date: string) => {    
+
+  const handleDateClick = (date: string) => {
     if (activeDate === date) {
-      setActiveDate(null);
+      setActiveDate(null); 
     } else {
       setActiveDate(date);
     }
@@ -24,24 +33,29 @@ const MovieSchedule: React.FC<MovieScheduleProps> = ({ scheduleByDate }) => {
         {Object.keys(scheduleByDate).length === 0 ? (
           <p>No hay horarios disponibles para esta película.</p>
         ) : (
-          Object.keys(scheduleByDate).map((date) => (
-            <div
-              key={date}
-              className="schedule-date"
-              onClick={() => handleDateClick(date)}
-            >
-              <div className="date-box">{date}</div>
-              {activeDate === date && (
-                <ul className="schedule-list">
-                  {scheduleByDate[date].map((schedule, index) => (
-                    <li key={index} className="schedule-item">
-                      {schedule.time} - {schedule.room}
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </div>
-          ))
+          Object.keys(scheduleByDate).map((dateKey) => {
+            const date = new Date(dateKey); 
+            const formattedDate = formatDateForUser(date); 
+
+            return (
+              <div
+                key={dateKey}
+                className="schedule-date"
+                onClick={() => handleDateClick(dateKey)}
+              >
+                <div className="date-box">{formattedDate}</div>
+                {activeDate === dateKey && (
+                  <ul className="schedule-list">
+                    {scheduleByDate[dateKey].map((schedule, index) => (
+                      <li key={index} className="schedule-item">
+                        {formatTimeForUser(new Date(schedule.date))} - {schedule.room}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            );
+          })
         )}
       </div>
     </div>

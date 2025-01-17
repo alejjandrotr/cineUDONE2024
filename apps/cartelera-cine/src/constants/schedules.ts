@@ -1,5 +1,6 @@
 export type Schedule = {
-    date: string; 
-    time: string; 
-    room: string; 
-  };
+  date: Date; 
+  room: string; 
+  startTime: Date; 
+  endTime: Date; 
+};

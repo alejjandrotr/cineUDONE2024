@@ -1,6 +1,7 @@
 import React from 'react';
 import '../styles/MovieList.css';
 import { Movie } from '../core/models/Movie';
+import { genres } from '../constants/genres'; 
 
 const MovieCard = ({ movie, onSelect, getGenreNames }: { movie: Movie; onSelect: (movie: Movie) => void; getGenreNames: (genreIds: number[]) => string }) => {
   return (
@@ -21,7 +22,16 @@ const MovieCard = ({ movie, onSelect, getGenreNames }: { movie: Movie; onSelect:
   );
 };
 
-const MovieList = ({ movies, onSelect, getGenreNames }: { movies: Movie[]; onSelect: (movie: Movie) => void; getGenreNames: (genreIds: number[]) => string }) => {
+const MovieList = ({ movies, onSelect }: { movies: Movie[]; onSelect: (movie: Movie) => void }) => {
+  const getGenreNames = (genreIds: number[]): string => {
+    return genreIds
+      .map(id => {
+        const genre = genres.find(g => g.id === id);
+        return genre ? genre.name : "Desconocido";
+      })
+      .join(", ");
+  };
+
   return (
     <div className="movie-list-container">
       <div className="movie-list">

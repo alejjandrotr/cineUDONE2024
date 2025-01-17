@@ -8,6 +8,12 @@ import MovieTrailer from './MovieTrailer';
 import MovieSchedule from './MovieSchedule';
 
 const MovieDetail: React.FC<{ movie: Movie; onClose: () => void }> = ({ movie, onClose }) => {
+  const buyTicketUrl = 'http://localhost:4201/';
+
+  const handleBuyTicket = () => {    
+    window.location.href = buyTicketUrl;
+  };
+  
   const [showTrailer, setShowTrailer] = useState(false);
 
   const handlePosterClick = () => {
@@ -17,13 +23,24 @@ const MovieDetail: React.FC<{ movie: Movie; onClose: () => void }> = ({ movie, o
   const closeTrailer = () => {
     setShowTrailer(false);
   };
- 
-  const scheduleByDate = movie.schedule.reduce((acc: Record<string, Schedule[]>, curr) => {
-    if (!acc[curr.date]) acc[curr.date] = [];
-    // Ahora cada objeto tiene la propiedad 'date'
-    acc[curr.date].push({ date: curr.date, time: curr.time, room: curr.room });
+  
+  const scheduleByDate = movie.schedule.reduce<Record<string, Schedule[]>>((acc, curr: Schedule) => {
+    const dateKey = curr.startTime.toDateString(); 
+  
+    if (!acc[dateKey]) acc[dateKey] = [];
+    acc[dateKey].push({
+      date: curr.startTime,
+      room: curr.room,
+      startTime: curr.startTime,
+      endTime: curr.endTime, 
+    });
+  
     return acc;
   }, {});
+  
+  Object.keys(scheduleByDate).forEach(dateKey => {
+    scheduleByDate[dateKey].sort((a, b) => a.date.getTime() - b.date.getTime()); // Ordenamos por la fecha
+  });
 
   return (
     <>
@@ -39,7 +56,7 @@ const MovieDetail: React.FC<{ movie: Movie; onClose: () => void }> = ({ movie, o
           </div>
           <div className="movie-price-buy-container">
             <MoviePrice price={movie.price} />
-            <button className="buy-button" onClick={() => window.location.href = 'http://localhost:4201/'}>
+            <button className="buy-button" onClick={handleBuyTicket}>
               Comprar entrada
             </button>
           </div>
