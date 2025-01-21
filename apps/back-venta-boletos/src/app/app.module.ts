@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+<<<<<<< HEAD
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { Paymentinfo } from './paymentinfo/paymentinfo.entity';
 import { PaymentinfoModule } from './paymentinfo/paymentinfo.module';
@@ -29,6 +30,22 @@ import { FacturaModule } from './lista-factura/lista-factura.module';
     PagoTransferenciaModule,
     FacturaModule,
   ],
+=======
+import { ConfigModule } from '@nestjs/config'
+import { PaymentinfoModule } from './paymentinfo/paymentinfo.module';
+import {pago_movil_module} from './pago-movil/pago-movil.module';
+import { PagoTransferenciaModule } from './pago-transferencia/pago-transferencia.module';
+import { PrecioModule } from './precio/precio.module';
+import { typeORMConfig } from './config/typeorm.config';
+
+@Module({
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true
+    }),
+    typeORMConfig,
+    PaymentinfoModule, PrecioModule,PagoTransferenciaModule,pago_movil_module],
+>>>>>>> e05e76b859b676e9a568297baf26dd44680b3a7f
   controllers: [AppController],
   providers: [AppService],
 })

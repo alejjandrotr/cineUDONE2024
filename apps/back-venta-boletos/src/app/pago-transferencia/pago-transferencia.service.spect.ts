@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { Test, TestingModule } from '@nestjs/testing';
+=======
+/*import { Test, TestingModule } from '@nestjs/testing';
+>>>>>>> e05e76b859b676e9a568297baf26dd44680b3a7f
 import { PagoTransferenciaService } from './pago-transferencia.service';
 import { getRepositoryToken } from '@nestjs/typeorm'; // Importar para obtener el token del repositorio
 import { PagoTransferencia } from './pago-transferencia.entity'; // Asegúrate de que la entidad esté importada
@@ -31,4 +35,8 @@ describe('PagoTransferenciaService', () => {
   it('should be defined', () => {
     expect(service).toBeDefined(); // Verificar que el servicio esté definido
   });
+<<<<<<< HEAD
 });
+=======
+});*/
+>>>>>>> e05e76b859b676e9a568297baf26dd44680b3a7f

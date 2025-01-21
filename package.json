@@ -59,6 +59,7 @@
   },
   "dependencies": {
     "@nestjs/common": "^10.0.2",
+    "@nestjs/config": "^3.3.0",
     "@nestjs/core": "^10.0.2",
     "@nestjs/platform-express": "^10.0.2",
     "@nestjs/swagger": "^8.0.3",
@@ -74,12 +75,18 @@
     "react-router-dom": "6.11.2",
     "reflect-metadata": "^0.1.13",
 <<<<<<< HEAD
+<<<<<<< HEAD
     "rxjs": "^7.8.0"
 =======
     "rxjs": "^7.8.0",
     "swagger-ui-express": "^5.0.1",
     "typeorm": "^0.3.20"
 >>>>>>> 7b54679b87b152cd58f74754afa8c5c4b6a7db50
+=======
+    "rxjs": "^7.8.0",
+    "swagger-ui-express": "^5.0.1",
+    "typeorm": "^0.3.20"
+>>>>>>> e05e76b859b676e9a568297baf26dd44680b3a7f
   },
   "nx": {}
 }
