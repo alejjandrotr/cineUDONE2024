@@ -11,15 +11,9 @@ export class CreatePagoTransferenciadto {
 
   @ApiProperty({example: '01023473290654400007', description: 'Numero de cuenta del Banco'})
   @IsNotEmpty()
-<<<<<<< HEAD
-  @IsString()
-  @Length(20,20)
-  NumeroCuenta: string;
-=======
   @IsNumberString()
   @Length(20,20)
   nro_cuenta: string;
->>>>>>> e05e76b859b676e9a568297baf26dd44680b3a7f
 
   @ApiProperty({example: '28567843', description: 'Identificacion Personal (ID)'})
   @IsNotEmpty()
