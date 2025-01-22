@@ -1,0 +1,54 @@
+.cuadro-fondo {
+  color: #ffffff;
+  border-radius: 25px;
+  width: 100%;
+  margin-top: 50px;
+  background-color: #2b2b2b;
+}
+
+.entradas {
+  width: 100%;
+  margin: 16px;
+}
+
+.entradas th,
+.entradas td {
+  padding: 10px;
+  font-size: 16px;
+  text-align: left;
+}
+.entradas th {
+  font-size: 20px;
+}
+.boton-pagar {
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  background-color: #ff0044;
+  font-weight: 600;
+}
+
+button{
+  border: none;
+  color: white;
+  padding: 3px 12px;
+  border: 1px solid #fff5;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;    
+}
+
+.button span{
+  font-size: 16px;
+  font-weight: 600;
+  padding: 0px 12px;
+}
+
+.button button:hover{
+  outline: 1px solid #fff;
+}
+
+.price{
+  font-weight: bold;
+}

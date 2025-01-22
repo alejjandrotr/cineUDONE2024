@@ -1,17 +1,32 @@
-.detalles{
-    color: #ffffff;
-    font-weight: bold;
-    width: 250px;
-    height: 600px;
-    border-radius: 25px;
-    background-color: #2B2B2B;
+.detalles {
+  align-items: center;
+  color: #ffffff;
+  font-weight: bold;
+  width: 350px;
+  border-radius: 25px;
 }
 
-.detalles > h1 {
-    margin: 16px 0;
+.detalles h1 {
+  font-size: 24px;
+  margin: 16px 0;
+  text-align: center;
+}
+p {
+  font-size: 16px;
+  font-weight: 300;
+  margin-bottom: 10px;
+  text-align: justify;
+}
+img {
+  width: 90%;
+  margin: 0 auto;
+  border-radius: 16px;
+}
+.detalles table {
+  width: 100%;
+  margin: 0 auto;
+}
+.detalles-funcion {
+  text-align: center;
 }
 
-img{
-    width: 100%;
-    border-radius: 16px;
-}

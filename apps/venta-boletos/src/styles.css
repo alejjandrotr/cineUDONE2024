@@ -5,9 +5,14 @@
 
 body {
   background-color: #121212;
+  box-sizing: border-box;
 }
-.fondo {
-  height: 100%;
+.juntos{
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 .banner-container {
   display: flex;
@@ -24,9 +29,10 @@ body {
   margin: 0 auto;
   border-bottom-left-radius: 16px;
   border-bottom-right-radius: 16px;
+  z-index: 0;
 }
 .content {
   position: relative;
-  z-index: 1;
+  z-index: 50;
   padding: 20px;
 }
