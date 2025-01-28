@@ -18,29 +18,30 @@
   border-radius: 10px;
   box-shadow: 0 0 15px rgba(86, 36, 101, 0.988);
   max-width: 90%;
-  width: 900px;
+  width: 900px; 
   z-index: 1000;
   overflow-y: auto;
   max-height: 90vh;
   display: flex;
+  flex-direction: row; 
 }
 
 .movie-content {
-  float: left;
   justify-content: flex-start;
   align-items: flex-start;
-  width: 30%;
+  width: 30%; 
   margin: 20px;
 }
+
 .movie-content2 {
   margin-bottom: 20px;
-  width: 70%;
+  width: 70%; 
 }
 
 .movie-poster-large {
   width: 100%;
   height: auto;
-  margin-right: 20px;
+  margin-right: 20px; 
   border-radius: 8px;
   position: relative;
   cursor: pointer;
@@ -74,9 +75,9 @@
 }
 
 .movie-title-large {
-  font-family: 'Roboto', sans-serif; 
+  font-family: 'Roboto', sans-serif;
   font-weight: 700;
-  font-size: 28px;
+  font-size: 28px; 
   color: #ffffff;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -85,7 +86,7 @@
 
 .movie-synopsis {
   font-family: 'Open Sans', sans-serif;
-  font-size: 16px;
+  font-size: 16px; 
   margin-top: 20px;
   margin-bottom: 20px;
   color: #f0f0f0;
@@ -99,8 +100,8 @@
 }
 
 .movie-detail {
-  font-family: 'Arial', sans-serif; 
-  font-size: 16px;
+  font-family: 'Arial', sans-serif;
+  font-size: 16px; 
   color: #f0f0f0;
   margin-right: 15px;
 }
@@ -110,12 +111,11 @@
   top: 10px;
   right: 10px;
   background: transparent;
-  color: #fff;
+  color: #c031d9;
   font-size: 32px;
   border: none;
   cursor: pointer;
   transition: transform 0.3s ease, color 0.3s ease;
-  margin-bottom: 20px;
 }
 
 .close-button:hover {
@@ -130,9 +130,10 @@
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 16px; 
   margin-top: 3px;
-  width: auto;
+  width: 100%; 
+  max-width: 300px; 
   transition: background-color 0.3s ease, transform 0.3s ease;
   text-align: center;
 }
@@ -147,52 +148,75 @@
 }
 
 .movie-price-buy-container {
-  display: block; 
-  margin-top: 20px; 
+  display: block;
+  margin-top: 20px;
   margin-bottom: 20px;
-  width: 100%; 
+  width: 100%;
 }
 
 @media (max-width: 600px) {
   .movie-detail-view {
     padding: 15px;
-    max-width: 100%;
-    width: 100%;
+    width: 90%;
+    max-width: 80%; 
+    flex-direction: column; 
   }
 
   .movie-content {
-    flex-direction: column;
-    align-items: center;
+    flex-direction: column; 
+    align-items: center; 
+    width: 100%; 
+  }
+
+  .movie-content2 {
+    width: 100%;
   }
 
   .movie-poster-large {
-    width: 80%;
+    width: 80%; 
     margin-bottom: 15px;
-    margin-right: 0;
+    margin-right: 0; 
   }
 
   .movie-title-large {
-    font-size: 22px;
-    text-align: center;
+    font-size: 22px; 
+    text-align: center; 
   }
 
   .movie-synopsis {
-    font-size: 14px;
+    font-size: 14px; 
     margin-top: 10px;
+    text-align: center; 
   }
 
   .movie-detail {
-    font-size: 14px;
+    font-size: 14px; 
     margin-top: 8px;
+    text-align: center;
   }
 
   .buy-button {
-    padding: 12px 24px;
+    padding: 12px 18px; 
     font-size: 16px;
-    width: auto;
-    max-width: 90%;
-    margin: 15px auto;
-    display: block;
+    width: 80%; 
+    max-width: none; 
+    margin: 8px 0; 
   }
 
+  .close-button {
+    top: 5px;
+    right: 5px; 
+    color: #c031d9;
+  }
+
+    .movie-poster-large .play-icon {
+    opacity: 0; /* Comienza oculto */
+    transition: opacity 0.3s ease;
+  }
+
+  .movie-poster-large:active .play-icon,
+  .movie-poster-large:focus .play-icon,
+  .movie-poster-large:hover .play-icon {
+    opacity: 1; 
+  }
 }
