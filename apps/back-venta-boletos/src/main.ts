@@ -15,8 +15,6 @@ async function bootstrap() {
   const globalPrefix = 'api';
   app.setGlobalPrefix(globalPrefix);
   app.useGlobalPipes(new ValidationPipe());
-<<<<<<< HEAD
-=======
   const config = new DocumentBuilder()
     .setTitle('Cine')
     .setDescription('Backend para venta de boletos')
@@ -25,7 +23,6 @@ async function bootstrap() {
     .build();
   const documentFactory = () => SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, documentFactory);
->>>>>>> e05e76b859b676e9a568297baf26dd44680b3a7f
   const port = process.env.PORT || 3002;
   await app.listen(port);
   Logger.log(
