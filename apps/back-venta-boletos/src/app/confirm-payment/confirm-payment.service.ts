@@ -1,15 +1,16 @@
-// apps/back-venta-boletos/src/confirmpayment/confirm-payment.service.ts
-
 import { Injectable } from '@nestjs/common';
-import { ConfirmPaymentDto } from './dto/confirm-payment.dto';
+import { CreateConfirmPaymentDto } from './dto/create-confirm-pyament.dto';
+import { UpdateConfirmPaymentDto } from './dto/update-confirm-payment.dto';
 
 @Injectable()
 export class ConfirmPaymentService {
-  async confirmPayment(confirmPaymentDto: ConfirmPaymentDto): Promise<any> {
-    const { paymentId, amount, currency } = confirmPaymentDto;
+  confirmPayment(createConfirmPaymentDto: CreateConfirmPaymentDto): string {
     // Lógica para confirmar el pago
-    console.log(`Payment confirmed: ${paymentId}, Amount: ${amount}, Currency: ${currency}`);
+    return `Pago con ID ${createConfirmPaymentDto.paymentId} de monto ${createConfirmPaymentDto.amount} ${createConfirmPaymentDto.currency} confirmado`;
+  }
 
-    return { message: 'Pago confirmado', paymentId, amount, currency };
+  updateConfirmation(paymentId: string, updateConfirmPaymentDto: UpdateConfirmPaymentDto): string {
+    // Lógica para actualizar el estado del pago
+    return `Pago con ID ${paymentId} actualizado a estado ${updateConfirmPaymentDto.status}`;
   }
 }

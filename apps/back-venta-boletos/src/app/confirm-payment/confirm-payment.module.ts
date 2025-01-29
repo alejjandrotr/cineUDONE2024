@@ -1,10 +1,9 @@
-// apps/back-venta-boletos/src/confirmpayment/confirmpayment.module.ts
-
 import { Module } from '@nestjs/common';
-import { ConfirmPaymentController } from './confirm-payment.controller';
 import { ConfirmPaymentService } from './confirm-payment.service';
+import { ConfirmPaymentController } from './confirm-payment.controller';
 
 @Module({
+  imports: [],
   controllers: [ConfirmPaymentController],
   providers: [ConfirmPaymentService],
 })
