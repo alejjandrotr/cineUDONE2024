@@ -7,6 +7,7 @@ import {pago_movil_module} from './pago-movil/pago-movil.module';
 import { PagoTransferenciaModule } from './pago-transferencia/pago-transferencia.module';
 import { PrecioModule } from './precio/precio.module';
 import { typeORMConfig } from './config/typeorm.config';
+import { RejectPaymentModule } from './reject-payment/reject-payment.module';
 
 @Module({
   imports: [
@@ -14,7 +15,7 @@ import { typeORMConfig } from './config/typeorm.config';
       isGlobal: true
     }),
     typeORMConfig,
-    PaymentinfoModule, PrecioModule,PagoTransferenciaModule,pago_movil_module],
+    PaymentinfoModule, PrecioModule, PagoTransferenciaModule, pago_movil_module, RejectPaymentModule],
   controllers: [AppController],
   providers: [AppService],
 })
