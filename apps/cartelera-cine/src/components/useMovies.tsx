@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import moviesData from '../movies.json';
 import { Movie } from '../core/models/Movie';
 
+const MAINTENANCE_TIME = 15;  
+
 const useMovies = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [filteredMovies, setFilteredMovies] = useState<Movie[]>([]);
@@ -12,12 +14,19 @@ const useMovies = () => {
       title: movie.title,
       synopsis: movie.synopsis,
       genre: movie.genre,
-      schedule: movie.schedule.map(item => ({
-        date: new Date(item.date),
-        room: item.room,
-        startTime: new Date(item.date),
-        endTime: new Date(new Date(item.date).getTime() + movie.duration * 60 * 1000), // Calcula hora de fin
-      })),
+      schedule: movie.schedule.map(item => {
+        const startTime = new Date(item.date);
+        const endTime = new Date(startTime.getTime() + movie.duration * 60 * 1000);  
+        const adjustedStartTime = new Date(startTime.getTime() - MAINTENANCE_TIME * 60 * 1000);  
+        const adjustedEndTime = new Date(endTime.getTime() + MAINTENANCE_TIME * 60 * 1000); 
+
+        return {
+          date: startTime, 
+          room: item.room,
+          startTime: adjustedStartTime, 
+          endTime: adjustedEndTime,     
+        };
+      }),
       type: movie.type,
       rating: movie.rating,
       duration: movie.duration,
@@ -25,7 +34,7 @@ const useMovies = () => {
       price: movie.price,
       trailerUrl: movie.trailerUrl,
     }));
-    
+
     setMovies(updatedMovies);
     setFilteredMovies(updatedMovies);
   }, []);
