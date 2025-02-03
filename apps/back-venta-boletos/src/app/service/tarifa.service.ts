@@ -1,4 +1,5 @@
 import { Injectable } from "@nestjs/common";
+import { match } from "assert";
 
 @Injectable()
 export class TarifaService{
@@ -6,21 +7,48 @@ export class TarifaService{
 
     let descuento = 0
 
-    //Si el cliente es menor que 18 años, tendra un descuento del 50%
-    if (edad < 18){
-      descuento = 50;
-    }
 
-    if(edad >= 60){ //mayor de 60 años
-      descuento = 30;
-    }
-    if (dia.toLowerCase() === 'lunes'){
-      descuento = 20;
+    if (edad >= 5 && edad <= 10){
+      descuento += 20;
     }else{
-      if(dia.toLowerCase() === 'jueves'){
-        descuento = 20;
+      if(edad >= 60 && edad <= 100){
+        descuento += 30;
+      }else{
+        if(edad >= 10 && edad <= 50){
+          descuento += 0;
+        }
       }
     }
+
+    if (dia.toLowerCase() === 'lunes'){
+      descuento += 20;
+    }else{
+      if(dia.toLowerCase() === 'martes'){
+        descuento += 15;
+      }else{
+        if(dia.toLowerCase() === 'miercoles'){
+          descuento += 15;
+        }else{
+          if(dia.toLowerCase() === 'jueves'){
+            descuento += 10;
+          }else{
+            if(dia.toLowerCase() === 'viernes'){
+              descuento += 10;
+            }else{
+              if(dia.toLowerCase() === 'sabado'){
+                descuento += 10;
+              }else{
+                if(dia.toLowerCase() === 'domingo'){
+                  descuento += 10;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    //descuento = Math.min(descuento, 100);
 
     const preciofinal = preciobase * (1 - descuento/100);
     return parseFloat(preciofinal.toFixed(2))

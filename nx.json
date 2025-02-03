@@ -22,15 +22,8 @@
       "{workspaceRoot}/.github/workflows/ci.yml"
     ]
   },
-<<<<<<< HEAD
-<<<<<<< HEAD
-  "nxCloudId": "672406db76e15b69506d5d42",
-=======
   "nxCloudId": "6727a30c08cc1306a835a1e6",
->>>>>>> 7b54679b87b152cd58f74754afa8c5c4b6a7db50
-=======
-  "nxCloudId": "6727a30c08cc1306a835a1e6",
->>>>>>> e05e76b859b676e9a568297baf26dd44680b3a7f
+
   "plugins": [
     {
       "plugin": "@nx/vite/plugin",
