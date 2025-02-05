@@ -1,0 +1,9 @@
+{
+  "name": "infracture-admin-front",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/infracture-admin-front/src",
+  "projectType": "application",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project infracture-admin-front --web",
+  "targets": {}
+}
