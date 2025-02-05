@@ -1,36 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import { Route, Routes, Link } from 'react-router-dom';
-import MovieList, { Movie } from '../components/MovieList';
+import React, { useState } from 'react';
+import { Route, Routes } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Sidebar from '../components/SideBar';
 import SearchBar from '../components/SearchBar';
+import MovieList from '../components/MovieList';
 import MovieDetail from '../components/MovieDetail';
-import moviesData from '../movies.json';
-import { movieImages } from '../constants/images';
+import useMovies from '../components/useMovies';
+import { Movie } from '../core/models/Movie';
 import '../styles/App.css';
 
-
 const App: React.FC = () => {
-  const [movies, setMovies] = useState<Movie[]>([]);
-  const [filteredMovies, setFilteredMovies] = useState<Movie[]>([]);
+  const { filteredMovies, handleSearch } = useMovies();
   const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
-
-  useEffect(() => {
-    const updatedMovies = moviesData.movies.map((movie: Movie) => ({
-      ...movie,
-      poster: movieImages[movie.id] || '',
-    }));
-    setMovies(updatedMovies);
-    setFilteredMovies(updatedMovies); 
-  }, []);
-  
-  const handleSearch = (query: string) => {
-    const filtered = movies.filter((movie) =>
-      movie.title.toLowerCase().includes(query.toLowerCase())
-    );
-    setFilteredMovies(filtered);
-  };
 
   const handleSelectMovie = (movie: Movie) => {
     setSelectedMovie(movie);
@@ -51,15 +33,7 @@ const App: React.FC = () => {
             path="/"
             element={<MovieList movies={filteredMovies} onSelect={handleSelectMovie} />}
           />
-          <Route
-            path="/page-2"
-            element={
-              <div>
-                <h2>Page 2</h2>
-                <Link to="/">Regresar a la cartelera</Link>
-              </div>
-            }
-          />
+          <Route path="/page-2" element={<h2>Page 2</h2>} />
         </Routes>
         <Footer />
       </div>
