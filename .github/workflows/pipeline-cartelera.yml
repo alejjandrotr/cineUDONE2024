@@ -5,14 +5,14 @@ on:
     branches:
       - main
     paths:
-      - cartelera-cine/**
-      - back-cartelera-cine/**
+      - apps/cartelera-cine/**
+      - apps/back-cartelera-cine/**
   pull_request:
     branches:
       - main
     paths:
-      - cartelera-cine/**
-      - back-cartelera-cine/**
+      - apps/cartelera-cine/**
+      - apps/back-cartelera-cine/**
 
 jobs:
   build_front:
