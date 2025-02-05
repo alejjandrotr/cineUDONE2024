@@ -1,0 +1,106 @@
+name: Deploy CineApp
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - cartelera-cine/**
+      - back-cartelera-cine/**
+  pull_request:
+    branches:
+      - main
+    paths:
+      - cartelera-cine/**
+      - back-cartelera-cine/**
+
+jobs:
+  build_front:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+      - run: npm install
+      - run: npx nx run cartelera-cine:build
+
+  test_front:
+    needs: [build_front]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+      - run: npm install
+      - run: npx nx run cartelera-cine:test
+
+  lint_front:
+    needs: [test_front]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+      - run: npm install
+      - run: npx nx run cartelera-cine:lint
+
+  build_back:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+      - run: npm install
+      - run: npx nx run back-cartelera-cine:build
+
+  test_back:
+    needs: [build_back]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+      - run: npm install
+      - run: npx nx run back-cartelera-cine:test
+
+  lint_back:
+    needs: [test_back]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+      - run: npm install
+      - run: npx nx run back-cartelera-cine:lint
+
+  build_and_deploy:
+    needs: [lint_front, lint_back]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: npm install
+      - run: npx nx run cartelera-cine:build
+      - name: Deploy to Firebase (Production)
+        if: ${{ github.event_name == 'push' }}
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_TOKEN_CINE_UDONE }}'
+          channelId: live
+          projectId: CineUdone
+          target: cartelera-cine
+      - name: Deploy to Firebase (Staging)
+        if: ${{ github.event_name == 'pull_request' }}
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_TOKEN_CINE_UDONE  }}'
+          channelId: staging
+          projectId: CineUdone
+          target: cartelera-cine
