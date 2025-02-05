@@ -3,6 +3,7 @@ import { publish } from '../events';
 import { dataMap } from '../mockData';
 import { ApiConfig } from './api-config.interface';
 import { IRepository } from './IRepository';
+import { v4 as uuidv4 } from 'uuid';
 
 class NotFoundError extends Error {
   constructor(path: string, id: string) {
@@ -17,30 +18,50 @@ export class MockRepository<T extends { id?: string }>
   private data: T[] = []; // In-memory data storage
 
   constructor(private config: ApiConfig) {
-    this.loadData(); 
+    this.loadData();
   }
-  
-  publishUpdateEvent(data?:unknown): void {
+
+  publishUpdateEvent(data?: unknown): void {
     publish(this.config.path, data);
   }
 
   private async loadData(): Promise<void> {
     const fileName = this.config.path;
     try {
-      if (dataMap[fileName] === undefined){
+      if (dataMap[fileName] === undefined) {
         this.data = [];
-        return
+        return;
       }
       const mockDataFunction: () => unknown[] = dataMap[fileName];
-      this.data = mockDataFunction() as T[]; 
+      this.data = mockDataFunction() as T[];
     } catch (error) {
       console.error('Error fetching initial data:', error);
       throw error;
     }
   }
 
-  async get(): Promise<T[]> {
-    return this.data; // Return the in-memory data
+  async get(filter?: Partial<T> | string): Promise<T[]> {
+
+    console.log(filter);
+    if (!filter) return this.data; 
+    
+    if (typeof filter === 'string') {
+      const lowercasedFilter = filter.toLowerCase();
+      return this.data.filter((obj) =>
+        Object.values(obj).some((value) =>
+          String(value).toLowerCase().includes(lowercasedFilter)
+        )
+      );
+    }
+    return this.data.filter((obj) => this.matchesFilter(obj, filter));
+  }
+
+  private matchesFilter(obj: T, filter: Partial<T>): boolean {
+    return Object.entries(filter).every(([key, filterValue]) => {
+      const objAttrValue = obj[key as keyof T ];
+      if (filterValue === undefined) return true;
+      return objAttrValue === filterValue;
+    });
   }
 
   async getById(id: string): Promise<T | undefined> {
@@ -48,9 +69,7 @@ export class MockRepository<T extends { id?: string }>
   }
 
   async add(newItem: T): Promise<T> {
-    if (this.data.some((item) => item.id === newItem.id)) {
-      throw new Error(`Item with id ${newItem.id} already exists.`);
-    }
+    newItem.id = uuidv4();
     this.data.push(newItem);
     this.publishUpdateEvent(this.data);
     return newItem;
@@ -65,7 +84,7 @@ export class MockRepository<T extends { id?: string }>
 
     this.data = this.data.filter((item) => item.id !== id);
     this.publishUpdateEvent(this.data);
-    toast.success('Se ha eliminado correctamente el elemento')
+    toast.success('Se ha eliminado correctamente el elemento');
     return this.data;
   }
 

@@ -17,6 +17,7 @@ import Alerts from './pages/UiElements/Alerts';
 import Buttons from './pages/UiElements/Buttons';
 import DefaultLayout from './layout/DefaultLayout';
 import SalasAdminPage from '../../../app/pages/Salas/sala-admin.page';
+import CategoriasSalasAdminPage from '../../../app/pages/CategoriaSalas/sala-admin.page';
 
 function AppTemplate() {
   const [loading, setLoading] = useState<boolean>(true);
@@ -51,6 +52,16 @@ function AppTemplate() {
             <>
               <PageTitle title="Salas del Cine | CineAdmin" />
               <SalasAdminPage />
+            </>
+          }
+        />
+        
+        <Route
+          path="/categoria-sala"
+          element={
+            <>
+              <PageTitle title="Categorias de las Salas del Cine | CineAdmin" />
+              <CategoriasSalasAdminPage />
             </>
           }
         />

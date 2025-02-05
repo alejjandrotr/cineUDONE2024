@@ -1,8 +1,8 @@
-export const mockCategoriaAsientoData = () => {
+export const mockCategoriaSalaData = () => {
   return [
-    { id: 1, nombre: 'normal' },
-    { id: 2, nombre: 'premium' },
+    { id: 1, nombre: 'Simple' },
+    { id: 2, nombre: '3D' },
   ];
 };
 
-export default mockCategoriaAsientoData;
+export default mockCategoriaSalaData;

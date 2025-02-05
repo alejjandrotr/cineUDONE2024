@@ -7,22 +7,25 @@ import { ENTITIES_KEYS } from '../../../core/enums/entity-keys';
 import { confirmAlert } from 'react-confirm-alert';
 import { useFilter } from '../../../context/filter.context';
 import { Column } from '../../../components/tables/table-crud/dtos/column.dto';
-import TableCrud from '../../..//components/tables/table-crud/table-crud';
+import TableCrud from '../../../components/tables/table-crud/table-crud';
+import { CategoriaSala } from '../../../core/CategoriaSala/categoria-sala';
+import { categoriaSalaRepository } from '../../../core/CategoriaSala/categoria-sala.api';
 
-export const List = ({ edit }: { edit: (e: Sala) => void }) => {
-  const [data, setData] = useState<Sala[]>([]);
+export const List = ({ edit }: { edit: (e: CategoriaSala) => void }) => {
+  const [data, setData] = useState<CategoriaSala[]>([]);
   const { filter } = useFilter();
   const columns: Column[] = columnsProperties(edit, deleteFn);
 
   function updateData() {
-    salaRepository.get(filter as Partial<Sala> | string).then((data) => {
+    categoriaSalaRepository.get(filter as Partial<CategoriaSala> | string).then((data) => {
+      console.log(data)
       setData(data);
     });
   }
 
   useEffect(() => {
     updateData();
-    subscribe(ENTITIES_KEYS.SALA, () => {
+    subscribe(ENTITIES_KEYS.CATEGORIA_SALA, () => {
       updateData();
     });
   }, []);
@@ -33,16 +36,16 @@ export const List = ({ edit }: { edit: (e: Sala) => void }) => {
   return <TableCrud {...{ data, columns }} />;
 };
 
-function deleteFn(e: Sala): void {
+function deleteFn(e: CategoriaSala): void {
   if (e.id === undefined) return;
 
   const options = {
-    title: 'Eliminar sala',
-    message: '¿Desea eliminar la sala?',
+    title: 'Eliminar Sala',
+    message: '¿Desea eliminar la categoria sala?',
     buttons: [
       {
         label: 'Si',
-        onClick: () => salaRepository.delete(e.id),
+        onClick: () => salaRepository.delete(e.id || -1),
       },
       {
         label: 'No',

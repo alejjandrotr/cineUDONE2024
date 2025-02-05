@@ -1,16 +1,18 @@
 import { NavLink } from 'react-router-dom';
 
 interface MenuProps {
-  pathname: string;
+  pathTo: string;
   title: string;
 }
 
-export function MenuLink({ pathname, title }: MenuProps) {
+export function MenuLink({ pathTo, title }: MenuProps) {
+  const { pathname } = location;
+  const paths = pathname.split('?')[0].split('/');
   return (
     <NavLink
-      to={'/' + pathname}
+      to={'/' + pathTo}
       className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
-        pathname.includes(pathname) && 'bg-graydark dark:bg-meta-4'
+        paths.includes(pathTo) && 'bg-graydark dark:bg-meta-4'
       }`}
     >
       <svg

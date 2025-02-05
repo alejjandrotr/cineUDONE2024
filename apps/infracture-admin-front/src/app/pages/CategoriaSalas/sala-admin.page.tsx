@@ -1,24 +1,25 @@
 import Breadcrumb from '../../../template/free-react-tailwind-admin-dashboard-main/src/components/Breadcrumbs/Breadcrumb';
 import { List } from './components/list';
-import { CreateEditSala } from './components/create-edit';
+import { CreateEdit } from './components/create-edit';
 import { useState } from 'react';
 import { createNewSala, Sala } from '../../core/Sala/sala';
-import FilterListSala from './components/filter';
+import FilterListCategoriaSala from './components/filter';
 import { SearchComponent } from '../../components';
 import { FilterProvider, useFilter } from '../../context/filter.context';
+import { CategoriaSala, createNewCategoriaSala } from '../../core/CategoriaSala/categoria-sala';
 
-const SalasAdminPage = () => (
+const CategoriasSalasAdminPage = () => (
   <FilterProvider>
-    <SalasAdmin />
+    <CategoriaSalasAdmin />
   </FilterProvider>
 );
-const SalasAdmin = () => {
+const CategoriaSalasAdmin = () => {
   const [isOpen, setIsOpenModal] = useState(false);
-  const [editElement, setEdtiElement] = useState<Sala>(createNewSala());
+  const [editElement, setEdtiElement] = useState<CategoriaSala>(createNewCategoriaSala());
 
   const { setFilter } = useFilter();
 
-  const edit = (e: Sala) => {
+  const edit = (e: CategoriaSala) => {
     setEdtiElement(e);
     setIsOpenModal(true);
   };
@@ -29,15 +30,15 @@ const SalasAdmin = () => {
 
       <SearchComponent
         onAdd={() => {
-          setEdtiElement(createNewSala());
+          setEdtiElement(createNewCategoriaSala());
           setIsOpenModal(true);
         }}
-        title="Salas"
+        title="Categoria Salas"
         onSearch={(data) => {
           setFilter(data);
         }}
       >
-        <FilterListSala  onSearch={(data) => {
+        <FilterListCategoriaSala  onSearch={(data) => {
           setFilter(data);
         }} />
       </SearchComponent>
@@ -45,16 +46,16 @@ const SalasAdmin = () => {
       <div className="w-full max-w-full rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
         <List {...{ edit }} />
 
-        <CreateEditSala
+        <CreateEdit
           isOpen={isOpen}
           onClose={() => {
             setTimeout(() => setIsOpenModal(false), 100);
           }}
-          sala={editElement}
+          categoriaSala={editElement}
         />
       </div>
     </>
   );
 };
 
-export default SalasAdminPage;
+export default CategoriasSalasAdminPage;
