@@ -2,7 +2,7 @@ import { Controller, Post, Body, Get, UseGuards } from '@nestjs/common';
 import { AppService } from './app.service';
 import { MoviesService } from '../movies/service/movies.service';
 import { CreateMovieDto } from '../movies/dto/create-movie.dto';
-// ejcutar pipeline import { AuthGuard } from '../auth/guards/auth.guard'; 
+// ejcutar pipeline :) import { AuthGuard } from '../auth/guards/auth.guard'; 
 
 @Controller()
 export class AppController {
