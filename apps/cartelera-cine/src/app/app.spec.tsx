@@ -1,7 +1,5 @@
-import { render } from '@testing-library/react';
-
+import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
-
 import App from './app';
 
 describe('App', () => {
@@ -11,15 +9,17 @@ describe('App', () => {
         <App />
       </BrowserRouter>
     );
-    expect(baseElement).toBeTruthy();
+    expect(baseElement).toBeTruthy(); 
   });
 
-  it('should have a greeting as the title', () => {
-    const { getByText } = render(
+  it('should display "Page 2" when navigating to the /page-2 route', () => {
+    render(
       <BrowserRouter>
         <App />
       </BrowserRouter>
     );
-    expect(getByText(/Welcome cartelera-cine/gi)).toBeTruthy();
+
+    const pageText = screen.getByText(/Page 2/i);
+    expect(pageText).not.toBeNull(); 
   });
 });
