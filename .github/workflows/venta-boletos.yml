@@ -1,4 +1,4 @@
-name: Deploy CineApp
+name: Deploy CineApp-ventaBoletos
 
 on:
   push:
