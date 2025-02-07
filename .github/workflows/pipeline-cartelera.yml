@@ -93,7 +93,7 @@ jobs:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_TOKEN_CINE_UDONE }}'
           channelId: live
-          projectId: CineUdone
+          projectId: cine-ac0f2
           target: cartelera-cine
       - name: Deploy to Firebase (Staging)
         if: ${{ github.event_name == 'pull_request' }}
@@ -102,5 +102,5 @@ jobs:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_TOKEN_CINE_UDONE  }}'
           channelId: staging
-          projectId: CineUdone
+          projectId: cine-ac0f2
           target: cartelera-cine
