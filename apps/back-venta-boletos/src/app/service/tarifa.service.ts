@@ -1,5 +1,4 @@
 import { Injectable } from "@nestjs/common";
-import { match } from "assert";
 
 @Injectable()
 export class TarifaService{
@@ -47,8 +46,6 @@ export class TarifaService{
         }
       }
     }
-
-    //descuento = Math.min(descuento, 100);
 
     const preciofinal = preciobase * (1 - descuento/100);
     return parseFloat(preciofinal.toFixed(2))
