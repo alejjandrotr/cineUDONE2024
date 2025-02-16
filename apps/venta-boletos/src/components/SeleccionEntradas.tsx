@@ -3,6 +3,7 @@ import TicketRow from './TicketRow';
 import { increment, decrement } from '../helpers/counterOperations';
 import '../styles/seleccion-entrada.css';
 
+
 export function SeleccionEntrada() {
   interface TicketCounts {
     general: number;

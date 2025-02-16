@@ -1,25 +1,17 @@
-import { TituloPelicula } from '../components/TituloPelicula';
-import { DetallesPelicula } from '../components/DetallesPelicula';
-import { SeleccionEntrada } from '../components/SeleccionEntradas';
-import { Horario } from '../components/Horario';
-/* import { Route, Routes, Link } from 'react-router-dom'; */
-
+import Home from '../components/Home'
+import Payment from '../components/Payment'
+import { Route, Routes, Router } from 'react-router-dom';
 export function App() {
   return (
-    <div className="fondo">
-      <div className="banner-container">
-        <div className="banner"></div>
-      </div>
-      <div className="grid grid-cols-2 grid-rows-2 h-screen content">
-        <DetallesPelicula />
 
-        <div className="juntos">
-          <TituloPelicula />
-          <Horario />
-          <SeleccionEntrada />
-        </div>
-      </div>
-    </div>
+            <Routes>
+                {/* Ruta principal */}
+                <Route path="/" element={<Home />} />
+
+                {/* Ruta exacta para Payment */}
+                <Route path="/payment" element={<Payment />} />
+            </Routes>
+        
   );
 }
 

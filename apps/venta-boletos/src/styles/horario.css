@@ -29,7 +29,6 @@
     padding: 20px;
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;
     flex-direction: row;
 
 }
@@ -50,4 +49,28 @@
     color: #121212;
     padding: 8px 10px;
     border-radius: 50%;
+}
+
+.hours{
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.hour{
+  margin: 5px;
+  padding: 6px 12px;
+  font-weight: 300;
+  border-radius: 12px;
+  background-color: #424242;
+  border: 1px solid #C1CDE0;
+}
+
+.hour--active{
+  margin: 5px;
+  padding: 6px 12px;
+  font-weight: 300;
+  border-radius: 12px;
+  background-color: #7000FF44;
+  border: 1px solid #7000FF;
 }
