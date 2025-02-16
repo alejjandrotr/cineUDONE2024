@@ -7,7 +7,7 @@ import { PaymentinfoModule } from './paymentinfo/paymentinfo.module';
 import { pago_movil_module } from './pago-movil/pago-movil.module';
 import { PagoTransferenciaModule } from './pago-transferencia/pago-transferencia.module';
 import { PrecioModule } from './precio/precio.module';
-import { CorreoModule } from './correo/correo.module';
+import { EventEmitterModule } from '@nestjs/event-emitter';
 
 @Module({
   imports: [
@@ -15,7 +15,8 @@ import { CorreoModule } from './correo/correo.module';
       isGlobal: true
     }),
     typeORMConfig,
-    PaymentinfoModule, PrecioModule,PagoTransferenciaModule,pago_movil_module,CorreoModule],
+    EventEmitterModule.forRoot(),
+    PaymentinfoModule, PrecioModule,PagoTransferenciaModule,pago_movil_module],
   controllers: [AppController],
   providers: [AppService],
 })
