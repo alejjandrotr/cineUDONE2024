@@ -122,7 +122,7 @@ const AddData: React.FC<AddDataProps> = ({
             >
               <HiOutlineXMark className="text-xl font-bold" />
             </button>
-            <span className="text-2xl font-bold">Add new {slug}</span>
+            <span className="text-2xl font-bold">Añadir Pelicula</span>
           </div>
           <form
             onSubmit={handleSubmit}
@@ -130,9 +130,9 @@ const AddData: React.FC<AddDataProps> = ({
           >
             <input
               type="text"
-              placeholder="First Name"
+              placeholder="Titulo"
               className="input input-bordered w-full"
-              name="firstName"
+              name="Titulo"
               id="firstName"
               onChange={(element) =>
                 setFirstName(element.target.value)
@@ -140,33 +140,41 @@ const AddData: React.FC<AddDataProps> = ({
             />
             <input
               type="text"
-              placeholder="Last Name"
+              placeholder="Sinopsis"
               className="input input-bordered w-full"
-              name="lastName"
-              id="lastName"
+              name="Sinopsis"
+              id="Sinopsis"
               onChange={(element) =>
                 setLastName(element.target.value)
               }
             />
             <input
-              type="email"
-              placeholder="Email"
+              type="text"
+              placeholder="Clasificación"
               className="input input-bordered w-full"
-              name="email"
-              id="email"
+              name="Clasificación"
+              id="Clasificación"
               onChange={(element) => setEmail(element.target.value)}
             />
             <input
               type="text"
-              placeholder="Phone"
+              placeholder="Tipo"
               className="input input-bordered w-full"
-              name="phone"
-              id="phone"
+              name="Tipo"
+              id="Tipo"
               onChange={(element) => setPhone(element.target.value)}
+            />
+             <input
+              type="text"
+              placeholder="Duraccion"
+              className="input input-bordered w-full"
+              name="Duraccion"
+              id="Duraccion"
+              onChange={(element) => setEmail(element.target.value)}
             />
             <label className="form-control w-full">
               <div className="label">
-                <span className="label-text">Verified Status</span>
+                <span className="label-text">Estado de la pelicula</span>
               </div>
               <select
                 className="select select-bordered"
@@ -177,16 +185,16 @@ const AddData: React.FC<AddDataProps> = ({
                 }
               >
                 <option disabled selected>
-                  Select one
+                  Selecione el Estado
                 </option>
-                <option value="true">Yes</option>
-                <option value="false">No</option>
+                <option value="true">Activo</option>
+                <option value="false">Inactivo</option>
               </select>
             </label>
             <label className="form-control w-full">
               <div className="label">
                 <span className="label-text">
-                  Pick a profile photo
+                Subir foto del poster
                 </span>
               </div>
               <input
@@ -197,7 +205,7 @@ const AddData: React.FC<AddDataProps> = ({
             </label>
             {preview && preview !== '' && (
               <div className="w-full flex flex-col items-start gap-3">
-                <span>Profile Preview</span>
+                <span>Vista previa</span>
                 <div className="avatar">
                   <div className="w-24 rounded-full">
                     <img src={preview} alt="profile-upload" />
@@ -210,7 +218,7 @@ const AddData: React.FC<AddDataProps> = ({
                 formUserIsEmpty ? 'btn-disabled' : 'btn-primary'
               } btn-block col-span-full font-semibold`}
             >
-              Submit
+              Agregar
             </button>
           </form>
         </div>
@@ -237,7 +245,7 @@ const AddData: React.FC<AddDataProps> = ({
             >
               <HiOutlineXMark className="text-xl font-bold" />
             </button>
-            <span className="text-2xl font-bold">Add new {slug}</span>
+            <span className="text-2xl font-bold">Nueva Funcion</span>
           </div>
           <form
             onSubmit={handleSubmit}
@@ -245,7 +253,7 @@ const AddData: React.FC<AddDataProps> = ({
           >
             <input
               type="text"
-              placeholder="Product Title"
+              placeholder="Pelicula"
               className="input input-bordered w-full"
               name="title"
               id="title"
@@ -253,7 +261,7 @@ const AddData: React.FC<AddDataProps> = ({
             />
             <input
               type="text"
-              placeholder="Colour: Black, White, Red, etc"
+              placeholder="Horario"
               className="input input-bordered w-full"
               name="color"
               id="color"
@@ -261,7 +269,7 @@ const AddData: React.FC<AddDataProps> = ({
             />
             <input
               type="text"
-              placeholder="Producer: Samsung, Apple, etc"
+              placeholder="Sala"
               className="input input-bordered w-full"
               name="producer"
               id="producer"
@@ -269,17 +277,9 @@ const AddData: React.FC<AddDataProps> = ({
                 setProducer(element.target.value)
               }
             />
-            <input
-              type="text"
-              placeholder="Price"
-              className="input input-bordered w-full"
-              name="price"
-              id="price"
-              onChange={(element) => setPrice(element.target.value)}
-            />
             <label className="form-control w-full">
               <div className="label">
-                <span className="label-text">In Stock Status</span>
+                <span className="label-text">Estado de la Funcion</span>
               </div>
               <select
                 className="select select-bordered"
@@ -290,40 +290,19 @@ const AddData: React.FC<AddDataProps> = ({
                 }
               >
                 <option disabled selected>
-                  Select one
+                  Selecione el Estado
                 </option>
-                <option value="true">Yes</option>
-                <option value="false">No</option>
+                <option value="true">Activa</option>
+                <option value="false">Inactiva</option>
               </select>
+
             </label>
-            <label className="form-control w-full">
-              <div className="label">
-                <span className="label-text">
-                  Pick a product image
-                </span>
-              </div>
-              <input
-                type="file"
-                className="file-input file-input-bordered w-full"
-                onChange={loadImage}
-              />
-            </label>
-            {preview && preview !== '' && (
-              <div className="w-full flex flex-col items-start gap-3">
-                <span>Product Preview</span>
-                <div className="avatar">
-                  <div className="w-24 rounded-full">
-                    <img src={preview} alt="profile-upload" />
-                  </div>
-                </div>
-              </div>
-            )}
             <button
               className={`mt-5 btn ${
                 formProductIsEmpty ? 'btn-disabled' : 'btn-primary'
               } btn-block col-span-full font-semibold`}
             >
-              Submit
+              Agregar
             </button>
           </form>
         </div>

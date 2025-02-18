@@ -17,7 +17,7 @@ const Users = () => {
     { field: 'id', headerName: 'ID', width: 90 },
     {
       field: 'firstName',
-      headerName: 'Nombre',
+      headerName: 'Titulo',
       minWidth: 220,
       flex: 1,
       renderCell: (params) => {
@@ -39,36 +39,31 @@ const Users = () => {
       },
     },
     {
-      field: 'email',
+      field: 'Sinopsis',
       type: 'string',
-      headerName: 'Sipnosis',
+      headerName: 'Sinopsis',
       minWidth: 200,
       flex: 1,
     },
     {
-      field: 'phone',
+      field: 'Clasificacion',
       type: 'string',
-      headerName: 'Trailer',
+      headerName: 'Clasificación',
       minWidth: 120,
       flex: 1,
     },
     {
-      field: 'createdAt',
-      headerName: 'Created At',
+      field: 'Tipo',
+      headerName: 'Tipo',
       minWidth: 100,
       type: 'string',
       flex: 1,
     },
-    // {
-    //   field: 'fullName',
-    //   headerName: 'Full name',
-    //   description:
-    //     'This column has a value getter and is not sortable.',
-    //   sortable: false,
-    //   width: 160,
-    //   valueGetter: (params: GridValueGetterParams) =>
-    //     `${params.row.firstName || ''} ${params.row.lastName || ''}`,
-    // },
+    {
+      field: 'Duraccion',
+      headerName: 'Duraccion (min)',
+      width: 120,
+    },
     {
       field: 'verified',
       headerName: 'Estado',
@@ -140,7 +135,7 @@ const Users = () => {
               includeActionColumn={true}
             />
             <div className="w-full flex justify-center">
-              Error while getting the data!
+             ¡Error al obtener los datos!
             </div>
           </>
         )}

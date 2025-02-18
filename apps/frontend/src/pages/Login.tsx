@@ -1,6 +1,5 @@
 // import React from 'react';
 import ChangeThemes from '../components/ChangesThemes';
-import { DiReact } from 'react-icons/di';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
@@ -16,13 +15,12 @@ const Login = () => {
         </div>
         <div className="w-full h-screen xl:h-auto xl:w-[30%] 2xl:w-[25%] 3xl:w-[20%] bg-base-100 rounded-lg shadow-md flex flex-col items-center p-5 pb-7 gap-8 pt-20 xl:pt-7">
           <div className="flex items-center gap-1 xl:gap-2">
-            <DiReact className="text-4xl sm:text-4xl xl:text-6xl 2xl:text-6xl text-primary animate-spin-slow -ml-3" />
             <span className="text-[18px] leading-[1.2] sm:text-lg xl:text-3xl 2xl:text-3xl font-semibold text-base-content dark:text-neutral-200">
-              React Dashboard
+              Sistema Cine
             </span>
           </div>
           <span className="xl:text-xl font-semibold">
-            Hello, 👋 Welcome Back!
+            Hola, 👋 Bienvenido de nuevo!
           </span>
           <div className="w-full flex flex-col items-stretch gap-3">
             <label className="input input-bordered min-w-full flex items-center gap-2">
@@ -69,7 +67,7 @@ const Login = () => {
                     className="checkbox w-4 h-4 rounded-md checkbox-primary"
                   />
                   <span className="label-text text-xs">
-                    Remember me
+                    Recordar
                   </span>
                 </label>
               </div>
@@ -77,43 +75,14 @@ const Login = () => {
                 href="#"
                 className="link link-primary font-semibold text-xs no-underline"
               >
-                Forgot Password?
+                ¿Has olvidado tu contraseña?
               </a>
             </div>
             <div
               onClick={() => navigate('/')}
               className="btn btn-block btn-primary"
             >
-              Log In
-            </div>
-            <div className="divider text-sm">OR</div>
-            <div className="w-full flex justify-center items-center gap-4">
-              <button className="btn btn-circle dark:btn-neutral">
-                <img
-                  className="w-6"
-                  src="/icons8-microsoft.svg"
-                  alt="microsoft"
-                />
-              </button>
-              <button className="btn btn-circle dark:btn-neutral">
-                <img
-                  className="w-6"
-                  src="/icons8-google.svg"
-                  alt="google"
-                />
-              </button>
-              <button className="btn btn-circle dark:btn-neutral">
-                <img
-                  className="dark:hidden w-6"
-                  src="/icons8-apple-black.svg"
-                  alt="apple"
-                />
-                <img
-                  className="hidden dark:block w-6"
-                  src="/icons8-apple-white.svg"
-                  alt="apple"
-                />
-              </button>
+              Acceso
             </div>
           </div>
         </div>

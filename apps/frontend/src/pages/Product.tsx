@@ -71,15 +71,15 @@ const Product = () => {
 
   React.useEffect(() => {
     if (isLoading) {
-      toast.loading('Loading...', { id: 'promiseRead' });
+      toast.loading('Cargando...', { id: 'promiseRead' });
     }
     if (isError) {
-      toast.error('Error while getting the data!', {
+      toast.error('Error al obtener los datos!', {
         id: 'promiseRead',
       });
     }
     if (isSuccess) {
-      toast.success('Read the data successfully!', {
+      toast.success('Lecctura de los datos con éxito!', {
         id: 'promiseRead',
       });
     }
@@ -200,7 +200,7 @@ const Product = () => {
           className="w-full flex flex-col items-start gap-5"
         >
           <h2 className="text-2xl font-semibold dark:text-white">
-            Latest Activities
+            Últimas actividades
           </h2>
           {isLoading &&
             tempEntries.map((index: number) => (

@@ -17,7 +17,7 @@ const Products = () => {
     { field: 'id', headerName: 'ID', width: 90 },
     {
       field: 'img',
-      headerName: 'Product',
+      headerName: 'Pelicula',
       minWidth: 300,
       flex: 1,
       renderCell: (params) => {
@@ -37,43 +37,23 @@ const Products = () => {
         );
       },
     },
-    // {
-    //   field: 'title',
-    //   type: 'string',
-    //   headerName: 'Title',
-    //   width: 250,
-    // },
     {
-      field: 'color',
+      field: 'Horario',
       type: 'string',
-      headerName: 'Color',
+      headerName: 'Horario',
       minWidth: 100,
       flex: 1,
     },
     {
-      field: 'price',
-      type: 'string',
-      headerName: 'Price',
-      minWidth: 100,
-      flex: 1,
-    },
-    {
-      field: 'producer',
-      headerName: 'Producer',
+      field: 'Sala',
+      headerName: 'Sala',
       type: 'string',
       minWidth: 100,
       flex: 1,
     },
     {
-      field: 'createdAt',
-      headerName: 'Created At',
-      minWidth: 100,
-      type: 'string',
-      flex: 1,
-    },
-    {
-      field: 'inStock',
-      headerName: 'In Stock',
+      field: 'Estado',
+      headerName: 'Estado',
       minWidth: 80,
       type: 'boolean',
       flex: 1,
@@ -82,15 +62,15 @@ const Products = () => {
 
   React.useEffect(() => {
     if (isLoading) {
-      toast.loading('Loading...', { id: 'promiseProducts' });
+      toast.loading('Cargando...', { id: 'promiseProducts' });
     }
     if (isError) {
-      toast.error('Error while getting the data!', {
+      toast.error('Error al obtener los datos!', {
         id: 'promiseProducts',
       });
     }
     if (isSuccess) {
-      toast.success('Got the data successfully!', {
+      toast.success('Obtuve los datos exitosamente!', {
         id: 'promiseProducts',
       });
     }
@@ -102,11 +82,11 @@ const Products = () => {
         <div className="w-full flex justify-between xl:mb-5">
           <div className="flex gap-1 justify-start flex-col items-start">
             <h2 className="font-bold text-2xl xl:text-4xl mt-0 pt-0 text-base-content dark:text-neutral-200">
-              Products
+              Funciones
             </h2>
             {data && data.length > 0 && (
               <span className="text-neutral dark:text-neutral-content font-medium text-base">
-                {data.length} Products Found
+                {data.length} Funciones Encontradas
               </span>
             )}
           </div>
@@ -116,7 +96,7 @@ const Products = () => {
               isLoading ? 'btn-disabled' : 'btn-primary'
             }`}
           >
-            Add New Product +
+            Crear Nueva Funcion +
           </button>
         </div>
 
@@ -143,7 +123,7 @@ const Products = () => {
               includeActionColumn={true}
             />
             <div className="w-full flex justify-center">
-              Error while getting the data!
+              Error al obtener los datos!
             </div>
           </>
         )}
