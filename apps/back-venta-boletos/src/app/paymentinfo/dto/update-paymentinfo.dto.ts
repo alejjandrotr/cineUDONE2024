@@ -1,40 +1,40 @@
-import { IsAlpha, IsDate, IsEnum, IsNotEmpty, IsNumber, IsNumberString, IsString, Length } from 'class-validator'
+import { IsAlpha, IsDate, IsEnum, IsNotEmpty, IsNumber, IsNumberString, IsOptional, IsString, Length } from 'class-validator'
 import { Type } from 'class-transformer'
 import { ApiProperty } from '@nestjs/swagger'
 
-export class CreatePaymentinfoDto{
+export class UpdatePaymentinfoDto{
     @ApiProperty({example: '1234567890', description: 'Referencia de la transaccion bancaria'})
-    @IsNotEmpty()
+    @IsOptional()
     @IsNumberString()
     @Length(4, 20)
-    referencia: string;
+    referencia?: string;
 
     @ApiProperty({example: '0105', description: 'Codigo de la entidad bancaria'})
-    @IsNotEmpty()
+    @IsOptional()
     @IsNumberString()
     @Length(4, 4)
-    bancoCodigo: string;
+    bancoCodigo?: string;
 
     @ApiProperty({example: 'Pago Móvil', description: 'Tipo de Método de Pago'})
-    @IsNotEmpty()
+    @IsOptional()
     @IsString()
     @IsEnum(['Pago Movil', 'Transferencia'])
-    metodo: string;
+    metodo?: string;
 
     @ApiProperty({example: '2024-11-07', description: 'Fecha de la realización del Pago'})
-    @IsNotEmpty()
+    @IsOptional()
     @IsDate()
     @Type(() => Date)
-    fecha: Date;
+    fecha?: Date;
 
     @ApiProperty({example: '3.99', description: 'Monto pagado'})
-    @IsNotEmpty()
+    @IsOptional()
     @IsNumber()
-    monto: number;
+    monto?: number;
 
     @ApiProperty({example: 'Confirmado', description: 'Estado del pago (Pendiente, Confirmado, Rechazado'})
     @IsNotEmpty()
     @IsAlpha()
     @IsEnum(['Pendiente', 'Confirmado', 'Rechazado'])
-    estado: string = 'Pendiente';
+    estado: string;
 }

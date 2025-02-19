@@ -7,10 +7,6 @@ import { ConfigService } from '@nestjs/config';
 
 
 @Injectable()
-//export class CorreoService {
-  //constructor(private readonly mailerService: MailerService) {}
-
-  //async (to: string, subject: string, text: string) {
 export class CorreoService {
   private transporter;
 
@@ -26,24 +22,17 @@ export class CorreoService {
     });
   }
 
-  async sendPaymentConfirmation(to: string, subject: string, plantilla: string, contexto: any) {
-
-    //const templatePath = `C:/Users/khris/OneDrive/Escritorio/cineUDONE2024/cineUDONE2024/apps/back-venta-boletos/src/app/paymentinfo/templates/${plantilla}.hbs`;
-    //const templatePath = path.join(__dirname, 'templates', `${plantilla}.hbs`);
+  async sendEmails(subject: string, plantilla: string, contexto: any) {
     
-    // Obtener la ruta base del proyecto
     const projectRoot = process.cwd();
-    // Construir la ruta completa al archivo
     const templatePath = path.join(projectRoot, `apps/back-venta-boletos/src/app/paymentinfo/templates/${plantilla}.hbs`);
     const templateContent = fs.readFileSync(templatePath, 'utf8');
 
-    // Compilar la plantilla con Handlebars
     const template = handlebars.compile(templateContent);
     const html = template(contexto);
 
     const mailOptions = {
-      from: 'khristianhfs06@gmail.com', // Cambia esto por tu correo
-      to,
+      to: this.configService.get<string>('MAIL_USER'),
       subject,
       html: html,
     };

@@ -6,7 +6,6 @@ import { CreatePaymentinfoDto } from './dto/create-paymentinfo.dto'
 import { CorreoService } from './correo.service';
 import { EventEmitter2, OnEvent } from '@nestjs/event-emitter';
 
-
 @Injectable()
 export class PaymentinfoService {
 
@@ -17,7 +16,6 @@ export class PaymentinfoService {
     createPaymentinfo(paymentinfo: CreatePaymentinfoDto){
         const newPaymentinfo = this.paymentinfoRepository.create(paymentinfo);
         this.paymentinfoRepository.save(newPaymentinfo);
-        this.eventEmitter.emit('paymentinfo.created', newPaymentinfo);
         return newPaymentinfo;
     }
 
@@ -26,20 +24,22 @@ export class PaymentinfoService {
             where: { estado: 'Pendiente' } })
     }
 
-    editarEstado(id: number, paymentinfo: any){
-        
+    updateEstado(id: number, paymentinfo: any){
+       const newPaymentinfo = this.paymentinfoRepository.update({id}, paymentinfo);
+        if(paymentinfo.estado == "Confirmado")
+            this.eventEmitter.emit('enviar.correo', newPaymentinfo, "confirmado");
+        else if(paymentinfo.estado == "Rechazado")
+            this.eventEmitter.emit('enviar.correo', newPaymentinfo, "rechazado");
+        return newPaymentinfo;
     }
 
-    @OnEvent('paymentinfo.created')
-    paymentinfoPendiente(paymentData: Paymentinfo){
-        const email = 'khristianhfs06@gmail.com'
-        const name = 'khris'
-        const subject = 'Pago en proceso de confirmación';
-        const plantilla = "template"
-        const referencia = paymentData.referencia
-        const monto = paymentData.monto
-        const fecha = paymentData.fecha
-        const contexto = { name, monto, fecha, referencia };
-        this.correoService.sendPaymentConfirmation(email, subject, plantilla, contexto);
+    @OnEvent('enviar.correo')
+    enviarCorreo(paymentData: Paymentinfo, plantilla: string){
+        const subject = `Pago ${plantilla}`;
+        const referencia = paymentData.referencia;
+        const monto = paymentData.monto;
+        const fecha = paymentData.fecha;
+        const contexto = { monto, fecha, referencia };
+        this.correoService.sendEmails(subject, plantilla, contexto);
     }
 }
