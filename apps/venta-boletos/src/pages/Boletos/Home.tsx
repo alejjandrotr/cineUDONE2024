@@ -1,7 +1,7 @@
-import { TituloPelicula } from './TituloPelicula';
-import { DetallesPelicula } from './DetallesPelicula';
-import { SeleccionEntrada } from './SeleccionEntradas';
-import { Horario } from './Horario';
+import { TituloPelicula } from './components/TituloPelicula';
+import { DetallesPelicula } from './components/DetallesPelicula';
+import { SeleccionEntrada } from './components/SeleccionEntradas';
+import { Horario } from './components/Horario';
 const Home = () => {
   return (
     <div className="fondo">

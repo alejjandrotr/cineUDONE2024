@@ -1,4 +1,4 @@
-import '../styles/horario.css';
+import '../../../styles/Horario.css';
 export function Horario() {
   return (
     <div className="col-span-1 row-span-1 fondo-horario">

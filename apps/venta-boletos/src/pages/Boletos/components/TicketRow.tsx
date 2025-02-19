@@ -1,12 +1,5 @@
 import React from 'react';
-
-interface TicketRowProps {
-  ticketType: string;
-  price: number;
-  count: number;
-  onIncrement: () => void;
-  onDecrement: () => void;
-}
+import { TicketRowProps } from '../types/index';
 
 const TicketRow: React.FC<TicketRowProps> = ({
   ticketType,

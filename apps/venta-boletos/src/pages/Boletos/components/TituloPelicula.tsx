@@ -1,4 +1,4 @@
-import '../styles/Morganite.css';
+import '../../../styles/Morganite.css';
 export function TituloPelicula() {
   return (
     <div className="title text-white">

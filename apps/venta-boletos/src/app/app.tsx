@@ -1,5 +1,5 @@
-import Home from '../components/Home'
-import Payment from '../components/Payment'
+import Home from '../pages/Boletos/Home'
+import Payment from '../pages/MetodosDePago/Payment'
 import { Route, Routes, Router } from 'react-router-dom';
 export function App() {
   return (

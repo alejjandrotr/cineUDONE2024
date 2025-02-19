@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import '../styles/payment.css'; // Asegúrate de que la ruta sea correcta
+import React from 'react';
+import '../../styles/payment.css'; // Asegúrate de que la ruta sea correcta
 
 const Payment = () => {
     return (

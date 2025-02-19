@@ -1,35 +1,9 @@
-import { useState } from 'react';
+import useTicketCounts  from '../hooks/useTicketCounts'
 import TicketRow from './TicketRow';
-import { increment, decrement } from '../helpers/counterOperations';
-import '../styles/seleccion-entrada.css';
-
+import '../../../styles/seleccion-entrada.css';
 
 export function SeleccionEntrada() {
-  interface TicketCounts {
-    general: number;
-    children: number;
-    seniors: number;
-  }
-
-  const [counts, setCounts] = useState<TicketCounts>({
-    general: 0,
-    children: 0,
-    seniors: 0,
-  });
-
-  const handleIncrement = (type: keyof TicketCounts) => {
-    setCounts((prevCounts) => ({
-      ...prevCounts,
-      [type]: increment(prevCounts[type]),
-    }));
-  };
-
-  const handleDecrement = (type: keyof TicketCounts) => {
-    setCounts((prevCounts) => ({
-      ...prevCounts,
-      [type]: decrement(prevCounts[type]),
-    }));
-  };
+  const {counts, handleIncrement, handleDecrement} = useTicketCounts();
 
   return (
     <div className="cuadro-fondo">

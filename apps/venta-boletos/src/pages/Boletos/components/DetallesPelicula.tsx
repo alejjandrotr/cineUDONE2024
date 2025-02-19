@@ -1,5 +1,6 @@
-import '../styles/venta-boletos.css';
-import img1 from '../assets/Poster.png';
+import '../../../styles/seleccion-entrada.css';
+import '../../../styles/venta-boletos.css';
+import img1 from '../../../assets/Poster.png';
 export function DetallesPelicula() {
   return (
     <div className="col-span-1 row-span-2 mx-auto detalles">
