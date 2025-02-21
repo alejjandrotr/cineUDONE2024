@@ -10,4 +10,5 @@ export class Movie {
   poster: string;
   price: number;
   trailerUrl: string;
+
 }

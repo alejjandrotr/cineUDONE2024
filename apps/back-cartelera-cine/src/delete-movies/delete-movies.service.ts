@@ -1,5 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { Movie } from '../movies/entity/movie.entity';
+import { Movie } from '../moviesAgg/entity/movie.entity';
 
 @Injectable()
 export class DeleteMoviesService {
@@ -11,5 +11,9 @@ export class DeleteMoviesService {
       throw new NotFoundException(`Movie with id ${movieId} not found`);
     }
     this.movies.splice(movieIndex, 1);
+  }
+
+  deleteAllMovies(): void {
+    this.movies = [];
   }
 }

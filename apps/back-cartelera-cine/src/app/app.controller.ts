@@ -1,8 +1,8 @@
 import { Controller, Post, Body, Get, Delete, Param, UseGuards } from '@nestjs/common';
 import { AppService } from './app.service';
-import { MoviesService } from '../movies/service/movies.service';
+import { MoviesService } from '../moviesAgg/service/movies.service';
 import { DeleteMoviesService } from '../delete-movies/delete-movies.service';
-import { CreateMovieDto } from '../movies/dto/create-movie.dto';
+import { CreateMovieDto } from '../moviesAgg/dto/create-movie.dto';
 //import { AuthGuard } from '../auth/guards/auth.guard'; // Asumo que tienes un guard para la autenticación
 
 @Controller()
