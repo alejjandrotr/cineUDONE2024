@@ -22,7 +22,7 @@ export class PaymentinfoService {
 
     getPaymentinfo(){
         return this.paymentinfoRepository.find({
-            where: { estado: 'Pendiente' } })
+            where: { estado: 'pendiente' } })
     }
 
     async updateEstado(id: number, paymentinfo: UpdatePaymentinfoDto){
