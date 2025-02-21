@@ -32,7 +32,7 @@ export class CreatePaymentinfoDto{
     @IsNumber()
     monto: number;
 
-    @ApiProperty({example: 'Confirmado', description: 'Estado del pago (Pendiente, Confirmado, Rechazado'})
+    @ApiProperty({example: 'Pendiente', description: 'Estado del pago (Pendiente, Confirmado, Rechazado'})
     @IsNotEmpty()
     @IsAlpha()
     @IsEnum(['Pendiente', 'Confirmado', 'Rechazado'])

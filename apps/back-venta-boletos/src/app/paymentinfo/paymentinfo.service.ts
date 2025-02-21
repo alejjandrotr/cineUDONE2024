@@ -1,10 +1,11 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Paymentinfo } from './paymentinfo.entity';
 import { Repository } from 'typeorm';
 import { CreatePaymentinfoDto } from './dto/create-paymentinfo.dto'
 import { CorreoService } from './correo.service';
 import { EventEmitter2, OnEvent } from '@nestjs/event-emitter';
+import { UpdatePaymentinfoDto } from './dto/update-paymentinfo.dto';
 
 @Injectable()
 export class PaymentinfoService {
@@ -24,22 +25,24 @@ export class PaymentinfoService {
             where: { estado: 'Pendiente' } })
     }
 
-    updateEstado(id: number, paymentinfo: any){
-       const newPaymentinfo = this.paymentinfoRepository.update({id}, paymentinfo);
-        if(paymentinfo.estado == "Confirmado")
-            this.eventEmitter.emit('enviar.correo', newPaymentinfo, "confirmado");
-        else if(paymentinfo.estado == "Rechazado")
-            this.eventEmitter.emit('enviar.correo', newPaymentinfo, "rechazado");
-        return newPaymentinfo;
+    async updateEstado(id: number, paymentinfo: UpdatePaymentinfoDto){
+        const existePaymentinfo = await this.paymentinfoRepository.findOne({ where: { id } });
+
+        if (!existePaymentinfo)
+            throw new NotFoundException(`Paymentinfo con ID ${id} no encontrado`);
+
+        const updateEstado = Object.assign(existePaymentinfo, paymentinfo);
+        this.eventEmitter.emit('enviar.correo', updateEstado);
+        return this.paymentinfoRepository.save(updateEstado);
     }
 
     @OnEvent('enviar.correo')
-    enviarCorreo(paymentData: Paymentinfo, plantilla: string){
-        const subject = `Pago ${plantilla}`;
+    enviarCorreo(paymentData: Paymentinfo){
+        const subject = `Pago ${paymentData.estado}`;
         const referencia = paymentData.referencia;
         const monto = paymentData.monto;
         const fecha = paymentData.fecha;
         const contexto = { monto, fecha, referencia };
-        this.correoService.sendEmails(subject, plantilla, contexto);
+        this.correoService.sendEmails(subject, paymentData.estado, contexto);
     }
 }
