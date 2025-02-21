@@ -155,7 +155,7 @@ const Navbar = () => {
               </li>
             </Link>
             <li onClick={() => navigate('/login')}>
-              <a>Cerrar Seccion</a>
+              <a>Cerrar Sesión</a>
             </li>
           </ul>
         </div>

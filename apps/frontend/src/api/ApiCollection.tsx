@@ -16,21 +16,6 @@ export const fetchTopDeals = async () => {
   return response;
 };
 
-// GET ALL MOVIES (ANTES era fetchUsers)
-export const fetchMovies = async () => {
-  const response = await axios
-    .get('https://tu-api.com/peliculas') // Cambia esta URL por la correcta de tu API
-    .then((res) => {
-      console.log('axios get movies:', res.data);
-      return res.data;
-    })
-    .catch((err) => {
-      console.log('Error obteniendo películas:', err);
-      throw err;
-    });
-
-  return response;
-};
 
 // GET TOTAL USERS
 export const fetchTotalUsers = async () => {

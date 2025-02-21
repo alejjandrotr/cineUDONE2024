@@ -6,17 +6,17 @@ import {
   ScrollRestoration,
 } from 'react-router-dom';
 import Home from './pages/Home';
-import Users from './pages/Users';
-import Products from './pages/Products';
+import Pelicula from './pages/Peliculas';
+import Products from './pages/Funciones';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Menu from './components/menu/Menu';
 import Error from './pages/Error';
-import Profile from './pages/Profile';
+import Profile from './pages/Perfil';
 import Posts from './pages/Posts';
 import Charts from './pages/Charts';
 import ToasterProvider from './components/ToasterProvider';
-import EditProfile from './pages/EditProfile';
+import EditProfile from './pages/EditPerfil';
 import User from './pages/User';
 import Product from './pages/Product';
 import Login from './pages/Login';
@@ -65,7 +65,7 @@ function App() {
         },
         {
           path: '/users',
-          element: <Users />,
+          element: <Pelicula />,
         },
         {
           path: '/users/:id',

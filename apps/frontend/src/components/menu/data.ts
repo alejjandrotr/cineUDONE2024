@@ -108,7 +108,7 @@ export const menu = [
         isLink: true,
         url: '/login',
         icon: HiOutlineArrowLeftOnRectangle,
-        label: 'Cerrar Seccion',
+        label: 'Cerrar Sesión',
       },
     ],
   },
