@@ -1,10 +1,10 @@
 import useTicketCounts  from '../hooks/useTicketCounts'
-import TicketRow from './TicketRow';
+import FilaEntrada from './FilaEntrada';
 import '../../../styles/seleccion-entrada.css';
 
 export function SeleccionEntrada() {
   const {counts, handleIncrement, handleDecrement} = useTicketCounts();
-
+  /*const { data, loading, error } = useFetch('precio/cant');*/
   return (
     <div className="cuadro-fondo">
       <table className="entradas">
@@ -16,24 +16,24 @@ export function SeleccionEntrada() {
           </tr>
         </thead>
         <tbody>
-          <TicketRow
-            ticketType="Boleto General"
-            price={16}
-            count={counts.general}
+          <FilaEntrada
+            entradTipo="Boleto General"
+            precio={16}
+            contador={counts.general}
             onIncrement={() => handleIncrement('general')}
             onDecrement={() => handleDecrement('general')}
           />
-          <TicketRow
-            ticketType="Boleto Niños"
-            price={10}
-            count={counts.children}
+          <FilaEntrada
+            entradTipo="Boleto Niños"
+            precio={10}
+            contador={counts.children}
             onIncrement={() => handleIncrement('children')}
             onDecrement={() => handleDecrement('children')}
           />
-          <TicketRow
-            ticketType="Boleto Ancianos"
-            price={12}
-            count={counts.seniors}
+          <FilaEntrada
+            entradTipo="Boleto Ancianos"
+            precio={12}
+            contador={counts.seniors}
             onIncrement={() => handleIncrement('seniors')}
             onDecrement={() => handleDecrement('seniors')}
           />

@@ -1,8 +1,8 @@
 import '../../../styles/Morganite.css';
-export function TituloPelicula() {
+export function TituloPelicula({ title = "SPIDERMAN NO WAY HOME"}) {
   return (
     <div className="title text-white">
-      <h1>SPIDERMAN NO WAY HOME</h1>
+      <h1>{title}</h1>
     </div>
   );
 }
