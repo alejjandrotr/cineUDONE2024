@@ -6,7 +6,7 @@ export function SeleccionEntrada() {
   const {counts, handleIncrement, handleDecrement} = useTicketCounts();
   /*const { data, loading, error } = useFetch('precio/cant');*/
   return (
-    <div className="cuadro-fondo">
+    <div className="max-w-md cuadro-fondo ">
       <table className="entradas">
         <thead>
           <tr>

@@ -11,9 +11,6 @@
     background-color: #323945;
     width: 60px;
     height: 80px;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     border-radius: 100px;
@@ -36,9 +33,6 @@
     background-color: #7000FF;
     width: 60px;
     height: 80px;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     border-radius: 100px;
@@ -61,6 +55,7 @@
   margin: 5px;
   padding: 6px 12px;
   font-weight: 300;
+  color: #ffffff;
   border-radius: 12px;
   background-color: #424242;
   border: 1px solid #C1CDE0;
