@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import '../../../styles/horario.css'; 
-// Datos de ejemplo para fechas y horas
+
 const mockDates = [
   { id: 1, day: '06', month: 'Feb' },
   { id: 2, day: '07', month: 'Feb' },
@@ -22,18 +22,18 @@ const mockHours = [
 ];
 
 const Horario: React.FC = () => {
-  // Estados para la fecha y hora seleccionadas
+
   const [selectedDate, setSelectedDate] = useState<string>(mockDates[0].id.toString());
   const [selectedHour, setSelectedHour] = useState<string>(mockHours[0].id.toString());
 
-  // Referencias y estados para el arrastre
+
   const dateContainerRef = useRef<HTMLDivElement>(null);
   const hourContainerRef = useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
 
-  // Manejadores de clic para fechas y horas
+
   const handleDateClick = (id: string) => {
     setSelectedDate(id);
   };
@@ -42,7 +42,7 @@ const Horario: React.FC = () => {
     setSelectedHour(id);
   };
 
-  // Manejadores de arrastre
+
   const startDragging = (e: React.MouseEvent<HTMLDivElement>, ref: React.RefObject<HTMLDivElement>) => {
     if (!ref.current) return;
     setIsDragging(true);
@@ -64,7 +64,7 @@ const Horario: React.FC = () => {
 
   return (
     <div className="p-6 max-w-md mx-auto rounded-lg shadow-md fondo-horario">
-      {/* Carrusel de Fechas */}
+
       <div
         ref={dateContainerRef}
         onMouseDown={(e) => startDragging(e, dateContainerRef)}
@@ -89,7 +89,7 @@ const Horario: React.FC = () => {
         ))}
       </div>
 
-      {/* Carrusel de Horas */}
+
       <div
         ref={hourContainerRef}
         onMouseDown={(e) => startDragging(e, hourContainerRef)}

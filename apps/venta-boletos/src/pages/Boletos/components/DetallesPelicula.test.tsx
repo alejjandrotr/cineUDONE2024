@@ -1,42 +1,40 @@
-import { render, screen } from '@testing-library/react'; // Importamos las herramientas de testing
-import { DetallesPelicula } from './DetallesPelicula'; // Importamos el componente a probar
-
+import { render, screen } from '@testing-library/react'; 
+import { DetallesPelicula } from './DetallesPelicula'; 
 describe('DetallesPelicula', () => {
   test('debe renderizar la imagen del poster', () => {
     render(<DetallesPelicula />);
 
-    // Buscamos la imagen por su atributo "alt"
     const imagen = screen.queryByAltText('Poster de la pelicula');
     expect(imagen).toBeTruthy(); // Verificamos que la imagen existe
-    expect(imagen?.getAttribute('src')).toBe('poster.png'); // Verificamos el atributo "src"
+    expect(imagen?.getAttribute('src')).toBe('poster.png'); 
   });
 
   test('debe renderizar el título "Spiderman No Way Home"', () => {
     render(<DetallesPelicula />);
 
-    // Buscamos el título en el DOM
+
     const titulo = screen.queryByText('Spiderman No Way Home');
-    expect(titulo).toBeTruthy(); // Verificamos que el título existe
+    expect(titulo).toBeTruthy(); 
   });
 
   test('debe renderizar la descripción de la película', () => {
     render(<DetallesPelicula />);
 
-    // Buscamos el párrafo con la descripción
+    
     const descripcion = screen.queryByText(
       /Tras descubrirse la identidad secreta de Peter Parker como Spider-Man/
     );
-    expect(descripcion).toBeTruthy(); // Verificamos que la descripción existe
+    expect(descripcion).toBeTruthy(); 
   });
 
   test('debe renderizar la tabla con los detalles de la función', () => {
     render(<DetallesPelicula />);
 
-    // Verificamos que la tabla esté en el documento
+    
     const tabla = screen.queryByRole('table');
-    expect(tabla).toBeTruthy(); // Verificamos que la tabla existe
+    expect(tabla).toBeTruthy(); 
 
-    // Verificamos los detalles de la función
+    
     expect(screen.queryByText('Fecha')).toBeTruthy();
     expect(screen.queryByText('15-12')).toBeTruthy();
     expect(screen.queryByText('Hora')).toBeTruthy();
