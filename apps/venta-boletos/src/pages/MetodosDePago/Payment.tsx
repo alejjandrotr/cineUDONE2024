@@ -1,5 +1,5 @@
 import React, {  useState } from 'react'
-import './Payment.css'
+import '../../styles/payment.css'
 
 interface Banco {
   id: number; 
