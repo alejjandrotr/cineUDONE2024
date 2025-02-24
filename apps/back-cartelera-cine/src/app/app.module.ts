@@ -1,25 +1,20 @@
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { Module } from '@nestjs/common';
-
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { AggpeliModule } from './aggpeli/aggpeli.module';
-
+import { ConfigModule } from '@nestjs/config';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { typeORMConfig } from './config/typeorm.config';
+import { MoviesModule } from '../moviesAgg/moviesModule';
+import { MovieEditModule } from '../movieEdit/MovieEditModule';
+import { DeleteMoviesModule } from '../delete-movies/DeleteMoviesModule';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: 'mysql', //para conectarse
-      host:'localhost',
-      port:3306,
-      username:'root',
-      password:'1234',
-      database: 'cartelera',
-      entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      synchronize: true
+    ConfigModule.forRoot({
+      isGlobal: true,
     }),
-    AggpeliModule],
-  controllers: [AppController],
-  providers: [AppService],
+    TypeOrmModule.forRootAsync(typeORMConfig),
+    MoviesModule,
+    MovieEditModule,
+    DeleteMoviesModule,
+  ],
 })
 export class AppModule {}

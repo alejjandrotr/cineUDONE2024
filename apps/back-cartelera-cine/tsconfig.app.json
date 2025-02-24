@@ -3,8 +3,6 @@
   "compilerOptions": {
     "outDir": "../../dist/out-tsc",
     "module": "commonjs",
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
     "types": ["node"],
     "emitDecoratorMetadata": true,
     "target": "es2021"

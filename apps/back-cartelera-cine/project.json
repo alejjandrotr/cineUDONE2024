@@ -5,28 +5,6 @@
   "projectType": "application",
   "tags": [],
   "targets": {
-    "build": {
-      "executor": "@nx/js:tsc",
-      "outputs": ["apps/back-cartelera-cine"],
-      "options": {
-        "outputPath": "apps/back-cartelera-cine",
-        "main": "back-cartelera-cine/src/main.ts",
-        "tsConfig": "back-cartelera-cine/tsconfig.app.json",
-        "assets": []
-      },
-      "configurations": {
-        "development": {
-          "optimization": false,
-          "sourceMap": true,
-          "extractLicenses": false
-        },
-        "production": {
-          "optimization": true,
-          "sourceMap": false,
-          "extractLicenses": true
-        }
-      }
-    },
     "serve": {
       "executor": "@nx/js:node",
       "defaultConfiguration": "development",
