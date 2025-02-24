@@ -1,0 +1,139 @@
+.register-container {
+  display: flex;
+  min-height: 100vh;
+  background-color: #1e1e1e;
+  color: white;
+}
+
+.register-form {
+  flex: 1;
+  max-width: 400px;
+  margin: auto;
+  padding: 20px;
+  background: #121212;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.register-title {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+.register-input-container {
+  margin-bottom: 15px;
+}
+
+.register-input-container label {
+  display: block;
+  margin-bottom: 5px;
+  margin: 6px 15px;
+  font-size: 1rem;
+  color: #c5c2c2;
+}
+
+.register-form input {
+  width: 90%;
+  padding: 14px;
+  margin: 6px 10px;
+  border: none;
+  border-radius: 18px;
+  background: #292929;
+  color: white;
+}
+
+.register-form input::placeholder {
+  color: #888;
+}
+
+.register-divider {
+  border: none;
+  border-top: 1px solid #444;
+  margin: 16px 0;
+}
+
+button {
+  width: 90%;
+  padding: 16px;
+  border: none;
+  border-radius: 16px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.register-btn-submit {
+  background-color: #e50914;
+  color: white;
+  margin: 10px 10px;
+  padding: 12px;
+}
+
+.register-btn-submit:hover {
+  background-color: #b20710;
+}
+
+.register-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.register-btn-google {
+  background: white;
+  color: #444;
+  margin: 10px 10px;
+  padding: 12px;
+}
+
+.register-btn-google:hover {
+  background: #f0f0f0;
+}
+
+.register-footer {
+  text-align: center;
+  font-size: 0.85rem;
+  margin-top: 20px;
+}
+
+.register-footer a {
+  color: #1159ea;
+  text-decoration: none;
+  margin: 0 5px;
+}
+
+.register-footer a:hover {
+  text-decoration: underline;
+}
+
+.language-selector {
+  background: none;
+  border: none;
+  color: #1159ea; 
+  font-size: 0.85rem;
+  cursor: pointer;
+  appearance: none;  
+}
+
+.language-selector:hover {
+  text-decoration: underline;
+}
+
+.language-selector option {
+  background: #1e1e1e; 
+  color: white; 
+}
+
+.register-background {
+  display: flex;
+  justify-content: flex-end;
+  width: 60%;
+}
+
+.register-background img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  margin-left: 20px;
+}
