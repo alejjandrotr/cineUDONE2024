@@ -1,5 +1,6 @@
-import { Controller, Post, Body, Get } from '@nestjs/common';
+import { Controller, Post, Body, Get, Patch, Param, ParseIntPipe } from '@nestjs/common';
 import { CreatePaymentinfoDto } from './dto/create-paymentinfo.dto';
+import { UpdatePaymentinfoDto } from './dto/update-paymentinfo.dto';
 import { PaymentinfoService } from './paymentinfo.service';
 
 @Controller('paymentinfo')
@@ -14,5 +15,10 @@ export class PaymentinfoController {
     @Get()
     getPaymentinfo(){
         return this.paymentinfoService.getPaymentinfo();
+    }
+
+    @Patch(':id')
+    updatePaymentifo(@Param('id', ParseIntPipe) id: number, @Body() paymentinfo: UpdatePaymentinfoDto){
+        return this.paymentinfoService.updateEstado(id,paymentinfo); 
     }
 }
