@@ -7,7 +7,7 @@ const AppRutas = () => {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/payment" element={<Payment />} />
-      <Route path="/payment" element={<Login />} />
+      <Route path="/login" element={<Login />} />
     </Routes>
   );
 };

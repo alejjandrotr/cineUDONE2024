@@ -1,7 +1,7 @@
 import React from 'react';
 import './RegisterForm.css';
 import { FaGoogle } from 'react-icons/fa';
-import cineImage from '../../assets/cine2.jpg';
+import cineImage from '../../../assets/cine.jpg';
 
 interface RegisterFormProps {
   onToggle: () => void;

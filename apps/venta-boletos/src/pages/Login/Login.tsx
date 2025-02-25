@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
 import '../../styles.css';
@@ -12,7 +12,7 @@ export const Login = () => {
 
   return (
     <div>
-      <div className="app">
+      <div>
         {showLogin ? (
           <LoginForm onToggle={toggleForm} />
         ) : (

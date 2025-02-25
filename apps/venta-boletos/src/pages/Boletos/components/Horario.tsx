@@ -63,7 +63,7 @@ const Horario: React.FC = () => {
   };
 
   return (
-    <div className="p-6 max-w-md mx-auto rounded-lg shadow-md fondo-horario">
+    <div className="p-6 max-w-md mx-auto shadow-md fondo-horario">
 
       <div
         ref={dateContainerRef}
@@ -105,7 +105,7 @@ const Horario: React.FC = () => {
             className={`hour ${
               selectedHour === hour.id.toString()
                 ? 'hour--active'
-                : 'bg-gray-100 text-gray-700'
+                : 'hour'
             }`}
           >
             {hour.time}

@@ -12,7 +12,7 @@ const FilaEntrada: React.FC<TicketRowProps> = ({
     <tr>
       <td>{entradTipo}</td>
       <td>
-        <div className="button">
+        <div className="boton">
           <button
             onClick={onIncrement}
             aria-label={`Incrementar ${entradTipo}`}

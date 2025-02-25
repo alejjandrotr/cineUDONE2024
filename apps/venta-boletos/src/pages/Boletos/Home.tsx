@@ -2,6 +2,7 @@ import { TituloPelicula } from './components/TituloPelicula';
 import { DetallesPelicula } from './components/DetallesPelicula';
 import { SeleccionEntrada } from './components/SeleccionEntradas';
 import Horario  from './components/Horario';
+import '../../styles.css'
 const Home = () => {
   return (
     <div className="fondo">

@@ -7,13 +7,14 @@ body {
   background-color: #121212;
   box-sizing: border-box;
 }
+
 .juntos{
-  width: 80%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
+  display: grid;             
+  justify-content: center;   
+  align-items: center;     
+  height: 100%;   
 }
+
 .banner-container {
   display: flex;
   justify-content: center;
