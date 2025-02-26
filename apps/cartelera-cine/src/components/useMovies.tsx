@@ -1,42 +1,55 @@
+// src/hooks/useMovies.ts
 import { useState, useEffect } from 'react';
-import moviesData from '../movies.json';
 import { Movie } from '../core/models/Movie';
+import { fetchMovies } from '../api/apiClient'; // Importa fetchMovies
 
-const MAINTENANCE_TIME = 15;  
+const MAINTENANCE_TIME = 15;
 
 const useMovies = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [filteredMovies, setFilteredMovies] = useState<Movie[]>([]);
 
   useEffect(() => {
-    const updatedMovies = moviesData.movies.map(movie => ({
-      id: movie.id,
-      title: movie.title,
-      synopsis: movie.synopsis,
-      genre: movie.genre,
-      schedule: movie.schedule.map(item => {
-        const startTime = new Date(item.date);
-        const endTime = new Date(startTime.getTime() + movie.duration * 60 * 1000);  
-        const adjustedStartTime = new Date(startTime.getTime() - MAINTENANCE_TIME * 60 * 1000);  
-        const adjustedEndTime = new Date(endTime.getTime() + MAINTENANCE_TIME * 60 * 1000); 
+    const loadMovies = async () => {
+      try {
+        // Usa fetchMovies para obtener los datos de la API
+        const data = await fetchMovies();
 
-        return {
-          date: startTime, 
-          room: item.room,
-          startTime: adjustedStartTime, 
-          endTime: adjustedEndTime,     
-        };
-      }),
-      type: movie.type,
-      rating: movie.rating,
-      duration: movie.duration,
-      poster: movie.poster || '',
-      price: movie.price,
-      trailerUrl: movie.trailerUrl,
-    }));
+        // Procesa los datos como lo hacías antes
+        const updatedMovies = data.map((movie: any) => ({
+          id: movie.id,
+          title: movie.title,
+          synopsis: movie.synopsis,
+          genre: movie.genre,
+          schedule: Array.isArray(movie.schedule) ? movie.schedule.map((item: any) =>{
+            const startTime = new Date(item.date);
+            const endTime = new Date(startTime.getTime() + movie.duration * 60 * 1000);
+            const adjustedStartTime = new Date(startTime.getTime() - MAINTENANCE_TIME * 60 * 1000);
+            const adjustedEndTime = new Date(endTime.getTime() + MAINTENANCE_TIME * 60 * 1000);
 
-    setMovies(updatedMovies);
-    setFilteredMovies(updatedMovies);
+            return {
+              date: startTime,
+              room: item.room,
+              startTime: adjustedStartTime,
+              endTime: adjustedEndTime,
+            };
+          }) : [],
+          type: movie.type,
+          rating: movie.rating,
+          duration: movie.duration,
+          poster: movie.poster || '',
+          price: movie.price,
+          trailerUrl: movie.trailerUrl,
+        }));
+
+        setMovies(updatedMovies);
+        setFilteredMovies(updatedMovies);
+      } catch (error) {
+        console.error('Error al cargar las películas:', error);
+      }
+    };
+
+    loadMovies();
   }, []);
 
   const handleSearch = (query: string) => {
