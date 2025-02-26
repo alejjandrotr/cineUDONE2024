@@ -3,7 +3,7 @@ import '../../../styles/venta-boletos.css';
 import img1 from '../../../assets/Poster.png';
 export function DetallesPelicula() {
   return (
-    <div className="col-span-1 row-span-2 mx-auto detalles">
+    <div className="detalles">
       <div className="cuadro-fondo p-8">
         <img src={img1} alt="Poster de la pelicula" />
         <h1>Spiderman No Way Home</h1>

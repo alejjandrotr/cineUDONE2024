@@ -9,7 +9,7 @@ export default defineConfig({
   cacheDir: '../../node_modules/.vite/apps/venta-boletos',
   server: {
     proxy: {
-      '/precio': {
+      '/api': {
         target: 'http://localhost:3002', // URL de tu backend NestJS
         changeOrigin: true,
         secure: false, // Si estás usando HTTPS, cambia a true

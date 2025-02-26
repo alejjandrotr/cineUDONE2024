@@ -1,22 +1,24 @@
 import { TituloPelicula } from './components/TituloPelicula';
 import { DetallesPelicula } from './components/DetallesPelicula';
 import { SeleccionEntrada } from './components/SeleccionEntradas';
-import Horario  from './components/Horario';
-import '../../styles.css'
+import Horario from './components/Horario';
+import '../../styles.css';
 const Home = () => {
   return (
     <div className="fondo">
       <div className="banner-container">
         <div className="banner"></div>
       </div>
-      <div className="grid grid-cols-2 grid-rows-2 h-screen content">
+      <div className="flex flex-col md:flex-row justify-center items-center xl:gap-56 content">
+        
+      <div className="md:order-1">
+        <TituloPelicula />
         <DetallesPelicula />
-
-        <div className="juntos">
-          <TituloPelicula />
-          <Horario />
-          <SeleccionEntrada />
-        </div>
+    </div>
+    <div className="gap-4 md:order-2">
+      <Horario />
+      <SeleccionEntrada />
+    </div>
       </div>
     </div>
   );

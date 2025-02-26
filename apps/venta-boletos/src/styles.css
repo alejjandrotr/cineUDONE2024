@@ -8,12 +8,14 @@ body {
   box-sizing: border-box;
 }
 
+/*
 .juntos{
   display: grid;             
   justify-content: center;   
   align-items: center;     
   height: 100%;   
 }
+*/
 
 .banner-container {
   display: flex;
@@ -21,7 +23,7 @@ body {
 }
 .banner {
   position: absolute;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0)),
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.822), rgba(0, 0, 0, 0)),
     url('./assets/Spiderman.jpg');
   background-size: cover;
   background-position: center;
