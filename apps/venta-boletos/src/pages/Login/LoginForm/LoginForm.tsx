@@ -1,7 +1,7 @@
 import React from 'react';
 import './LoginForm.css';
 import { FaGoogle, FaUser } from 'react-icons/fa'; 
-import cineImage from '../../assets/cine.jpg'; 
+import cineImage from '../../../assets/cine.jpg'; 
 
 interface LoginFormProps {
   onToggle: () => void;
