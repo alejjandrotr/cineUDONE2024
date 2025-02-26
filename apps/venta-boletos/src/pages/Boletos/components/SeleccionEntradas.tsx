@@ -17,7 +17,7 @@ export function SeleccionEntrada() {
     const totalAmount = formattedTotal; // Calcula el total
 
     try {
-      const response = await fetch('http://localhost:3002/payment', {
+      const response = await fetch('http://localhost:4201/payment', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
