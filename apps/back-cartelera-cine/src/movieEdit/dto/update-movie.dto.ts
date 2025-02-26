@@ -1,4 +1,15 @@
-import { IsOptional, IsString, IsArray, IsUrl, IsInt } from 'class-validator';
+import {
+  IsOptional,
+  IsString,
+  IsArray,
+  IsUrl,
+  IsInt,
+  ArrayMinSize,
+  ArrayMaxSize,
+  Min,
+  Max,
+  IsNumber
+} from 'class-validator';
 
 export class UpdateMovieDto {
   @IsOptional()
@@ -11,11 +22,12 @@ export class UpdateMovieDto {
 
   @IsOptional()
   @IsArray()
-  goenre?: number[];
-
-  @IsOptional()
-  @IsArray()
-  schedule?: { date: string; room: string }[];
+  @ArrayMinSize(1, { message: 'Debe tener al menos un género' })
+  @ArrayMaxSize(3, { message: 'Máximo 3 géneros permitidos' })
+  @IsInt({ each: true })
+  @Min(1, { each: true })
+  @Max(3, { each: true })
+  genre?: number[];
 
   @IsOptional()
   @IsString()
@@ -26,16 +38,21 @@ export class UpdateMovieDto {
   rating?: string;
 
   @IsOptional()
+  @IsInt()
+  @Min(1, { message: 'La duración debe ser mayor a 0' })
   duration?: number;
 
   @IsOptional()
-  @IsUrl()
+  @IsUrl({}, { message: 'Debe ser una URL válida' })
   poster?: string;
 
   @IsOptional()
+  @IsNumber()
+  @Min(1, { message: 'El precio debe ser mayor a 0' })
   price?: number;
 
   @IsOptional()
   @IsString()
+  @IsUrl({}, { message: 'Debe ser una URL válida' })
   trailerUrl?: string;
 }

@@ -35,11 +35,6 @@ const Sidebar = () => {
             <FaStar />
             <span>&nbsp;Próximos Estrenos</span>
           </li>
-          {/* Botón para ir a la interfaz de admin */}
-          <li onClick={goToAdmin} style={{ cursor: 'pointer' }}>
-            <FaUserCog />
-            <span>&nbsp;Admin</span>
-          </li>
           {/* Redes sociales */}
           <li>
             <FaInstagram />
