@@ -14,6 +14,18 @@ export const fetchMovies = async () => {
   }
 };
 
+const API_URL = 'http://localhost:3001/api'; // Asegúrate de usar la URL correcta de tu backend
+
+export const deleteMovieById = async (id: number) => {
+  try {
+    await axios.delete(`${API_URL}/delete-movies/${id}`);
+  } catch (error) {
+    throw new Error('Error al eliminar la película');
+  }
+};
+
+
+
 // GET TOP DEALS
 export const fetchTopDeals = async () => {
   const response = await axios

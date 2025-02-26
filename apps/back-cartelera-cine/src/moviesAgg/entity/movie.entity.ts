@@ -25,10 +25,6 @@ export class Movie {
   @Max(3, { each: true })
   genre: number[] = [];
 
-  @Column('json')
-  @IsNotEmpty({ message: 'El horario es obligatorio' })
-  schedule: { date: string; room: string }[] = [];
-
   @Column()
   @IsNotEmpty({ message: 'El tipo es obligatorio' })
   @IsString()

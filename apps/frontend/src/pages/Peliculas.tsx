@@ -1,32 +1,46 @@
 import React, { useEffect, useState } from 'react';
 import { GridColDef } from '@mui/x-data-grid';
 import DataTable from '../components/DataTable';
-import { fetchMovies } from '../api/ApiCollection';
+import { fetchMovies, deleteMovieById } from '../api/ApiCollection';
 import toast from 'react-hot-toast';
 import AddData from '../components/AddData';
 
 const Pelicula = () => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
-    const getMovies = async () => {
-      try {
-        const data = await fetchMovies();
-        setMovies(data);
-        toast.success('Películas obtenidas correctamente!');
-      } catch (error) {
-        setIsError(true);
-        toast.error('Error al obtener las películas');
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
     getMovies();
   }, []);
+
+  const getMovies = async () => {
+    try {
+      setIsLoading(true);
+      const data = await fetchMovies();
+      setMovies(data);
+      toast.success('Películas obtenidas correctamente!');
+    } catch (error) {
+      setIsError(true);
+      toast.error('Error al obtener las películas');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleDelete = async (id: number) => {
+    if (!window.confirm('¿Estás seguro de que deseas eliminar esta película?')) {
+      return;
+    }
+    try {
+      await deleteMovieById(id);
+      toast.success('Película eliminada correctamente');
+      setMovies((prevMovies) => prevMovies.filter((movie) => movie.id !== id));
+    } catch (error) {
+      toast.error('Error al eliminar la película');
+    }
+  };
 
   const columns: GridColDef[] = [
     { field: 'id', headerName: 'ID', width: 90 },
@@ -65,10 +79,10 @@ const Pelicula = () => {
         ) : isError ? (
           <p>¡Error al obtener los datos!</p>
         ) : (
-          <DataTable slug="movies" columns={columns} rows={movies} includeActionColumn={true} />
+          <DataTable slug="pelicula" columns={columns} rows={movies} includeActionColumn={true} onDelete={handleDelete} />
         )}
 
-        {isOpen && <AddData slug={'movie'} isOpen={isOpen} setIsOpen={setIsOpen} />}
+        {isOpen && <AddData slug={'pelicula'} isOpen={isOpen} setIsOpen={setIsOpen} />}
       </div>
     </div>
   );

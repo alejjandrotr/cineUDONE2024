@@ -2,6 +2,7 @@ import React, { useState, useEffect, FormEvent } from 'react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import { HiOutlineXMark } from 'react-icons/hi2';
+import { genres } from '../../../cartelera-cine/src/constants/genres';
 
 interface AddDataProps {
   isOpen: boolean;
@@ -12,9 +13,7 @@ const AddData: React.FC<AddDataProps> = ({ isOpen, setIsOpen }) => {
   const [showModal, setShowModal] = useState(false);
   const [title, setTitle] = useState('');
   const [synopsis, setSynopsis] = useState('');
-  const [genre, setGenre] = useState('');
-  const [scheduleDate, setScheduleDate] = useState('');
-  const [scheduleRoom, setScheduleRoom] = useState('');
+  const [genre, setGenre] = useState<number | "">("");
   const [type, setType] = useState('');
   const [rating, setRating] = useState('');
   const [duration, setDuration] = useState('');
@@ -29,14 +28,8 @@ const AddData: React.FC<AddDataProps> = ({ isOpen, setIsOpen }) => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!title || !synopsis || !type || !rating || !duration || !poster || !price || !trailerUrl) {
+    if (!title || !synopsis || !genre || !type || !rating || !duration || !poster || !price || !trailerUrl) {
       toast.error('Todos los campos son obligatorios');
-      return;
-    }
-
-    const genreArray = genre.split(',').map(g => parseInt(g.trim())).filter(g => !isNaN(g));
-    if (genreArray.length < 1 || genreArray.length > 3) {
-      toast.error('Debe ingresar entre 1 y 3 géneros');
       return;
     }
 
@@ -48,8 +41,7 @@ const AddData: React.FC<AddDataProps> = ({ isOpen, setIsOpen }) => {
     const movieData = {
       title,
       synopsis,
-      genre: genreArray,
-      schedule: [{ date: scheduleDate, room: scheduleRoom }],
+      genre: genre, // Solo se guarda el ID del género
       type,
       rating,
       duration: parseInt(duration),
@@ -78,10 +70,17 @@ const AddData: React.FC<AddDataProps> = ({ isOpen, setIsOpen }) => {
         <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           <input type="text" placeholder="Título" className="input input-bordered" value={title} onChange={(e) => setTitle(e.target.value)} required />
           <input type="text" placeholder="Sinopsis" className="input input-bordered" value={synopsis} onChange={(e) => setSynopsis(e.target.value)} required />
-          <input type="text" placeholder="Géneros (ej: 1,2,3)" className="input input-bordered" value={genre} onChange={(e) => setGenre(e.target.value)} required />
-          <input type="date" className="input input-bordered" value={scheduleDate} onChange={(e) => setScheduleDate(e.target.value)} required />
-          <input type="text" placeholder="Sala" className="input input-bordered" value={scheduleRoom} onChange={(e) => setScheduleRoom(e.target.value)} required />
-          <input type="text" placeholder="Tipo" className="input input-bordered" value={type} onChange={(e) => setType(e.target.value)} required />
+          <select className="select select-bordered" value={genre} onChange={(e) => setGenre(Number(e.target.value))} required>
+            <option value="" disabled>Seleccione un género</option>
+            {genres.map(g => (
+              <option key={g.id} value={g.id}>{g.name}</option>
+            ))}
+          </select>
+          <select className="select select-bordered" value={type} onChange={(e) => setType(e.target.value)} required>
+            <option value="" disabled>Seleccione el tipo</option>
+            <option value="Estreno">Estreno</option>
+            <option value="Reestreno">Reestreno</option>
+          </select>
           <input type="text" placeholder="Clasificación" className="input input-bordered" value={rating} onChange={(e) => setRating(e.target.value)} required />
           <input type="number" placeholder="Duración (min)" className="input input-bordered" value={duration} onChange={(e) => setDuration(e.target.value)} required min="1" />
           <input type="text" placeholder="URL del póster" className="input input-bordered" value={poster} onChange={(e) => setPoster(e.target.value)} required pattern="https?://.*" />

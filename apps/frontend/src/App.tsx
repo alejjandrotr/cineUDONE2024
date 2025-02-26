@@ -17,7 +17,7 @@ import Posts from './pages/Posts';
 import Charts from './pages/Charts';
 import ToasterProvider from './components/ToasterProvider';
 import EditProfile from './pages/EditPerfil';
-import User from './pages/User';
+import User from './pages/Pelicula';
 import Product from './pages/Product';
 import Login from './pages/Login';
 
@@ -68,7 +68,7 @@ function App() {
           element: <Pelicula />,
         },
         {
-          path: '/users/:id',
+          path: '/pelicula/:id',
           element: <User />,
         },
         {

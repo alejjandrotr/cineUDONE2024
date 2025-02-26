@@ -2,9 +2,7 @@ import React from 'react';
 import {
   DataGrid,
   GridColDef,
-  //   GridToolbarQuickFilter,
   GridToolbar,
-  //   GridValueGetterParams,
 } from '@mui/x-data-grid';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -13,13 +11,13 @@ import {
   HiOutlineTrash,
 } from 'react-icons/hi2';
 import toast from 'react-hot-toast';
-import { truncate } from 'fs';
 
 interface DataTableProps {
   columns: GridColDef[];
   rows: object[];
   slug: string;
   includeActionColumn: boolean;
+  onDelete?: (id: number) => void; // Se añade la función para eliminar
 }
 
 const DataTable: React.FC<DataTableProps> = ({
@@ -27,18 +25,18 @@ const DataTable: React.FC<DataTableProps> = ({
   rows,
   slug,
   includeActionColumn,
+  onDelete,
 }) => {
   const navigate = useNavigate();
 
   const actionColumn: GridColDef = {
     field: 'action',
-    headerName: 'Action',
+    headerName: 'Acciones',
     minWidth: 200,
     flex: 1,
     renderCell: (params) => {
       return (
         <div className="flex items-center">
-          {/* <div to={`/${props.slug}/${params.row.id}`}> */}
           <button
             onClick={() => {
               navigate(`/${slug}/${params.row.id}`);
@@ -49,7 +47,7 @@ const DataTable: React.FC<DataTableProps> = ({
           </button>
           <button
             onClick={() => {
-              toast('Jangan diedit!', {
+              toast('Edición no habilitada!', {
                 icon: '😠',
               });
             }}
@@ -59,11 +57,11 @@ const DataTable: React.FC<DataTableProps> = ({
           </button>
           <button
             onClick={() => {
-              toast('Jangan dihapus!', {
-                icon: '😠',
-              });
+              if (window.confirm('¿Estás seguro de que deseas eliminar esta película?')) {
+                onDelete?.(params.row.id);
+              }
             }}
-            className="btn btn-square btn-ghost"
+            className="btn btn-square btn-ghost text-red-500 hover:bg-red-100"
           >
             <HiOutlineTrash />
           </button>
@@ -72,69 +70,36 @@ const DataTable: React.FC<DataTableProps> = ({
     },
   };
 
-  if (includeActionColumn === true) {
-    return (
-      <div className="w-full bg-base-100 text-base-content">
-        <DataGrid
-          className="dataGrid p-0 xl:p-3 w-full bg-base-100 text-white"
-          rows={rows}
-          columns={[...columns, actionColumn]}
-          getRowHeight={() => 'auto'}
-          initialState={{
-            pagination: {
-              paginationModel: {
-                pageSize: 10,
-              },
+  return (
+    <div className="w-full bg-base-100 text-base-content">
+      <DataGrid
+        className="dataGrid p-0 xl:p-3 w-full bg-base-100 text-white"
+        rows={rows}
+        columns={includeActionColumn ? [...columns, actionColumn] : columns}
+        getRowHeight={() => 'auto'}
+        initialState={{
+          pagination: {
+            paginationModel: {
+              pageSize: 10,
             },
-          }}
-          slots={{ toolbar: GridToolbar }}
-          slotProps={{
-            toolbar: {
-              showQuickFilter: true,
-              quickFilterProps: { debounceMs: 500 },
-            },
-          }}
-          pageSizeOptions={[5]}
-          checkboxSelection
-          disableRowSelectionOnClick
-          disableColumnFilter
-          disableDensitySelector
-          disableColumnSelector
-        />
-      </div>
-    );
-  } else {
-    return (
-      <div className="w-full bg-base-100 text-base-content">
-        <DataGrid
-          className="dataGrid p-0 xl:p-3 w-full bg-base-100 text-white"
-          rows={rows}
-          columns={[...columns]}
-          getRowHeight={() => 'auto'}
-          initialState={{
-            pagination: {
-              paginationModel: {
-                pageSize: 10,
-              },
-            },
-          }}
-          slots={{ toolbar: GridToolbar }}
-          slotProps={{
-            toolbar: {
-              showQuickFilter: true,
-              quickFilterProps: { debounceMs: 500 },
-            },
-          }}
-          pageSizeOptions={[5]}
-          checkboxSelection
-          disableRowSelectionOnClick
-          disableColumnFilter
-          disableDensitySelector
-          disableColumnSelector
-        />
-      </div>
-    );
-  }
+          },
+        }}
+        slots={{ toolbar: GridToolbar }}
+        slotProps={{
+          toolbar: {
+            showQuickFilter: true,
+            quickFilterProps: { debounceMs: 500 },
+          },
+        }}
+        pageSizeOptions={[5]}
+        checkboxSelection
+        disableRowSelectionOnClick
+        disableColumnFilter
+        disableDensitySelector
+        disableColumnSelector
+      />
+    </div>
+  );
 };
 
 export default DataTable;

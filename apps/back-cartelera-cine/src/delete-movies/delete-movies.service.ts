@@ -13,11 +13,7 @@ export class DeleteMoviesService {
   async deleteMovie(movieId: number): Promise<void> {
     const result = await this.moviesRepository.delete(movieId);
     if (result.affected === 0) {
-      throw new NotFoundException(`Movie with id ${movieId} not found`);
+      throw new NotFoundException(`No se encontró la película con ID ${movieId}`);
     }
-  }
-
-  async deleteAllMovies(): Promise<void> {
-    await this.moviesRepository.clear();
   }
 }

@@ -18,10 +18,6 @@ export class CreateMovieDto {
   @Max(3, { each: true })
   genre: number[] = [];
 
-  @IsNotEmpty({ message: 'El horario es obligatorio' })
-  @IsArray()
-  schedule: { date: string; room: string }[] = [];
-
   @IsNotEmpty({ message: 'El tipo es obligatorio' })
   @IsString()
   type: string = '';
