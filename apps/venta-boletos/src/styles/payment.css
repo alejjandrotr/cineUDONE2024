@@ -1,0 +1,57 @@
+.container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+select,
+input[type='text'] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+select:focus,
+input[type='text']:focus {
+  outline: none;
+  border-color: #aaa;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.total-label {
+  font-weight: 600;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+/* Ajustes para el layout */
+.payment-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.payment-form div {
+  width: 100%;
+}
+
+.payment-form select,
+.payment-form input[type='text'] {
+  margin-bottom: 15px;
+}

@@ -1,8 +1,8 @@
-import {useState} from 'react'
 import useTicketCounts  from '../hooks/useTicketCounts'
 import FilaEntrada from './FilaEntrada';
 import '../../../styles/seleccion-entrada.css';
 import useFetch  from '../services/useFetch';
+import { Link } from 'react-router-dom';
 
 export function SeleccionEntrada() {
   const {counts, handleIncrement, handleDecrement} = useTicketCounts();
@@ -12,30 +12,8 @@ export function SeleccionEntrada() {
  */
 
   const total = (4 * counts.general) + (3.2 * counts.children) + (3.5 * counts.seniors);
-  const formattedTotal = total.toFixed(2);
-  const handlePayment = async () => {
-    const totalAmount = formattedTotal; // Calcula el total
-
-    try {
-      const response = await fetch('http://localhost:4201/payment', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ total: totalAmount }),
-      });
-
-      if (!response.ok) {
-        throw new Error('Error al realizar el pago');
-      }
-
-      const result = await response.json();
-      console.log('Pago realizado:', result);
-      // Aquí puedes redirigir al usuario o mostrar un mensaje de éxito
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  };
+  const formattedTotal = parseFloat(total.toFixed(2));
+  
   return (
     <div className="max-w-md cuadro-fondo p-2">
       <table className="entradas">
@@ -49,7 +27,7 @@ export function SeleccionEntrada() {
         <tbody>
           <FilaEntrada
             entradTipo="Boleto General"
-            precio={(4*counts.children).toFixed(2)}
+            precio={(4*counts.general).toFixed(2)}
             contador={counts.general}
             onIncrement={() => handleIncrement('general')}
             onDecrement={() => handleDecrement('general')}
@@ -72,7 +50,9 @@ export function SeleccionEntrada() {
             <td colSpan={2}>Total</td>
             <td className="price">${formattedTotal}</td>
           </tr>
-          <button className="boton-pagar" onClick={handlePayment}>Pagar</button>
+          <Link to={`/payment?total=${formattedTotal}`}>
+      <button className="boton-pagar">Pagar</button>
+    </Link>
         </tbody>
       </table>
     </div>
