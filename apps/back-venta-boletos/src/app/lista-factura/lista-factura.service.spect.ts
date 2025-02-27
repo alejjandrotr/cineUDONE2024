@@ -1,4 +1,4 @@
-/*import { Test, TestingModule } from '@nestjs/testing';
+import { Test, TestingModule } from '@nestjs/testing';
 import { PagoTransferenciaService } from './pago-transferencia.service';
 import { getRepositoryToken } from '@nestjs/typeorm'; // Importar para obtener el token del repositorio
 import { PagoTransferencia } from './pago-transferencia.entity'; // Asegúrate de que la entidad esté importada

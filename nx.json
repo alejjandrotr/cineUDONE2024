@@ -22,8 +22,12 @@
       "{workspaceRoot}/.github/workflows/ci.yml"
     ]
   },
+<<<<<<< HEAD
   "nxCloudId": "6727a30c08cc1306a835a1e6",
 
+=======
+  "nxCloudId": "6776bf375ad9512e8f652a2c",
+>>>>>>> fc21bb7aceb4b03e687f95379e567046e866bdb3
   "plugins": [
     {
       "plugin": "@nx/vite/plugin",
@@ -66,15 +70,31 @@
       },
       "exclude": [
         "apps/back-cartelera-cine-e2e/**/*",
-        "apps/back-venta-boletos-e2e/**/*"
+        "apps/back-venta-boletos-e2e/**/*",
+        "administrador-e2e/**/*"
       ]
+    },
+    {
+      "plugin": "@nx/playwright/plugin",
+      "options": {
+        "targetName": "e2e"
+      }
     }
   ],
   "targetDefaults": {
     "e2e-ci--**/*": {
+<<<<<<< HEAD
       "dependsOn": [
         "^build"
       ]
+=======
+      "dependsOn": ["^build"]
+    },
+    "@nx/esbuild:esbuild": {
+      "cache": true,
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"]
+>>>>>>> fc21bb7aceb4b03e687f95379e567046e866bdb3
     }
   },
   "generators": {
