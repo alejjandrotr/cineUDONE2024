@@ -47,12 +47,6 @@ export class Movie {
   poster: string = '';
 
   @Column()
-  @IsNotEmpty({ message: 'El precio es obligatorio' })
-  @IsNumber()
-  @Min(1, { message: 'El precio debe ser mayor a 0' })
-  price: number = 0;
-
-  @Column()
   @IsNotEmpty({ message: 'El tráiler es obligatorio' })
   @IsUrl({}, { message: 'Debe ser una URL válida' })
   trailerUrl: string = '';

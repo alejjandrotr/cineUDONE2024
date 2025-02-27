@@ -35,11 +35,6 @@ export class CreateMovieDto {
   @IsUrl({}, { message: 'Debe ser una URL válida' })
   poster: string = '';
 
-  @IsNotEmpty({ message: 'El precio es obligatorio' })
-  @IsNumber()
-  @Min(1, { message: 'El precio debe ser mayor a 0' })
-  price: number = 0;
-
   @IsNotEmpty({ message: 'El tráiler es obligatorio' })
   @IsString()
   @IsUrl({}, { message: 'Debe ser una URL válida' })

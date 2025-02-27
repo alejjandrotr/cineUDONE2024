@@ -18,7 +18,6 @@ const AddData: React.FC<AddDataProps> = ({ isOpen, setIsOpen }) => {
   const [rating, setRating] = useState('');
   const [duration, setDuration] = useState('');
   const [poster, setPoster] = useState('');
-  const [price, setPrice] = useState('');
   const [trailerUrl, setTrailerUrl] = useState('');
 
   useEffect(() => {
@@ -28,7 +27,7 @@ const AddData: React.FC<AddDataProps> = ({ isOpen, setIsOpen }) => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!title || !synopsis || !genre || !type || !rating || !duration || !poster || !price || !trailerUrl) {
+    if (!title || !synopsis || !genre || !type || !rating || !duration || !poster || !trailerUrl) {
       toast.error('Todos los campos son obligatorios');
       return;
     }
@@ -46,7 +45,6 @@ const AddData: React.FC<AddDataProps> = ({ isOpen, setIsOpen }) => {
       rating,
       duration: parseInt(duration),
       poster,
-      price: parseFloat(price),
       trailerUrl,
     };
 
@@ -81,10 +79,16 @@ const AddData: React.FC<AddDataProps> = ({ isOpen, setIsOpen }) => {
             <option value="Estreno">Estreno</option>
             <option value="Reestreno">Reestreno</option>
           </select>
-          <input type="text" placeholder="Clasificación" className="input input-bordered" value={rating} onChange={(e) => setRating(e.target.value)} required />
+          <select className="select select-bordered" value={rating} onChange={(e) => setRating(e.target.value)} required>
+            <option value="" disabled>Seleccione la clasificación</option>
+            <option value="G">G</option>
+            <option value="PG">PG</option>
+            <option value="PG-13">PG-13</option>
+            <option value="R">R</option>
+            <option value="NC-17">NC-17</option>
+          </select>
           <input type="number" placeholder="Duración (min)" className="input input-bordered" value={duration} onChange={(e) => setDuration(e.target.value)} required min="1" />
           <input type="text" placeholder="URL del póster" className="input input-bordered" value={poster} onChange={(e) => setPoster(e.target.value)} required pattern="https?://.*" />
-          <input type="number" placeholder="Precio" className="input input-bordered" value={price} onChange={(e) => setPrice(e.target.value)} required min="1" />
           <input type="text" placeholder="URL del tráiler" className="input input-bordered" value={trailerUrl} onChange={(e) => setTrailerUrl(e.target.value)} required pattern="https?://.*" />
           <button className="mt-5 btn btn-primary btn-block col-span-full">Agregar</button>
         </form>

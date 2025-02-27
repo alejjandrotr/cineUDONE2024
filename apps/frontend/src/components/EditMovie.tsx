@@ -20,7 +20,6 @@ const EditMovie: React.FC<EditMovieProps> = ({ isOpen, setIsOpen, movieId }) => 
     rating: '',
     duration: '',
     poster: '',
-    price: '',
     trailerUrl: '',
   });
 
@@ -69,7 +68,6 @@ const EditMovie: React.FC<EditMovieProps> = ({ isOpen, setIsOpen, movieId }) => 
           <input name="rating" type="text" placeholder="Clasificación" className="input input-bordered" value={movieData.rating} onChange={handleChange} required />
           <input name="duration" type="number" placeholder="Duración (min)" className="input input-bordered" value={movieData.duration} onChange={handleChange} required min="1" />
           <input name="poster" type="text" placeholder="URL del póster" className="input input-bordered" value={movieData.poster} onChange={handleChange} required />
-          <input name="price" type="number" placeholder="Precio" className="input input-bordered" value={movieData.price} onChange={handleChange} required min="1" />
           <input name="trailerUrl" type="text" placeholder="URL del tráiler" className="input input-bordered" value={movieData.trailerUrl} onChange={handleChange} required />
           <button className="mt-5 btn btn-primary btn-block col-span-full">Actualizar</button>
         </form>

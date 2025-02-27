@@ -47,11 +47,6 @@ export class UpdateMovieDto {
   poster?: string;
 
   @IsOptional()
-  @IsNumber()
-  @Min(1, { message: 'El precio debe ser mayor a 0' })
-  price?: number;
-
-  @IsOptional()
   @IsString()
   @IsUrl({}, { message: 'Debe ser una URL válida' })
   trailerUrl?: string;

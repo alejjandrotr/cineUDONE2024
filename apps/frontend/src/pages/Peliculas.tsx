@@ -7,7 +7,16 @@ import AddData from '../components/AddData';
 
 const Pelicula = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [movies, setMovies] = useState([]);
+  interface Movie {
+    id: number;
+    title: string;
+    synopsis: string;
+    rating: string;
+    type: string;
+    duration: number;
+  }
+
+  const [movies, setMovies] = useState<Movie[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
 
@@ -49,7 +58,6 @@ const Pelicula = () => {
     { field: 'rating', type: 'string', headerName: 'Clasificación', minWidth: 120, flex: 1 },
     { field: 'type', headerName: 'Tipo', minWidth: 100, type: 'string', flex: 1 },
     { field: 'duration', headerName: 'Duración (min)', width: 120 },
-    { field: 'price', headerName: 'Precio ($)', width: 100 },
   ];
 
   return (

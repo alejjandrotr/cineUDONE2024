@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import { genres } from '../../../cartelera-cine/src/constants/genres'; // ✅ Importa correctamente
+import { genres } from '../../../cartelera-cine/src/constants/genres';
 
 const fetchMovieDetails = async (id: string) => {
   const { data } = await axios.get(`http://localhost:3001/api/movies/${id}`);
@@ -69,9 +69,6 @@ const MovieDetails = () => {
 
             <span className="font-semibold">🔞 Clasificación:</span>
             <span>{data.rating}</span>
-
-            <span className="font-semibold">💰 Precio:</span>
-            <span>${data.price}</span>
           </div>
 
           {/* Link al tráiler */}
