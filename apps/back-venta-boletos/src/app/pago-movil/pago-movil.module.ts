@@ -12,4 +12,4 @@ import { createpagomovil } from './pago-movil.entity';
 
 
 })
-export class pago_movil_module{}
+export class PagoMovilModule{}

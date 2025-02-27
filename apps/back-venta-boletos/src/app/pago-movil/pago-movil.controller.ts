@@ -1,14 +1,19 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, Get } from '@nestjs/common';
 import { create_pago_movil } from './dto/create-pago-movil.dto'; //IMPORTANDO LA CLASE
 import { PagoMovilService } from './pago-movil.service'; //IMPORTANDO LA CLASE
 
 @Controller('pago-movil')
 export class PagoMovilController{
-  constructor (private Pago_movil_service: PagoMovilService){}
+  constructor (private pagoMovilService: PagoMovilService){}
+
+  @Get()
+  getPagoMovil(){
+    return this.pagoMovilService.getDatosPagoMovil();
+  }
 
   @Post()
-  CreatePagoMovil(@Body() new_pago_movil: create_pago_movil){
-    return this.Pago_movil_service.CreatePagoMovil(new_pago_movil);
+  createPagoMovil(@Body() newPagoMovil: create_pago_movil){
+    return this.pagoMovilService.createPagoMovil(newPagoMovil);
   }
 
 }

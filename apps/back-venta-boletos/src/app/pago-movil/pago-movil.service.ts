@@ -6,11 +6,15 @@ import { create_pago_movil} from './dto/create-pago-movil.dto'; // definiendo lo
 
 @Injectable()
 export class PagoMovilService {
-  constructor (@InjectRepository(createpagomovil) private service_pago_movil: Repository <createpagomovil>){}
+  constructor (@InjectRepository(createpagomovil) private servicePagoMovil: Repository <createpagomovil>){}
 
-  CreatePagoMovil(createpagomovil: create_pago_movil){
-    const new_pago_movil = this.service_pago_movil.create(createpagomovil)
-    return this.service_pago_movil.save(new_pago_movil)
+  getDatosPagoMovil(){
+    return this.servicePagoMovil.find();
+  }
+  
+  createPagoMovil(createpagomovil: create_pago_movil){
+    const newPagoMovil = this.servicePagoMovil.create(createpagomovil)
+    return this.servicePagoMovil.save(newPagoMovil)
   }
 }
 

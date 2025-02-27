@@ -6,11 +6,11 @@ export class PagoTransferencia {
   id: number;
 
   @Column()
-  banco: string;
-
-  @Column()
-  nro_cuenta: string;
+  codigoBanco: string;
 
   @Column()
   cedula: string;
+
+  @Column()
+  nroCuenta: string;
 }
