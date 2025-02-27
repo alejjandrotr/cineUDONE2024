@@ -11,8 +11,13 @@ export class PagoTransferenciaService {
     private servicePagoTransferencia: Repository<PagoTransferencia>,
   ) {}
 
-  createPagoTransferencia(createPagoTransferenciaDto: CreatePagoTransferenciadto) {
+  getDatosTransferencia(){
+    return this.servicePagoTransferencia.find();
+  }
+
+  createDatosTransferencia(createPagoTransferenciaDto: CreatePagoTransferenciadto) {
     const newPagoTransferencia = this.servicePagoTransferencia.create(createPagoTransferenciaDto);
     return this.servicePagoTransferencia.save(newPagoTransferencia);
   }
+
 }

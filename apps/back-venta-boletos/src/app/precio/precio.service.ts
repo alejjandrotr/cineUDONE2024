@@ -2,9 +2,9 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class PrecioService {
-    private readonly precio = 3.00;
+    private readonly precioGeneral: number = 3.99;
 
-    montoTotal(cantidad: number): number {
-        return this.precio * cantidad;
+    getPrecio(){
+        return this.precioGeneral;
     }
 }
