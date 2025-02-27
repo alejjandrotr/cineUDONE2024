@@ -1,19 +1,12 @@
-import { IsAlpha, IsDate, IsDecimal, IsNotEmpty, IsNumberString, IsString, Length } from 'class-validator'
-import { Type } from 'class-transformer'
+import { IsNotEmpty, IsNumberString, Length } from 'class-validator'
 import { ApiProperty } from '@nestjs/swagger'
-import { isNumberObject } from 'util/types';
 export class create_pago_movil{
-  @ApiProperty({example: 'Banco Mercantil', description: 'Nombre de la entidad bancaria'})
-  @IsNotEmpty()
-  @IsString()
-  @Length(3, 60)
-  banco: string;
 
   @ApiProperty({example: '0102', description: 'Codigo de Banco'})
   @IsNotEmpty()
   @IsNumberString()
   @Length(1, 4)
-  codigo_banco: string;
+  codigoBanco: string;
 
   @ApiProperty({example: '28567843', description: 'Identificacion Personal (ID)'})
   @IsNotEmpty()
@@ -25,5 +18,5 @@ export class create_pago_movil{
   @IsNotEmpty()
   @IsNumberString()
   @Length(11, 11)
-  numero_telef: string;
+  nroTelefono: string;
 }

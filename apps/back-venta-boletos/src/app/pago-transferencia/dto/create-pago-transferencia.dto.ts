@@ -1,5 +1,4 @@
-import { IsAlpha, IsDate, IsDecimal, IsNotEmpty, IsNumberString, IsString, Length } from 'class-validator'
-import { Type } from 'class-transformer'
+import { IsNotEmpty, IsNumberString, IsString, Length } from 'class-validator'
 import { ApiProperty } from '@nestjs/swagger'
 export class CreatePagoTransferenciadto {
 
@@ -7,17 +6,17 @@ export class CreatePagoTransferenciadto {
   @IsNotEmpty()
   @IsString()
   @Length(3, 60)
-  banco: string;
-
-  @ApiProperty({example: '01023473290654400007', description: 'Numero de cuenta del Banco'})
-  @IsNotEmpty()
-  @IsNumberString()
-  @Length(20,20)
-  nro_cuenta: string;
+  codigoBanco: string;
 
   @ApiProperty({example: '28567843', description: 'Identificacion Personal (ID)'})
   @IsNotEmpty()
   @IsNumberString()
   @Length(1, 15)
   cedula: string;
+
+  @ApiProperty({example: '01023473290654400007', description: 'Numero de cuenta del Banco'})
+  @IsNotEmpty()
+  @IsNumberString()
+  @Length(20,20)
+  nroCuenta: string;
 }
