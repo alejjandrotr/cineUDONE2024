@@ -1,25 +1,16 @@
-import { render } from '@testing-library/react';
-
+import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
-
-import App from './app';
+import App from './app'; 
 
 describe('App', () => {
-  it('should render successfully', () => {
-    const { baseElement } = render(
+  it('should render the Header component', () => {
+    render(
       <BrowserRouter>
         <App />
       </BrowserRouter>
     );
-    expect(baseElement).toBeTruthy();
-  });
 
-  it('should have a greeting as the title', () => {
-    const { getByText } = render(
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    );
-    expect(getByText(/Welcome cartelera-cine/gi)).toBeTruthy();
+    const headerTitle = screen.getByText('CINE'); 
+    expect(headerTitle).toBeTruthy(); 
   });
 });
