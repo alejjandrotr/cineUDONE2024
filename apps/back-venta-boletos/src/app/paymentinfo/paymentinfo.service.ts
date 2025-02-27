@@ -4,8 +4,6 @@ import { Paymentinfo } from './paymentinfo.entity';
 import { Repository } from 'typeorm';
 import { CreatePaymentinfoDto } from './dto/create-paymentinfo.dto'
 
-
-
 @Injectable()
 export class PaymentinfoService {
 
