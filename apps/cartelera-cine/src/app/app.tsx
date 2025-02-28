@@ -6,7 +6,7 @@ import Sidebar from '../components/SideBar';
 import SearchBar from '../components/SearchBar';
 import MovieList from '../components/MovieList';
 import MovieDetail from '../components/MovieDetail';
-import useMovies from '../components/useMovies';
+import useMovies from '../hooks/useMovies';
 import { Movie } from '../core/models/Movie';
 import '../styles/App.css';
 
