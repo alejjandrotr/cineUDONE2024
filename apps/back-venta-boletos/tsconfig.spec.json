@@ -3,7 +3,9 @@
   "compilerOptions": {
     "outDir": "../../dist/out-tsc",
     "module": "commonjs",
-    "types": ["jest", "node"]
+    "types": ["jest", "node"],
+    "forceConsistentCasingInFileNames": false,
+    "strict": false
   },
   "include": [
     "jest.config.ts",

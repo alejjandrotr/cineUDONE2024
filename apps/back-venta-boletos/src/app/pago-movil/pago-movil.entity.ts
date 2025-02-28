@@ -6,15 +6,12 @@ export class createpagomovil{
   id: number;
 
   @Column()
-  banco: string;
-
-  @Column()
-  codigo_banco: string;
+  codigoBanco: string;
 
   @Column()
   cedula: string;
 
   @Column()
-  numero_telef: string;
+  nroTelefono: string;
 }
 
