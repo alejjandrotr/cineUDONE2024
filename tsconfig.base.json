@@ -18,6 +18,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {}
+
   },
   "exclude": [
     "node_modules",
