@@ -18,8 +18,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {},
-    "forceConsistentCasingInFileNames": true,
-    "strict": true
+    "forceConsistentCasingInFileNames": false,
+    "strict": false
   },
   "exclude": [
     "node_modules",

@@ -9,8 +9,8 @@ describe('pago_movil_controller', () => {
 
   const mockService = {
     create_pago: jest.fn(), // Como estamos en un entorno de prueba, generalmente es mejor "mockear" el
-                            // repositorio para que puedas probar
-                            ///el comportamiento de tu servicio sin depender de una base de datos real.
+                            // repositorio para que puedamos probar
+                            ///el comportamiento del servicio sin depender de una base de datos real.
   };
 
   beforeEach(async () => {
