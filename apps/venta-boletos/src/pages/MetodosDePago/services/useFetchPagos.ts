@@ -6,7 +6,7 @@ const useFetchPagos = () => {
   const [datosPagoMovil, setDatosPagoMovil] = useState<PagoMovil[]>([]);
   const [datosPagoTransferencia, setDatosPagoTransferencia] = useState<PagoTransferencia[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<unknown>(null);
 
   const fetchDatos = async () => {
     try {

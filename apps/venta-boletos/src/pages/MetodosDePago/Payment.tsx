@@ -2,7 +2,13 @@ import React, { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import '../../styles/payment.css';
 import useFetchPagos from './services/useFetchPagos';
-import axios from 'axios';
+import {
+  handleTipoPagoChange,
+  handleBancoChange,
+  handlePaypalChange,
+  handleReferenciaChange,
+  handlePago,
+} from './handlers/handlers';
 
 const Payment = () => {
   const [tipoPago, setTipoPago] = useState('');
@@ -17,67 +23,27 @@ const Payment = () => {
 
   const { datosPagoMovil, datosPagoTransferencia } = useFetchPagos();
 
-  const handleTipoPagoChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedTipoPago = e.target.value;
-    setTipoPago(selectedTipoPago);
-    setBancoSeleccionado('');
-    setNumeroTelefono('');
-    setNumeroTransferencia('');
-    setCedula('');
-    setCorreoPaypal('');
-  };
+  const handleTipoPago = handleTipoPagoChange(
+    setTipoPago,
+    setBancoSeleccionado,
+    setNumeroTelefono,
+    setNumeroTransferencia,
+    setCedula,
+    setCorreoPaypal
+  );
 
-  const handleBancoChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedBanco = e.target.value;
-    setBancoSeleccionado(selectedBanco);
+  const handleBanco = handleBancoChange(
+    tipoPago,
+    datosPagoMovil,
+    datosPagoTransferencia,
+    setBancoSeleccionado,
+    setNumeroTelefono,
+    setNumeroTransferencia,
+    setCedula
+  );
 
-    if (tipoPago === 'pagoMovil') {
-      const dato = datosPagoMovil.find((d) => d.id === parseInt(selectedBanco));
-      if (dato) {
-        setNumeroTelefono(dato.nroTelefono || '');
-        setCedula(dato.cedula || '');
-      }
-    } else if (tipoPago === 'transferencia') {
-      const dato = datosPagoTransferencia.find(
-        (d) => d.id === parseInt(selectedBanco)
-      );
-      if (dato) {
-        setNumeroTransferencia(dato.nroCuenta || '');
-        setCedula(dato.cedula || '');
-      }
-    }
-  };
-
-  const handlePaypalChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setCorreoPaypal(e.target.value);
-  };
-  const handleReferenciaChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setReferencia(e.target.value);
-  };
-  const handlePago = async () => {
-    try {
-      const banco = tipoPago === 'pagoMovil'
-      ? datosPagoMovil.find((d) => d.id === parseInt(bancoSeleccionado))
-      : datosPagoTransferencia.find((d) => d.id === parseInt(bancoSeleccionado));
-
-    const datosPago = {
-      referencia,
-      bancoCodigo: banco ? banco.id.toString().padStart(4, '0') : '', // Asegúrate de que sea un código de 4 dígitos
-      metodo: tipoPago === 'pagoMovil' ? 'Pago Movil' : 'Transferencia',
-      fecha: new Date(),
-      monto: parseFloat(total || '0'), // Asegúrate de que sea un número
-      estado: 'Pendiente', // Por defecto, el estado es Pendiente
-    };
-
-      const response = await axios.post(
-        'http://localhost:3002/api/paymentinfo',
-        datosPago
-      );
-      console.log('Pago procesado:', response.data);
-    } catch (error) {
-      console.error('Error al procesar el pago:', error);
-    }
-  };
+  const handlePaypal = handlePaypalChange(setCorreoPaypal);
+  const handleReferencia = handleReferenciaChange(setReferencia);
 
   return (
     <div className="container">
@@ -86,7 +52,7 @@ const Payment = () => {
 
       <div className="payment-form">
         <label> Tipo de pago: </label>
-        <select value={tipoPago} onChange={handleTipoPagoChange}>
+        <select value={tipoPago} onChange={handleTipoPago}>
           <option value="">Seleccione un tipo de pago</option>
           <option value="pagoMovil">Pago Movil</option>
           <option value="transferencia">Transferencia</option>
@@ -96,11 +62,11 @@ const Payment = () => {
         {tipoPago === 'pagoMovil' && (
           <div>
             <label>Banco: </label>
-            <select value={bancoSeleccionado} onChange={handleBancoChange}>
+            <select value={bancoSeleccionado} onChange={handleBanco}>
               <option value="">Seleccione un banco</option>
               {datosPagoMovil.map((banco) => (
                 <option key={banco.id} value={banco.id.toString()}>
-                  Banco {banco.id}
+                  Banco {banco.codigoBanco}
                 </option>
               ))}
             </select>
@@ -119,11 +85,11 @@ const Payment = () => {
         {tipoPago === 'transferencia' && (
           <div>
             <label>Banco: </label>
-            <select value={bancoSeleccionado} onChange={handleBancoChange}>
+            <select value={bancoSeleccionado} onChange={handleBanco}>
               <option value="">Seleccione un banco</option>
               {datosPagoTransferencia.map((banco) => (
                 <option key={banco.id} value={banco.id.toString()}>
-                  Banco {banco.id}
+                  Banco {banco.codigoBanco}
                 </option>
               ))}
             </select>
@@ -142,22 +108,26 @@ const Payment = () => {
         {tipoPago === 'paypal' && (
           <div>
             <label>Correo electrónico de PayPal: </label>
-            <input
-              type="text"
-              value={correoPaypal}
-              onChange={handlePaypalChange}
-            />
+            <input type="text" value={correoPaypal} onChange={handlePaypal} />
           </div>
         )}
         <label>Referencia del pago: </label>
-        <input
-          type="text"
-          value={referencia}
-          onChange={handleReferenciaChange}
-        />
+        <input type="text" value={referencia} onChange={handleReferencia} />
 
         {tipoPago && bancoSeleccionado && tipoPago !== 'paypal' ? (
-          <button className="pagar-button" onClick={handlePago}>
+          <button
+            className="pagar-button"
+            onClick={() =>
+              handlePago(
+                referencia,
+                tipoPago,
+                bancoSeleccionado,
+                datosPagoMovil,
+                datosPagoTransferencia,
+                total
+              )
+            }
+          >
             Pagar
           </button>
         ) : tipoPago === 'paypal' && correoPaypal ? (

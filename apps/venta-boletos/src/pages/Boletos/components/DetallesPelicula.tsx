@@ -15,6 +15,7 @@ export function DetallesPelicula() {
         </p>
 
         <table>
+          <tbody>
           <tr className="detalles-funcion">
             <td>Fecha</td>
             <td>15-12</td>
@@ -27,6 +28,7 @@ export function DetallesPelicula() {
             <td>Sala</td>
             <td>A</td>
           </tr>
+          </tbody>
         </table>
       </div>
     </div>

@@ -8,7 +8,6 @@ export function SeleccionEntrada() {
   const {counts, handleIncrement, handleDecrement} = useTicketCounts();
 
   const { data } = useFetch('http://localhost:3002/api/precio');
-  console.log(data);
   const precio = data;
 
   const total = (precio * counts.general) + (precio * counts.children) + (precio * counts.seniors);
@@ -50,11 +49,13 @@ export function SeleccionEntrada() {
             <td colSpan={2}>Total</td>
             <td className="price">${formattedTotal}</td>
           </tr>
-          <Link to={`/payment?total=${formattedTotal}`}>
+          
+        </tbody>
+        
+      </table>
+      <Link to={`/payment?total=${formattedTotal}`}>
       <button className="boton-pagar">Pagar</button>
     </Link>
-        </tbody>
-      </table>
     </div>
   );
 }
