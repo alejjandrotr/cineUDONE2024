@@ -7,6 +7,7 @@ import { genres } from '../../../cartelera-cine/src/constants/genres';
 interface AddDataProps {
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  slug: string;
 }
 
 const AddData: React.FC<AddDataProps> = ({ isOpen, setIsOpen }) => {
