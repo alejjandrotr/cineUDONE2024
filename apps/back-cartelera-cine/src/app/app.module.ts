@@ -5,6 +5,7 @@ import { typeORMConfig } from './config/typeorm.config';
 import { MoviesModule } from '../moviesAgg/moviesModule';
 import { MovieEditModule } from '../movieEdit/MovieEditModule';
 import { DeleteMoviesModule } from '../delete-movies/DeleteMoviesModule';
+import { FuncionesModule } from '../funcionAgg/funcionesModule';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { DeleteMoviesModule } from '../delete-movies/DeleteMoviesModule';
     MoviesModule,
     MovieEditModule,
     DeleteMoviesModule,
+    FuncionesModule,
   ],
 })
 export class AppModule {}

@@ -1,16 +1,18 @@
-import { Controller, Post, Body, Get, Delete, Param, UseGuards } from '@nestjs/common';
+import { Controller, Post, Body, Get, Delete, Param } from '@nestjs/common';
 import { AppService } from './app.service';
 import { MoviesService } from '../moviesAgg/service/movies.service';
 import { DeleteMoviesService } from '../delete-movies/delete-movies.service';
 import { CreateMovieDto } from '../moviesAgg/dto/create-movie.dto';
-//import { AuthGuard } from '../auth/guards/auth.guard'; // Asumo que tienes un guard para la autenticación
+import { FuncionesService } from '../funcionAgg/service/funciones.service';
+import { CreateFuncionDto } from '../funcionAgg/dto/create-funcion.dto';
 
-@Controller('api') // Agrega el prefijo 'api'
+@Controller('api') // Prefijo 'api'
 export class AppController {
   constructor(
     private readonly appService: AppService,
     private readonly moviesService: MoviesService,
-    private readonly deleteMoviesService: DeleteMoviesService
+    private readonly deleteMoviesService: DeleteMoviesService,
+    private readonly funcionesService: FuncionesService, // 🔹 Inyectamos el servicio de funciones
   ) {}
 
   @Get()
@@ -18,19 +20,33 @@ export class AppController {
     return this.appService.getData();
   }
 
-  @Post('movies') // Ruta: POST /api/movies
+  // 🟢 Rutas de Películas
+  @Post('movies') // POST /api/movies
   addMovie(@Body() movieData: CreateMovieDto) {
     return this.moviesService.addMovie(movieData);
   }
 
-  @Get('movies') // Ruta: GET /api/movies
+  @Get('movies') // GET /api/movies
   getMovies() {
     return this.moviesService.getAllMovies();
   }
 
-  @Delete('movies/:id') // Ruta: DELETE /api/movies/:id
+  @Delete('movies/:id') // DELETE /api/movies/:id
   deleteMovie(@Param('id') id: number) {
     this.deleteMoviesService.deleteMovie(id);
     return { message: `Movie with id ${id} deleted successfully` };
   }
+
+  // 🟢 Rutas de Funciones
+  @Post('funciones') // POST /api/funciones
+  async addFuncion(@Body() funcionData: CreateFuncionDto) {
+    console.log('✅ Datos recibidos en el backend:', funcionData); // 🔹 Debug
+
+  }
+
+  @Get('funciones') // GET /api/funciones
+  getFunciones() {
+    return this.funcionesService.getAllFunciones();
+  }
+
 }

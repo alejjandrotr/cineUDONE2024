@@ -1,10 +1,11 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
-import { IsNotEmpty, IsInt, IsArray, ArrayMinSize, ArrayMaxSize, IsString, IsUrl, Min, Max, IsNumber } from 'class-validator';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { Funcion } from '../../funcionAgg/entity/funcion.entity';
+import { IsNotEmpty, IsInt, IsArray, ArrayMinSize, ArrayMaxSize, IsString, IsUrl, Min, Max } from 'class-validator';
 
 @Entity()
 export class Movie {
   @PrimaryGeneratedColumn()
-  id: number = 0;
+  id!: number;
 
   @Column()
   @IsNotEmpty({ message: 'El título es obligatorio' })
@@ -50,4 +51,8 @@ export class Movie {
   @IsNotEmpty({ message: 'El tráiler es obligatorio' })
   @IsUrl({}, { message: 'Debe ser una URL válida' })
   trailerUrl: string = '';
+
+  // Agrega la relación con Funcion
+  @OneToMany(() => Funcion, funcion => funcion.movie)
+  funciones!: Funcion[];
 }
