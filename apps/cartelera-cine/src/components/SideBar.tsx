@@ -1,9 +1,17 @@
 import React from 'react';
 import '../styles/SideBar.css';
 import logo from '../assets/logo.png';
-import { FaHome, FaFilm, FaUtensils, FaStar, FaInstagram, FaFacebook } from 'react-icons/fa';
+import { FaHome, FaFilm, FaUtensils, FaStar, FaInstagram, FaFacebook, FaUserCog } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom'; // Importa useNavigate
 
 const Sidebar = () => {
+  const navigate = useNavigate(); // Inicializa useNavigate
+
+  // Función para redirigir a la interfaz de admin
+  const goToAdmin = () => {
+    navigate('/admin');
+  };
+
   return (
     <div className="sidebar">
       <div className="sidebar-header">
