@@ -36,9 +36,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onToggle }) => {
         
         <p className="login-footer">
           ¿No tienes una cuenta?{' '}
-          <a href="#" onClick={onToggle}>
-            Regístrate
-          </a>
+          <button  onClick={onToggle}>Regístrate</button>
         </p>
 
         <p className="login-footer">

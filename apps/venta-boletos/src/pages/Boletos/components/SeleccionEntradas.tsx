@@ -6,12 +6,11 @@ import { Link } from 'react-router-dom';
 
 export function SeleccionEntrada() {
   const {counts, handleIncrement, handleDecrement} = useTicketCounts();
- /*
-  const { data, loading, error } = useFetch('http://localhost:3002/api/paymentinfo');
-  console.log(data);
- */
 
-  const total = (4 * counts.general) + (3.2 * counts.children) + (3.5 * counts.seniors);
+  const { data } = useFetch('http://localhost:3002/api/precio');
+  const precio = data;
+
+  const total = (precio * counts.general) + (precio * counts.children) + (precio * counts.seniors);
   const formattedTotal = parseFloat(total.toFixed(2));
   
   return (
@@ -27,21 +26,21 @@ export function SeleccionEntrada() {
         <tbody>
           <FilaEntrada
             entradTipo="Boleto General"
-            precio={(4*counts.general).toFixed(2)}
+            precio={(precio*counts.general).toFixed(2)}
             contador={counts.general}
             onIncrement={() => handleIncrement('general')}
             onDecrement={() => handleDecrement('general')}
           />
           <FilaEntrada
             entradTipo="Boleto Niños"
-            precio={(3.2*counts.children).toFixed(2)}
+            precio={(precio*counts.children).toFixed(2)}
             contador={counts.children}
             onIncrement={() => handleIncrement('children')}
             onDecrement={() => handleDecrement('children')}
           />
           <FilaEntrada
             entradTipo="Boleto Ancianos"
-            precio={(3.5*counts.seniors).toFixed(2)}
+            precio={(precio*counts.seniors).toFixed(2)}
             contador={counts.seniors}
             onIncrement={() => handleIncrement('seniors')}
             onDecrement={() => handleDecrement('seniors')}
@@ -50,11 +49,13 @@ export function SeleccionEntrada() {
             <td colSpan={2}>Total</td>
             <td className="price">${formattedTotal}</td>
           </tr>
-          <Link to={`/payment?total=${formattedTotal}`}>
+          
+        </tbody>
+        
+      </table>
+      <Link to={`/payment?total=${formattedTotal}`}>
       <button className="boton-pagar">Pagar</button>
     </Link>
-        </tbody>
-      </table>
     </div>
   );
 }
