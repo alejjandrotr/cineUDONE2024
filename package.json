@@ -3,17 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-<<<<<<< HEAD
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "install": "npm install",
-    "clean": "rm -rf .next node_modules package-lock.json && npm install",
-    "prepare": "husky install"
-=======
     "start:dev": "nodemon --watch src --ext ts --exec ts-node src/main.ts"
->>>>>>> fc21bb7aceb4b03e687f95379e567046e866bdb3
   },
   "private": true,
   "devDependencies": {
@@ -87,9 +77,7 @@
     "webpack-cli": "^5.1.4"
   },
   "dependencies": {
-<<<<<<< HEAD
     "@cine-udone2024/source": "file:",
-=======
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@fullcalendar/core": "^6.1.15",
@@ -100,7 +88,6 @@
     "@mui/icons-material": "^6.4.4",
     "@mui/lab": "^6.0.0-beta.27",
     "@mui/x-data-grid": "^7.26.0",
->>>>>>> fc21bb7aceb4b03e687f95379e567046e866bdb3
     "@nestjs/common": "^10.0.2",
     "@nestjs/config": "^3.3.0",
     "@nestjs/core": "^10.0.2",
@@ -114,12 +101,7 @@
     "axios": "^1.6.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
-<<<<<<< HEAD
-    "mysql2": "^3.11.3",
-    "next": "^15.1.7",
-=======
     "mysql2": "^3.12.0",
->>>>>>> fc21bb7aceb4b03e687f95379e567046e866bdb3
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "react-helmet-async": "^2.0.5",
