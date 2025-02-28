@@ -10,18 +10,18 @@
 
 .notFound-title {
   font-size: 36px;
-  color: #7000FF; /* Color para títulos y detalles */
+  color: #7000FF; 
   margin-bottom: 20px;
 }
 
 .notFound-message {
   font-size: 18px;
-  color: #fff; /* Color para el texto principal */
+  color: #fff;
   margin-bottom: 40px;
 }
 
 .notFound-button {
-  background-color: #7000FF; /* Color para botones */
+  background-color: #7000FF; 
   color: #fff;
   padding: 10px 20px;
   border: none;
@@ -31,7 +31,7 @@
 
 
 .notFound-link {
-  color: #ffffff; /* Color para enlaces */
+  color: #ffffff; 
   text-decoration: none;
 }
 

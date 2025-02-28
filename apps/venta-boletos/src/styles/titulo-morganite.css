@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'Morganite';
-    src: url('../components/Morganite.tff') format('truetype');
+    src: url('../assets/Morganite-Bold.ttf') format('truetype');
 }
 
 .title{

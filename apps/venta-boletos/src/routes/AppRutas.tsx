@@ -4,7 +4,7 @@ import Home from '../pages/Boletos/Home';
 import Payment from '../pages/MetodosDePago/Payment';
 import Login from '../pages/Login/Login';
 import NotFound from '../pages/NotFound/NotFound';
-import { Route, Routes } from 'react-router-dom';
+import  { Route, Routes } from 'react-router-dom';
 const AppRutas = () => {
   const [hasVisitedHome, setHasVisitedHome] = useState(false);
   const location = useLocation();
