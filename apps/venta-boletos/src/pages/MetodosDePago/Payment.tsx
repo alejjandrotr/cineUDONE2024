@@ -1,76 +1,82 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import '../../styles/payment.css';
-import {PagoMovil, PagoTransferencia} from './types/index'
-
+import useFetchPagos from './services/useFetchPagos';
+import axios from 'axios';
 
 const Payment = () => {
-  const [tipoPago, setTipoPago] = useState("");
-  const [bancoSeleccionado, setBancoSeleccionado] = useState("");
-  const [numeroTelefono, setNumeroTelefono] = useState("");
-  const [numeroTransferencia, setNumeroTransferencia] = useState("");
-  const [cedula, setCedula] = useState("");
-  const [correoPaypal, setCorreoPaypal] = useState("");
+  const [tipoPago, setTipoPago] = useState('');
+  const [bancoSeleccionado, setBancoSeleccionado] = useState('');
+  const [numeroTelefono, setNumeroTelefono] = useState('');
+  const [numeroTransferencia, setNumeroTransferencia] = useState('');
+  const [cedula, setCedula] = useState('');
+  const [correoPaypal, setCorreoPaypal] = useState('');
   const [searchParams] = useSearchParams();
   const total = searchParams.get('total');
+  const [referencia, setReferencia] = useState('');
 
-
-
-  const [datosPagoMovil, setDatosPagoMovil] = useState<PagoMovil[]>([]);
-  const [datosPagoTransferencia, setDatosPagoTransferencia] = useState<PagoTransferencia[]>([]);
-
-  useEffect(() => {
-    const fetchDatos = async () => {
-      try {
-        const [response1, response2] = await Promise.all([
-          fetch('http://localhost:3002/api/pago-movil'),
-          fetch('http://localhost:3002/api/pago-transferencia'),
-        ]);
-
-        const datos1 = await response1.json();
-        const datos2 = await response2.json();
-
-        setDatosPagoMovil(datos1);
-        setDatosPagoTransferencia(datos2);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchDatos();
-  }, []);
+  const { datosPagoMovil, datosPagoTransferencia } = useFetchPagos();
 
   const handleTipoPagoChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedTipoPago = e.target.value;
     setTipoPago(selectedTipoPago);
-    setBancoSeleccionado("");
-    setNumeroTelefono("");
-    setNumeroTransferencia("");
-    setCedula("");
-    setCorreoPaypal("");
+    setBancoSeleccionado('');
+    setNumeroTelefono('');
+    setNumeroTransferencia('');
+    setCedula('');
+    setCorreoPaypal('');
   };
 
   const handleBancoChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedBanco = e.target.value;
     setBancoSeleccionado(selectedBanco);
 
-    if (tipoPago === "pagoMovil") {
+    if (tipoPago === 'pagoMovil') {
       const dato = datosPagoMovil.find((d) => d.id === parseInt(selectedBanco));
       if (dato) {
-        setNumeroTelefono(dato.nroTelefono || "");
-        setCedula(dato.cedula || "");
+        setNumeroTelefono(dato.nroTelefono || '');
+        setCedula(dato.cedula || '');
       }
-    } else if (tipoPago === "transferencia") {
-      const dato = datosPagoTransferencia.find((d) => d.id === parseInt(selectedBanco));
+    } else if (tipoPago === 'transferencia') {
+      const dato = datosPagoTransferencia.find(
+        (d) => d.id === parseInt(selectedBanco)
+      );
       if (dato) {
-        setNumeroTransferencia(dato.nroCuenta || "");
-        setCedula(dato.cedula || "");
+        setNumeroTransferencia(dato.nroCuenta || '');
+        setCedula(dato.cedula || '');
       }
     }
   };
 
-  const handlePaypalChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const handlePaypalChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCorreoPaypal(e.target.value);
+  };
+  const handleReferenciaChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setReferencia(e.target.value);
+  };
+  const handlePago = async () => {
+    try {
+      const banco = tipoPago === 'pagoMovil'
+      ? datosPagoMovil.find((d) => d.id === parseInt(bancoSeleccionado))
+      : datosPagoTransferencia.find((d) => d.id === parseInt(bancoSeleccionado));
+
+    const datosPago = {
+      referencia,
+      bancoCodigo: banco ? banco.id.toString().padStart(4, '0') : '', // Asegúrate de que sea un código de 4 dígitos
+      metodo: tipoPago === 'pagoMovil' ? 'Pago Movil' : 'Transferencia',
+      fecha: new Date(),
+      monto: parseFloat(total || '0'), // Asegúrate de que sea un número
+      estado: 'Pendiente', // Por defecto, el estado es Pendiente
+    };
+
+      const response = await axios.post(
+        'http://localhost:3002/api/paymentinfo',
+        datosPago
+      );
+      console.log('Pago procesado:', response.data);
+    } catch (error) {
+      console.error('Error al procesar el pago:', error);
+    }
   };
 
   return (
@@ -87,7 +93,7 @@ const Payment = () => {
           <option value="paypal">PayPal</option>
         </select>
 
-        {tipoPago === "pagoMovil" && (
+        {tipoPago === 'pagoMovil' && (
           <div>
             <label>Banco: </label>
             <select value={bancoSeleccionado} onChange={handleBancoChange}>
@@ -110,7 +116,7 @@ const Payment = () => {
           </div>
         )}
 
-        {tipoPago === "transferencia" && (
+        {tipoPago === 'transferencia' && (
           <div>
             <label>Banco: </label>
             <select value={bancoSeleccionado} onChange={handleBancoChange}>
@@ -133,20 +139,32 @@ const Payment = () => {
           </div>
         )}
 
-        {tipoPago === "paypal" && (
+        {tipoPago === 'paypal' && (
           <div>
             <label>Correo electrónico de PayPal: </label>
-            <input type="text" value={correoPaypal} onChange={handlePaypalChange} />
+            <input
+              type="text"
+              value={correoPaypal}
+              onChange={handlePaypalChange}
+            />
           </div>
         )}
+        <label>Referencia del pago: </label>
+        <input
+          type="text"
+          value={referencia}
+          onChange={handleReferenciaChange}
+        />
 
-
-{tipoPago && bancoSeleccionado && tipoPago !== "paypal" ? (
-          <button className="pagar-button" onClick={() => console.log("Pago procesado")}>
+        {tipoPago && bancoSeleccionado && tipoPago !== 'paypal' ? (
+          <button className="pagar-button" onClick={handlePago}>
             Pagar
           </button>
-        ) : tipoPago === "paypal" && correoPaypal ? (
-          <button className="pagar-button" onClick={() => console.log("Pago con PayPal procesado")}>
+        ) : tipoPago === 'paypal' && correoPaypal ? (
+          <button
+            className="pagar-button"
+            onClick={() => console.log('Pago con PayPal procesado')}
+          >
             Pagar
           </button>
         ) : null}

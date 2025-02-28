@@ -8,15 +8,6 @@ body {
   box-sizing: border-box;
 }
 
-/*
-.juntos{
-  display: grid;             
-  justify-content: center;   
-  align-items: center;     
-  height: 100%;   
-}
-*/
-
 .banner-container {
   display: flex;
   justify-content: center;
