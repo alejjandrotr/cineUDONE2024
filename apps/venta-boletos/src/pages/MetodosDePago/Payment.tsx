@@ -1,44 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import '../../styles/payment.css';
-import { Banco, DatosTransferencia } from './types/index'
+import {PagoMovil, PagoTransferencia} from './types/index'
 
-const datos: DatosTransferencia = {
-  pagoMovil: [
-    {
-      id: 1,
-      nombreBanco: 'Banco de Venezuela',
-      numeroTelefono: '0412-1234567',
-      cedula: '29515775',
-    },
-    {
-      id: 2,
-      nombreBanco: 'Banesco',
-      numeroTelefono: '0414-7654321',
-      cedula: '29515776', 
-    },
-  ],
-  transferencia: [
-    {
-      id: 1,
-      nombreBanco: 'Banco de Venezuela',
-      numeroTransferencia: '0102-12345678901234',
-      nombres: 'Brian',
-      apellidos: 'Gonzalez',
-      cedula: '29515775', 
-      numeroTelefono: '0412-9876543', 
-    },
-    {
-      id: 2,
-      nombreBanco: 'Banesco',
-      numeroTransferencia: '0105-98765432109876',
-      nombres: 'Juan',
-      apellidos: 'Pérez',
-      cedula: '29515776', 
-      numeroTelefono: '0414-1234567', 
-    },
-  ],
-};
 
 const Payment = () => {
   const [tipoPago, setTipoPago] = useState("");
@@ -46,11 +10,35 @@ const Payment = () => {
   const [numeroTelefono, setNumeroTelefono] = useState("");
   const [numeroTransferencia, setNumeroTransferencia] = useState("");
   const [cedula, setCedula] = useState("");
-  const [nombres, setNombres] = useState("");
-  const [apellidos, setApellidos] = useState("");
   const [correoPaypal, setCorreoPaypal] = useState("");
   const [searchParams] = useSearchParams();
   const total = searchParams.get('total');
+
+
+
+  const [datosPagoMovil, setDatosPagoMovil] = useState<PagoMovil[]>([]);
+  const [datosPagoTransferencia, setDatosPagoTransferencia] = useState<PagoTransferencia[]>([]);
+
+  useEffect(() => {
+    const fetchDatos = async () => {
+      try {
+        const [response1, response2] = await Promise.all([
+          fetch('http://localhost:3002/api/pago-movil'),
+          fetch('http://localhost:3002/api/pago-transferencia'),
+        ]);
+
+        const datos1 = await response1.json();
+        const datos2 = await response2.json();
+
+        setDatosPagoMovil(datos1);
+        setDatosPagoTransferencia(datos2);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchDatos();
+  }, []);
 
   const handleTipoPagoChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedTipoPago = e.target.value;
@@ -59,8 +47,6 @@ const Payment = () => {
     setNumeroTelefono("");
     setNumeroTransferencia("");
     setCedula("");
-    setNombres("");
-    setApellidos("");
     setCorreoPaypal("");
   };
 
@@ -68,18 +54,17 @@ const Payment = () => {
     const selectedBanco = e.target.value;
     setBancoSeleccionado(selectedBanco);
 
-    const bancos = tipoPago === "pagoMovil" ? datos.pagoMovil : datos.transferencia;
-    const banco = bancos.find((b) => b.nombreBanco === selectedBanco);
-    if (banco) {
-      if (tipoPago === "pagoMovil") {
-        setNumeroTelefono(banco.numeroTelefono || "");
-        setCedula(banco.cedula || "");
-      } else {
-        setNumeroTransferencia(banco.numeroTransferencia || "");
-        setCedula(banco.cedula || "");
-        setNombres(banco.nombres || "");
-        setApellidos(banco.apellidos || "");
-        setNumeroTelefono(banco.numeroTelefono || "");
+    if (tipoPago === "pagoMovil") {
+      const dato = datosPagoMovil.find((d) => d.id === parseInt(selectedBanco));
+      if (dato) {
+        setNumeroTelefono(dato.nroTelefono || "");
+        setCedula(dato.cedula || "");
+      }
+    } else if (tipoPago === "transferencia") {
+      const dato = datosPagoTransferencia.find((d) => d.id === parseInt(selectedBanco));
+      if (dato) {
+        setNumeroTransferencia(dato.nroCuenta || "");
+        setCedula(dato.cedula || "");
       }
     }
   };
@@ -107,9 +92,9 @@ const Payment = () => {
             <label>Banco: </label>
             <select value={bancoSeleccionado} onChange={handleBancoChange}>
               <option value="">Seleccione un banco</option>
-              {datos.pagoMovil.map((banco) => (
-                <option key={banco.id} value={banco.nombreBanco}>
-                  {banco.nombreBanco}
+              {datosPagoMovil.map((banco) => (
+                <option key={banco.id} value={banco.id.toString()}>
+                  Banco {banco.id}
                 </option>
               ))}
             </select>
@@ -130,28 +115,19 @@ const Payment = () => {
             <label>Banco: </label>
             <select value={bancoSeleccionado} onChange={handleBancoChange}>
               <option value="">Seleccione un banco</option>
-              {datos.transferencia.map((banco) => (
-                <option key={banco.id} value={banco.nombreBanco}>
-                  {banco.nombreBanco}
+              {datosPagoTransferencia.map((banco) => (
+                <option key={banco.id} value={banco.id.toString()}>
+                  Banco {banco.id}
                 </option>
               ))}
             </select>
             {bancoSeleccionado && (
               <div>
-                <label>Número de Transferencia: </label>
+                <label>Número de Cuenta: </label>
                 <input type="text" value={numeroTransferencia} readOnly />
-                <br />
-                <label>Nombres: </label>
-                <input type="text" value={nombres} readOnly />
-                <br />
-                <label>Apellidos: </label>
-                <input type="text" value={apellidos} readOnly />
                 <br />
                 <label>Cédula: </label>
                 <input type="text" value={cedula} readOnly />
-                <br />
-                <label>Número de Teléfono Afiliado: </label>
-                <input type="text" value={numeroTelefono} readOnly />
               </div>
             )}
           </div>

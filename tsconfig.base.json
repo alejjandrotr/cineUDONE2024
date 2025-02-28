@@ -17,9 +17,7 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {},
-    "forceConsistentCasingInFileNames": true,
-    "strict": true
+    "paths": {}
   },
   "exclude": [
     "node_modules",
