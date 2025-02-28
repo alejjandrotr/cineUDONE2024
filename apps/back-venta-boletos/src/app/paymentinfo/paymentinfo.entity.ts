@@ -37,8 +37,8 @@ export class Paymentinfo{
 
     @Column({
         type: 'enum',
-        enum: ['Pendiente','Confirmado','Rechazado'],
-        default: 'Pendiente'
+        enum: ['pendiente', 'confirmado', 'rechazado'],
+        default: 'pendiente'
     })
     estado: string;
 }
