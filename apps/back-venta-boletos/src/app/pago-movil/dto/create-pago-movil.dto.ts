@@ -1,6 +1,7 @@
 import { IsNotEmpty, IsNumberString, Length } from 'class-validator'
 import { ApiProperty } from '@nestjs/swagger'
-export class create_pago_movil{
+
+export class PagoMovilDto{
 
   @ApiProperty({example: '0102', description: 'Codigo de Banco'})
   @IsNotEmpty()

@@ -1,11 +1,12 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Banco } from '../banco/banco.entity';
 
 @Entity({name: 'pagomovil'})
-export class createpagomovil{
+export class PagoMovil{
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @ManyToOne(() => Banco, (codigoBanco) => codigoBanco.pagomoviles)
   codigoBanco: string;
 
   @Column()
