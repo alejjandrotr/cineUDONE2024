@@ -1,16 +1,5 @@
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryColumn, PrimaryGeneratedColumn } from 'typeorm';
-
-@Entity({name: 'banco'})
-export class Banco{
-    @PrimaryColumn({unique: true})
-    codigo: string;
-
-    @Column()
-    nombre: string;
-
-    @OneToMany(() => Paymentinfo, paymentinfo => paymentinfo.bancoCodigo)
-    paymentinfos: Paymentinfo[];
-}
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Banco } from '../banco/banco.entity';
 
 @Entity({name: 'paymentinfo'})
 export class Paymentinfo{
@@ -20,8 +9,8 @@ export class Paymentinfo{
     @Column()
     referencia: string;
 
-    @ManyToOne(() => Banco, (bancoCodigo) => bancoCodigo.paymentinfos)
-    bancoCodigo: string;
+    @ManyToOne(() => Banco, (codigoBanco) => codigoBanco.paymentinfos)
+    codigoBanco: string;
 
     @Column({
         type: 'enum',

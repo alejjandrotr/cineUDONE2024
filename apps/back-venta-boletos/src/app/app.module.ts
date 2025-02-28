@@ -8,6 +8,8 @@ import { PagoMovilModule } from './pago-movil/pago-movil.module';
 import { PagoTransferenciaModule } from './pago-transferencia/pago-transferencia.module';
 import { PrecioModule } from './precio/precio.module';
 import { EventEmitterModule } from '@nestjs/event-emitter';
+import { BancoModule } from './banco/banco.module';
+import { TarifaModule } from './controller/tarifa.module';
 
 @Module({
   imports: [
@@ -16,7 +18,7 @@ import { EventEmitterModule } from '@nestjs/event-emitter';
     }),
     typeORMConfig,
     EventEmitterModule.forRoot(),
-    PaymentinfoModule,PrecioModule,PagoTransferenciaModule,PagoMovilModule],
+    PaymentinfoModule,PrecioModule,PagoTransferenciaModule,PagoMovilModule,BancoModule,TarifaModule],
   controllers: [AppController],
   providers: [AppService],
 })
