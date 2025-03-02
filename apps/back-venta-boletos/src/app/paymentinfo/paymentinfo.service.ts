@@ -14,10 +14,15 @@ export class PaymentinfoService {
                 private readonly correoService: CorreoService, 
                 private eventEmitter: EventEmitter2){}
 
-    createPaymentinfo(paymentinfo: CreatePaymentinfoDto){
-        const newPaymentinfo = this.paymentinfoRepository.create(paymentinfo);
-        this.paymentinfoRepository.save(newPaymentinfo);
-        return newPaymentinfo;
+    async createPaymentinfo(paymentinfo: CreatePaymentinfoDto){
+        try {
+            const newPaymentinfo = this.paymentinfoRepository.create(paymentinfo);
+            await this.paymentinfoRepository.save(newPaymentinfo);
+            return newPaymentinfo;
+        } catch (error) {
+            console.error("Error:", error.message);
+            return null;
+        }        
     }
 
     getPaymentinfo(){

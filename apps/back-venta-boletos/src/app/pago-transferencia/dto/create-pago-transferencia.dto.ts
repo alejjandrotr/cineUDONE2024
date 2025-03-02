@@ -2,10 +2,10 @@ import { IsNotEmpty, IsNumberString, IsString, Length } from 'class-validator'
 import { ApiProperty } from '@nestjs/swagger'
 export class CreatePagoTransferenciadto {
 
-  @ApiProperty({example: 'Banco Venezuela', description: 'Nombre de la entidad bancaria'})
+  @ApiProperty({example: '0105', description: 'Nombre de la entidad bancaria'})
   @IsNotEmpty()
-  @IsString()
-  @Length(3, 60)
+  @IsNumberString()
+  @Length(4, 4)
   codigoBanco: string;
 
   @ApiProperty({example: '28567843', description: 'Identificacion Personal (ID)'})
