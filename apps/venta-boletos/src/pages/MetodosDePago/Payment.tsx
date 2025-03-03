@@ -15,7 +15,7 @@ const datos: DatosTransferencia = {
       id: 2,
       nombreBanco: 'Banesco',
       numeroTelefono: '0414-7654321',
-      cedula: '29515776', 
+      cedula: '29515776',
     },
   ],
   transferencia: [
@@ -25,8 +25,8 @@ const datos: DatosTransferencia = {
       numeroTransferencia: '0102-12345678901234',
       nombres: 'Brian',
       apellidos: 'Gonzalez',
-      cedula: '29515775', 
-      numeroTelefono: '0412-9876543', 
+      cedula: '29515775',
+      numeroTelefono: '0412-9876543',
     },
     {
       id: 2,
@@ -34,8 +34,8 @@ const datos: DatosTransferencia = {
       numeroTransferencia: '0105-98765432109876',
       nombres: 'Juan',
       apellidos: 'Pérez',
-      cedula: '29515776', 
-      numeroTelefono: '0414-1234567', 
+      cedula: '29515776',
+      numeroTelefono: '0414-1234567',
     },
   ],
 };
@@ -165,7 +165,7 @@ const Payment = () => {
         )}
 
 
-{tipoPago && bancoSeleccionado && tipoPago !== "paypal" ? (
+      {tipoPago && bancoSeleccionado && tipoPago !== "paypal" ? (
           <button className="pagar-button" onClick={() => console.log("Pago procesado")}>
             Pagar
           </button>

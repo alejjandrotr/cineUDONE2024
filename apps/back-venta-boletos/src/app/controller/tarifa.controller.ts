@@ -6,7 +6,7 @@ export class TarifaController {
   constructor(private readonly tarifaService: TarifaService) {}
 
   @Post('calcular-precio')
-  calcularPrecio(@Body() data: { preciobase: number; edad: number; dia: string }) {
-    return { precioFinal: this.tarifaService.calcularprecio(data.preciobase, data.edad, data.dia) };
+  calcularPrecio(@Body() data: { preciobase: number; tipo: string; dia: string }) {
+    return { precioFinal: this.tarifaService.calcularprecio(data.preciobase, data.tipo, data.dia) };
   }
 }

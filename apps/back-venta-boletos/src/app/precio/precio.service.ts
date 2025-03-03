@@ -2,9 +2,13 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class PrecioService {
-    private readonly precioGeneral: number = 3.99;
+    private precioGeneral = 3.99; // Valor inicial
 
-    getPrecio(){
+    getPrecio(): number {
         return this.precioGeneral;
+    }
+
+    setPrecio(nuevoPrecio: number): void {
+        this.precioGeneral = nuevoPrecio;
     }
 }

@@ -1,9 +1,10 @@
 import { Module } from '@nestjs/common';
-import { PrecioController } from './precio.controller';
 import { PrecioService } from './precio.service';
+import { PrecioController } from './precio.controller';
 
 @Module({
-  controllers: [PrecioController],
-  providers: [PrecioService]
+    providers: [PrecioService],
+    controllers: [PrecioController],
 })
 export class PrecioModule {}
+
