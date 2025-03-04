@@ -1,15 +1,24 @@
 export interface PagoMovil {
   id: number;
-  codigoBanco: string;
-  nroTelefono: string;
   cedula: string;
+  nroTelefono?: string; // Para pago móvil
+  nroCuenta?: string; // Para transferencia
+  codigoBanco: {
+    codigo: string;
+    nombre: string;
+    logo: string;
+  };
 }
 
 export interface PagoTransferencia {
   id: number;
-  codigoBanco: string;
-  nroCuenta: string;
   cedula: string;
+  nroCuenta?: string;
+  codigoBanco: {
+    codigo: string;
+    nombre: string;
+    logo: string;
+  };
 }
 
 export interface DatosPago {
