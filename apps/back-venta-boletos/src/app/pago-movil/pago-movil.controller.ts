@@ -1,6 +1,6 @@
-import { Controller, Post, Body, Get } from '@nestjs/common';
-import { PagoMovilDto } from './dto/create-pago-movil.dto'; //IMPORTANDO LA CLASE
-import { PagoMovilService } from './pago-movil.service'; //IMPORTANDO LA CLASE
+import { Controller, Post, Body, Get, Delete, Param, ParseIntPipe, Put } from '@nestjs/common';
+import { PagoMovilDto } from './dto/create-pago-movil.dto';
+import { PagoMovilService } from './pago-movil.service';
 
 @Controller('pago-movil')
 export class PagoMovilController{
@@ -14,6 +14,16 @@ export class PagoMovilController{
   @Post()
   createPagoMovil(@Body() newPagoMovil: PagoMovilDto){
     return this.pagoMovilService.createPagoMovil(newPagoMovil);
+  }
+
+  @Delete(":id")
+  deletePagoMovil(@Param('id', ParseIntPipe) id: number){
+    return this.pagoMovilService.deletePagoMovil(id);
+  }
+
+  @Put(':id')
+  updatePagoMovil(@Param('id', ParseIntPipe) id: number, @Body() pagomovil: PagoMovilDto){
+    return this.pagoMovilService.updatePagoMovil(id,pagomovil);
   }
 
 }

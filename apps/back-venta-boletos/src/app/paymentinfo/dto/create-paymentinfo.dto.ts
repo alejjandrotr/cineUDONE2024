@@ -15,7 +15,7 @@ export class CreatePaymentinfoDto{
     @Length(4, 4)
     codigoBanco: string;
 
-    @ApiProperty({example: 'Pago Móvil', description: 'Tipo de Método de Pago'})
+    @ApiProperty({example: 'Pago Movil', description: 'Tipo de Método de Pago'})
     @IsNotEmpty()
     @IsString()
     @IsEnum(['Pago Movil', 'Transferencia'])

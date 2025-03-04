@@ -1,23 +1,39 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { PagoTransferencia } from './pago-transferencia.entity'; // Clase de la entidad PagoTransferencia.
+import { PagoTransferencia } from './pago-transferencia.entity';
 import { Repository } from 'typeorm';
-import { CreatePagoTransferenciadto } from './dto/create-pago-transferencia.dto'; // DTO para definir los valores de la entidad.
+import { PagoTransferenciaDto } from './dto/create-pago-transferencia.dto';
 
 @Injectable()
 export class PagoTransferenciaService {
   constructor(
-    @InjectRepository(PagoTransferencia)
-    private servicePagoTransferencia: Repository<PagoTransferencia>,
+    @InjectRepository(PagoTransferencia) private pagoTransferenciaRepository: Repository<PagoTransferencia>,
   ) {}
 
   getDatosTransferencia(){
-    return this.servicePagoTransferencia.find();
+    return this.pagoTransferenciaRepository.find({ relations: ['codigoBanco'] });
   }
 
-  createDatosTransferencia(createPagoTransferenciaDto: CreatePagoTransferenciadto) {
-    const newPagoTransferencia = this.servicePagoTransferencia.create(createPagoTransferenciaDto);
-    return this.servicePagoTransferencia.save(newPagoTransferencia);
+  createDatosTransferencia(pagoTransferenciaDto: PagoTransferenciaDto) {
+    const newPagoTransferencia = this.pagoTransferenciaRepository.create(pagoTransferenciaDto);
+    return this.pagoTransferenciaRepository.save(newPagoTransferencia);
+  }
+
+  async deletePagoTransferencia(id: number){
+    const existePagoTransferencia = await this.pagoTransferenciaRepository.findOne({ where: {id}});
+    if (!existePagoTransferencia) {
+        throw new NotFoundException(`Datos de Transferencia con id ${id} no encontrado`);
+    }
+    return this.pagoTransferenciaRepository.delete({id});
+  }
+
+  async updatePagoTransferencia(id: number, transferencia: PagoTransferenciaDto){
+    const existePagoTransferencia = await this.pagoTransferenciaRepository.findOne({ where: {id}});
+    if (!existePagoTransferencia) {
+        throw new NotFoundException(`Datos de Pago Movil con id ${id} no encontrado`);
+    }
+    const updatePagoTransferencia = Object.assign(existePagoTransferencia,transferencia)
+    return this.pagoTransferenciaRepository.save(updatePagoTransferencia)
   }
 
 }

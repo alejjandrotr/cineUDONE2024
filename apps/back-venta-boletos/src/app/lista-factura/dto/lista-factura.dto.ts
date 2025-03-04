@@ -1,21 +1,21 @@
-import { IsAlpha, IsDate, IsDecimal, IsNotEmpty, IsNumberString, IsNumber,  IsString, Length } from 'class-validator'
-import { Type } from 'class-transformer'
+import { IsEnum, IsNotEmpty, IsNumber, IsString } from 'class-validator'
 import { ApiProperty } from '@nestjs/swagger'
-export class CreateListaFacturas {
 
-  @ApiProperty({example: '021345', description: 'Numero de Factura'})
+export class FacturaDto {
+
+  @ApiProperty({example: 'Pago Movil', description: 'Tipo de Método de Pago'})
   @IsNotEmpty()
-  @IsNumberString()
-  @Length(6, 6)
-  NumFactura: string;
+  @IsString()
+  @IsEnum(['Pago Movil', 'Transferencia'])
+  metodoPago: string;
 
-  @ApiProperty({example: '2025-01-21', description: 'Fecha de Emision'})
-  @IsNotEmpty()
-  @IsDate()
-  FechaEmision: string;
-
-  @ApiProperty({example:'0124', description: 'ID de Paymentinfo'})
+  @ApiProperty({example:'3.99', description: 'monto total'})
   @IsNotEmpty()
   @IsNumber()
-  PaymentinfoId: number; // ID de la relación con Paymentinfo
+  totalMonto: number;
+
+  @ApiProperty({example:'1', description: 'ID de Paymentinfo'})
+  @IsNotEmpty()
+  @IsNumber()
+  paymentinfoId: number;
 }
