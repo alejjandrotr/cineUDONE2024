@@ -1,12 +1,12 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { PagoMovilService } from './pago-movil.service';
 import { getRepositoryToken } from '@nestjs/typeorm'; // Importar para obtener el token del repositorio
-import { createpagomovil } from './pago-movil.entity'; // Asegúrate de que la entidad esté importada
+import { PagoMovil } from './pago-movil.entity'; // Asegúrate de que la entidad esté importada
 import { Repository } from 'typeorm';                  //importar Repository
 
 describe('pago_movil_service', () => {
   let service: PagoMovilService;
-  let mockRepository: Partial<Repository<createpagomovil>>;
+  let mockRepository: Partial<Repository<PagoMovil>>;
 
   beforeEach(async () => {
     // Crear un mock del repositorio
@@ -19,7 +19,7 @@ describe('pago_movil_service', () => {
       providers: [
         PagoMovilService,
         {
-          provide: getRepositoryToken(createpagomovil), // Usar getRepositoryToken para inyectar el repositorio
+          provide: getRepositoryToken(PagoMovil), // Usar getRepositoryToken para inyectar el repositorio
           useValue: mockRepository, // Proveer el mock del repositorio
         },
       ],

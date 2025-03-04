@@ -1,4 +1,4 @@
-import { IsOptional, IsString, Length } from 'class-validator'
+import { IsNotEmpty, IsOptional, IsString, IsUrl, Length } from 'class-validator'
 import { ApiProperty } from '@nestjs/swagger'
 
 export class UpdateBancoDto{
@@ -8,5 +8,10 @@ export class UpdateBancoDto{
     @IsString()
     @Length(3, 60)
     nombre?: string;
+
+    @ApiProperty({example: 'https://drive.google.com/file/d/1Uy5JbKQhLsx5lRoPy8Wmvjo_WeK5MmAf/view?usp=sharing', description: 'Url del Logo del Banco'})
+    @IsNotEmpty()
+    @IsUrl()
+    logo?: string;
 
 }
