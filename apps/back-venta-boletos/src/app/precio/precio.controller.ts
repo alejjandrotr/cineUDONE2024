@@ -1,5 +1,6 @@
 import { Controller, Get, Put, Body } from '@nestjs/common';
 import { PrecioService } from './precio.service';
+import { PrecioDto } from './dto/precio.dto';
 
 @Controller('precio')
 export class PrecioController {
@@ -11,8 +12,8 @@ export class PrecioController {
     }
 
     @Put()
-    updatePrecio(@Body() body: { nuevoPrecio: number }) {
-        this.precioService.setPrecio(body.nuevoPrecio);
-        return { message: 'Precio actualizado correctamente' };
+    updatePrecio(@Body() nuevoPrecio: PrecioDto) {
+        const newPrecio = this.precioService.setPrecio(nuevoPrecio);
+        return { message: `Precio actualizado correctamente a ${newPrecio}` };
     }
 }

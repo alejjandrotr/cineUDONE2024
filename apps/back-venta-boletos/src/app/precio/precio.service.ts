@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { PrecioDto } from './dto/precio.dto';
 
 @Injectable()
 export class PrecioService {
@@ -8,7 +9,7 @@ export class PrecioService {
         return this.precioGeneral;
     }
 
-    setPrecio(nuevoPrecio: number): void {
-        this.precioGeneral = nuevoPrecio;
+    setPrecio(nuevoPrecio: PrecioDto) {
+        return this.precioGeneral = nuevoPrecio.precio;
     }
 }
