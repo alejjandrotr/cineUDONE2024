@@ -14,15 +14,33 @@ export class PaymentinfoService {
                 private readonly correoService: CorreoService, 
                 private eventEmitter: EventEmitter2){}
 
-    createPaymentinfo(paymentinfo: CreatePaymentinfoDto){
-        const newPaymentinfo = this.paymentinfoRepository.create(paymentinfo);
-        this.paymentinfoRepository.save(newPaymentinfo);
-        return newPaymentinfo;
+    async createPaymentinfo(paymentinfo: CreatePaymentinfoDto){
+        try {
+            const newPaymentinfo = this.paymentinfoRepository.create(paymentinfo);
+            await this.paymentinfoRepository.save(newPaymentinfo);
+            return newPaymentinfo;
+        } catch (error) {
+            console.error("Error:", error.message);
+            return null;
+        }        
     }
 
     getPaymentinfo(){
         return this.paymentinfoRepository.find({
-            where: { estado: 'pendiente' } })
+            where: { estado: 'pendiente' }, relations: ['codigoBanco'] })
+    }
+
+    getPaymentinfoRevisados(){
+        return this.paymentinfoRepository.find({
+            where: [ {estado: 'confirmado'}, {estado: 'rechazado'}], relations: ['codigoBanco'] });
+    }
+
+    async deletePaymentinfo(id: number){
+        const existePaymentinfo = await this.paymentinfoRepository.findOne({where: {id}});
+        if (!existePaymentinfo) {
+            throw new NotFoundException(`Paymentinfo con ID ${id} no encontrado`);
+        }
+        return this.paymentinfoRepository.delete({id});
     }
 
     async updateEstado(id: number, paymentinfo: UpdatePaymentinfoDto){

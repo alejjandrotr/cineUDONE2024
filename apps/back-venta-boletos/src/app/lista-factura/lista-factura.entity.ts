@@ -1,19 +1,28 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 import { Paymentinfo } from '../paymentinfo/paymentinfo.entity';
 
 @Entity({ name: 'facturas' })
 export class Factura {
 
   @PrimaryGeneratedColumn()
-  Num_Factura: number;
+  numFactura: number;
 
-  @Column('date')
-  Fecha_Emision: Date;
+  @CreateDateColumn({ type: 'timestamp' })
+  fechaEmision: Date;
+
+  @UpdateDateColumn({ type: 'timestamp' })
+  fechaActualizacion: Date;
+  
+  @Column({
+    type: 'enum',
+    enum: ['Pago Movil', 'Transferencia']
+  })
+  metodoPago: string;
 
   @Column('decimal', { precision: 10, scale: 2 })
-  Total_Monto: number;
+  totalMonto: number;
 
-  @ManyToOne(() => Paymentinfo)   //conexion con Paymentinfo
-  @JoinColumn({ name: 'id' })
-  Paymentinfo: Paymentinfo;
+  @ManyToOne(() => Paymentinfo, (paymentinfoId) => paymentinfoId.facturas)   //conexion con Paymentinfo
+  paymentinfoId: number;
+
 }
