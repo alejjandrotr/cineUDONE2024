@@ -10,6 +10,7 @@ import { EventEmitterModule } from '@nestjs/event-emitter';
 import { BancoModule } from './banco/banco.module';
 import { TarifaModule } from './controller/tarifa.module';
 import { FacturaModule } from './lista-factura/lista-factura.module';
+import { PrecioModule } from './precio/precio.module';
 
 @Module({
   imports: [
@@ -18,7 +19,7 @@ import { FacturaModule } from './lista-factura/lista-factura.module';
     }),
     typeORMConfig,
     EventEmitterModule.forRoot(),
-    PaymentinfoModule,PagoTransferenciaModule,PagoMovilModule,BancoModule,TarifaModule,FacturaModule],
+    PaymentinfoModule,PagoTransferenciaModule,PagoMovilModule,BancoModule,TarifaModule,FacturaModule, PrecioModule],
   controllers: [AppController],
   providers: [AppService],
 })
