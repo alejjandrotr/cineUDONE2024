@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Factura } from './lista-factura.entity';
 import { Paymentinfo } from '../paymentinfo/paymentinfo.entity';
-import { CreateListaFacturas } from './dto/lista-factura.dto';
+import { FacturaDto } from './dto/lista-factura.dto';
 
 @Injectable()
 export class FacturaService {
@@ -14,32 +14,33 @@ export class FacturaService {
     private readonly paymentinfoRepository: Repository<Paymentinfo>,
   ) {}
 
-  // Crear una nueva factura
-  async CrearFactura(facturaData: CreateListaFacturas): Promise<Factura> {
-    // Validar que el PaymentinfoId existe
+  async crearFactura(facturaData: FacturaDto){
+
     const paymentinfo = await this.paymentinfoRepository.findOne({
-      where: { id: facturaData.PaymentinfoId },
+      where: { id: facturaData.paymentinfoId },
     });
 
     if (!paymentinfo) {
       throw new NotFoundException(
-        `No se encontró un registro de Paymentinfo con el id ${facturaData.PaymentinfoId}`,
+        `No se encontró un registro de Paymentinfo con el id ${facturaData.paymentinfoId}`,
       );
     }
 
-    // Crear la nueva factura
-    const nuevaFactura = this.facturaRepository.create({
-      Num_Factura: parseInt(facturaData.NumFactura, 10), // Convertir string a número
-      Fecha_Emision: facturaData.FechaEmision, // Directamente del DTO
-      Paymentinfo: paymentinfo, // Objeto relacionado
-    });
-
-    // Guardar y devolver la factura
-    return this.facturaRepository.save(nuevaFactura);
+    const newFactura = this.facturaRepository.create(facturaData);
+    return await this.facturaRepository.save(newFactura);
   }
 
-  // Listar todas las facturas con la relación Paymentinfo
   async listarFacturas(): Promise<Factura[]> {
-    return this.facturaRepository.find({ relations: ['Paymentinfo'] });
+    return this.facturaRepository.find();
+  }
+
+  async modificarFactura(numFactura: number, factura: FacturaDto){
+    const existeFactura = await this.facturaRepository.findOne( {where: { numFactura } });
+
+    if (!existeFactura)
+      throw new NotFoundException(`Factura con ID ${numFactura} no encontrado`);
+
+    const updateFactura = Object.assign(existeFactura,factura);
+    return this.facturaRepository.save(updateFactura);
   }
 }

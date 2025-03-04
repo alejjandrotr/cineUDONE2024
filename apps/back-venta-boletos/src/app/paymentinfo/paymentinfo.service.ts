@@ -27,7 +27,20 @@ export class PaymentinfoService {
 
     getPaymentinfo(){
         return this.paymentinfoRepository.find({
-            where: { estado: 'pendiente' } })
+            where: { estado: 'pendiente' }, relations: ['codigoBanco'] })
+    }
+
+    getPaymentinfoRevisados(){
+        return this.paymentinfoRepository.find({
+            where: [ {estado: 'confirmado'}, {estado: 'rechazado'}], relations: ['codigoBanco'] });
+    }
+
+    async deletePaymentinfo(id: number){
+        const existePaymentinfo = await this.paymentinfoRepository.findOne({where: {id}});
+        if (!existePaymentinfo) {
+            throw new NotFoundException(`Paymentinfo con ID ${id} no encontrado`);
+        }
+        return this.paymentinfoRepository.delete({id});
     }
 
     async updateEstado(id: number, paymentinfo: UpdatePaymentinfoDto){

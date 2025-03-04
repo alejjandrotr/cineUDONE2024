@@ -1,23 +1,23 @@
-import { IsNotEmpty, IsNumberString, Length } from 'class-validator'
+import { IsNotEmpty, IsNumberString, IsOptional, Length } from 'class-validator'
 import { ApiProperty } from '@nestjs/swagger'
 
-export class PagoMovilDto{
+export class UpdatePagoMovilDto{
 
   @ApiProperty({example: '0102', description: 'Codigo de Banco'})
-  @IsNotEmpty()
+  @IsOptional()
   @IsNumberString()
   @Length(4, 4)
-  codigoBanco: string;
+  codigoBanco?: string;
 
   @ApiProperty({example: '28567843', description: 'Identificacion Personal (ID)'})
-  @IsNotEmpty()
+  @IsOptional()
   @IsNumberString()
   @Length(1, 8)
-  cedula: string;
+  cedula?: string;
 
   @ApiProperty({example: '04123528885', description: 'Numero de telefono'})
-  @IsNotEmpty()
+  @IsOptional()
   @IsNumberString()
   @Length(11, 11)
-  nroTelefono: string;
+  nroTelefono?: string;
 }
