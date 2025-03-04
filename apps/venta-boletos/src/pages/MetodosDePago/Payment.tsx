@@ -1,6 +1,46 @@
 import React, { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import '../../styles/payment.css';
+<<<<<<< HEAD
+import { Banco, DatosTransferencia } from './types/index'
+
+const datos: DatosTransferencia = {
+  pagoMovil: [
+    {
+      id: 1,
+      nombreBanco: 'Banco de Venezuela',
+      numeroTelefono: '0412-1234567',
+      cedula: '29515775',
+    },
+    {
+      id: 2,
+      nombreBanco: 'Banesco',
+      numeroTelefono: '0414-7654321',
+      cedula: '29515776',
+    },
+  ],
+  transferencia: [
+    {
+      id: 1,
+      nombreBanco: 'Banco de Venezuela',
+      numeroTransferencia: '0102-12345678901234',
+      nombres: 'Brian',
+      apellidos: 'Gonzalez',
+      cedula: '29515775',
+      numeroTelefono: '0412-9876543',
+    },
+    {
+      id: 2,
+      nombreBanco: 'Banesco',
+      numeroTransferencia: '0105-98765432109876',
+      nombres: 'Juan',
+      apellidos: 'Pérez',
+      cedula: '29515776',
+      numeroTelefono: '0414-1234567',
+    },
+  ],
+};
+=======
 import useFetchPagos from './services/useFetchPagos';
 import {
   handleTipoPagoChange,
@@ -9,6 +49,7 @@ import {
   handleReferenciaChange,
   handlePago,
 } from './handlers/handlers';
+>>>>>>> 06fd643a685ce9b0efef958377cf71cf54b9516a
 
 const Payment = () => {
   const [tipoPago, setTipoPago] = useState('');
@@ -114,6 +155,11 @@ const Payment = () => {
         <label>Referencia del pago: </label>
         <input type="text" value={referencia} onChange={handleReferencia} />
 
+<<<<<<< HEAD
+
+      {tipoPago && bancoSeleccionado && tipoPago !== "paypal" ? (
+          <button className="pagar-button" onClick={() => console.log("Pago procesado")}>
+=======
         {tipoPago && bancoSeleccionado && tipoPago !== 'paypal' ? (
           <button
             className="pagar-button"
@@ -128,6 +174,7 @@ const Payment = () => {
               )
             }
           >
+>>>>>>> 06fd643a685ce9b0efef958377cf71cf54b9516a
             Pagar
           </button>
         ) : tipoPago === 'paypal' && correoPaypal ? (
