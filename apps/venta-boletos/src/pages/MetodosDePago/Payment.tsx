@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import '../../styles/payment.css';
+<<<<<<< HEAD
 import { Banco, DatosTransferencia } from './types/index'
 
 const datos: DatosTransferencia = {
@@ -39,54 +40,51 @@ const datos: DatosTransferencia = {
     },
   ],
 };
+=======
+import useFetchPagos from './services/useFetchPagos';
+import {
+  handleTipoPagoChange,
+  handleBancoChange,
+  handlePaypalChange,
+  handleReferenciaChange,
+  handlePago,
+} from './handlers/handlers';
+>>>>>>> 06fd643a685ce9b0efef958377cf71cf54b9516a
 
 const Payment = () => {
-  const [tipoPago, setTipoPago] = useState("");
-  const [bancoSeleccionado, setBancoSeleccionado] = useState("");
-  const [numeroTelefono, setNumeroTelefono] = useState("");
-  const [numeroTransferencia, setNumeroTransferencia] = useState("");
-  const [cedula, setCedula] = useState("");
-  const [nombres, setNombres] = useState("");
-  const [apellidos, setApellidos] = useState("");
-  const [correoPaypal, setCorreoPaypal] = useState("");
+  const [tipoPago, setTipoPago] = useState('');
+  const [bancoSeleccionado, setBancoSeleccionado] = useState('');
+  const [numeroTelefono, setNumeroTelefono] = useState('');
+  const [numeroTransferencia, setNumeroTransferencia] = useState('');
+  const [cedula, setCedula] = useState('');
+  const [correoPaypal, setCorreoPaypal] = useState('');
   const [searchParams] = useSearchParams();
   const total = searchParams.get('total');
+  const [referencia, setReferencia] = useState('');
 
-  const handleTipoPagoChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedTipoPago = e.target.value;
-    setTipoPago(selectedTipoPago);
-    setBancoSeleccionado("");
-    setNumeroTelefono("");
-    setNumeroTransferencia("");
-    setCedula("");
-    setNombres("");
-    setApellidos("");
-    setCorreoPaypal("");
-  };
+  const { datosPagoMovil, datosPagoTransferencia } = useFetchPagos();
 
-  const handleBancoChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedBanco = e.target.value;
-    setBancoSeleccionado(selectedBanco);
+  const handleTipoPago = handleTipoPagoChange(
+    setTipoPago,
+    setBancoSeleccionado,
+    setNumeroTelefono,
+    setNumeroTransferencia,
+    setCedula,
+    setCorreoPaypal
+  );
 
-    const bancos = tipoPago === "pagoMovil" ? datos.pagoMovil : datos.transferencia;
-    const banco = bancos.find((b) => b.nombreBanco === selectedBanco);
-    if (banco) {
-      if (tipoPago === "pagoMovil") {
-        setNumeroTelefono(banco.numeroTelefono || "");
-        setCedula(banco.cedula || "");
-      } else {
-        setNumeroTransferencia(banco.numeroTransferencia || "");
-        setCedula(banco.cedula || "");
-        setNombres(banco.nombres || "");
-        setApellidos(banco.apellidos || "");
-        setNumeroTelefono(banco.numeroTelefono || "");
-      }
-    }
-  };
+  const handleBanco = handleBancoChange(
+    tipoPago,
+    datosPagoMovil,
+    datosPagoTransferencia,
+    setBancoSeleccionado,
+    setNumeroTelefono,
+    setNumeroTransferencia,
+    setCedula
+  );
 
-  const handlePaypalChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setCorreoPaypal(e.target.value);
-  };
+  const handlePaypal = handlePaypalChange(setCorreoPaypal);
+  const handleReferencia = handleReferenciaChange(setReferencia);
 
   return (
     <div className="container">
@@ -95,21 +93,21 @@ const Payment = () => {
 
       <div className="payment-form">
         <label> Tipo de pago: </label>
-        <select value={tipoPago} onChange={handleTipoPagoChange}>
+        <select value={tipoPago} onChange={handleTipoPago}>
           <option value="">Seleccione un tipo de pago</option>
           <option value="pagoMovil">Pago Movil</option>
           <option value="transferencia">Transferencia</option>
           <option value="paypal">PayPal</option>
         </select>
 
-        {tipoPago === "pagoMovil" && (
+        {tipoPago === 'pagoMovil' && (
           <div>
             <label>Banco: </label>
-            <select value={bancoSeleccionado} onChange={handleBancoChange}>
+            <select value={bancoSeleccionado} onChange={handleBanco}>
               <option value="">Seleccione un banco</option>
-              {datos.pagoMovil.map((banco) => (
-                <option key={banco.id} value={banco.nombreBanco}>
-                  {banco.nombreBanco}
+              {datosPagoMovil.map((banco) => (
+                <option key={banco.id} value={banco.id.toString()}>
+                  Banco {banco.codigoBanco}
                 </option>
               ))}
             </select>
@@ -125,52 +123,65 @@ const Payment = () => {
           </div>
         )}
 
-        {tipoPago === "transferencia" && (
+        {tipoPago === 'transferencia' && (
           <div>
             <label>Banco: </label>
-            <select value={bancoSeleccionado} onChange={handleBancoChange}>
+            <select value={bancoSeleccionado} onChange={handleBanco}>
               <option value="">Seleccione un banco</option>
-              {datos.transferencia.map((banco) => (
-                <option key={banco.id} value={banco.nombreBanco}>
-                  {banco.nombreBanco}
+              {datosPagoTransferencia.map((banco) => (
+                <option key={banco.id} value={banco.id.toString()}>
+                  Banco {banco.codigoBanco}
                 </option>
               ))}
             </select>
             {bancoSeleccionado && (
               <div>
-                <label>Número de Transferencia: </label>
+                <label>Número de Cuenta: </label>
                 <input type="text" value={numeroTransferencia} readOnly />
-                <br />
-                <label>Nombres: </label>
-                <input type="text" value={nombres} readOnly />
-                <br />
-                <label>Apellidos: </label>
-                <input type="text" value={apellidos} readOnly />
                 <br />
                 <label>Cédula: </label>
                 <input type="text" value={cedula} readOnly />
-                <br />
-                <label>Número de Teléfono Afiliado: </label>
-                <input type="text" value={numeroTelefono} readOnly />
               </div>
             )}
           </div>
         )}
 
-        {tipoPago === "paypal" && (
+        {tipoPago === 'paypal' && (
           <div>
             <label>Correo electrónico de PayPal: </label>
-            <input type="text" value={correoPaypal} onChange={handlePaypalChange} />
+            <input type="text" value={correoPaypal} onChange={handlePaypal} />
           </div>
         )}
+        <label>Referencia del pago: </label>
+        <input type="text" value={referencia} onChange={handleReferencia} />
 
+<<<<<<< HEAD
 
       {tipoPago && bancoSeleccionado && tipoPago !== "paypal" ? (
           <button className="pagar-button" onClick={() => console.log("Pago procesado")}>
+=======
+        {tipoPago && bancoSeleccionado && tipoPago !== 'paypal' ? (
+          <button
+            className="pagar-button"
+            onClick={() =>
+              handlePago(
+                referencia,
+                tipoPago,
+                bancoSeleccionado,
+                datosPagoMovil,
+                datosPagoTransferencia,
+                total
+              )
+            }
+          >
+>>>>>>> 06fd643a685ce9b0efef958377cf71cf54b9516a
             Pagar
           </button>
-        ) : tipoPago === "paypal" && correoPaypal ? (
-          <button className="pagar-button" onClick={() => console.log("Pago con PayPal procesado")}>
+        ) : tipoPago === 'paypal' && correoPaypal ? (
+          <button
+            className="pagar-button"
+            onClick={() => console.log('Pago con PayPal procesado')}
+          >
             Pagar
           </button>
         ) : null}

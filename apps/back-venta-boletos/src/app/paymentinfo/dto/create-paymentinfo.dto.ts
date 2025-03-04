@@ -13,7 +13,7 @@ export class CreatePaymentinfoDto{
     @IsNotEmpty()
     @IsNumberString()
     @Length(4, 4)
-    bancoCodigo: string;
+    codigoBanco: string;
 
     @ApiProperty({example: 'Pago Móvil', description: 'Tipo de Método de Pago'})
     @IsNotEmpty()
@@ -32,9 +32,9 @@ export class CreatePaymentinfoDto{
     @IsNumber()
     monto: number;
 
-    @ApiProperty({example: 'Confirmado', description: 'Estado del pago (Pendiente, Confirmado, Rechazado'})
+    @ApiProperty({example: 'pendiente', description: 'Estado del pago (pendiente, confirmado, rechazado'})
     @IsNotEmpty()
     @IsAlpha()
-    @IsEnum(['Pendiente', 'Corfirmado', 'Rechazado'])
-    estado: string = 'Pendiente';
+    @IsEnum(['pendiente', 'confirmado', 'rechazado'])
+    estado: string = 'pendiente';
 }

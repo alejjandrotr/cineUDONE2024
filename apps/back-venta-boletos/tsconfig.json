@@ -11,8 +11,6 @@
     }
   ],
   "compilerOptions": {
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": false,
-    "strict": false
+    "esModuleInterop": true
   }
 }

@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const API_BASE_URL = 'http://localhost:3001/api';
+//const API_URL = 'http://localhost:3001';
 
 // OBTENER PELÍCULAS
 export const fetchMovies = async () => {
@@ -14,11 +15,22 @@ export const fetchMovies = async () => {
   }
 };
 
-const API_URL = 'http://localhost:3001/api'; // Asegúrate de usar la URL correcta de tu backend
+// OBTENER FUNCIONES
+export const fetchFunciones = async () => {
+  try {
+    const response = await axios.get(`${API_BASE_URL}/funciones`);
+    console.log('Funciones obtenidas:', response.data);
+    return response.data;
+  } catch (error) {
+    console.error('Error al obtener funciones:', error);
+    throw error;
+  }
+};
 
+// ELIMINAR PELÍCULA
 export const deleteMovieById = async (id: number) => {
   try {
-    await axios.delete(`${API_URL}/delete-movies/${id}`);
+    await axios.delete(`${API_BASE_URL}/delete-movies/${id}`);
   } catch (error) {
     throw new Error('Error al eliminar la película');
   }
