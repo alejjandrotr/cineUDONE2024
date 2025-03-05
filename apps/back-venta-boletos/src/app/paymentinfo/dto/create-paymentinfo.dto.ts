@@ -1,4 +1,4 @@
-import { IsAlpha, IsDate, IsEnum, IsNotEmpty, IsNumber, IsNumberString, IsString, Length } from 'class-validator'
+import { IsAlpha, IsDate, IsEmail, IsEnum, IsInt, IsNotEmpty, IsNumber, IsNumberString, IsString, Length } from 'class-validator'
 import { Type } from 'class-transformer'
 import { ApiProperty } from '@nestjs/swagger'
 
@@ -37,4 +37,14 @@ export class CreatePaymentinfoDto{
     @IsAlpha()
     @IsEnum(['pendiente', 'confirmado', 'rechazado'])
     estado: string = 'pendiente';
+
+    @ApiProperty({example: '4', description: 'Cantidad de Boletos Comprados'})
+    @IsNotEmpty()
+    @IsInt()
+    cantBoletos: number;
+
+    @ApiProperty({example: 'equipoalfadinamitaverde@gmail.com', description: 'Email del usuario para enviar el correo una vez confirmado o rechazado el pago'})
+    @IsNotEmpty()
+    @IsEmail()
+    correo: string;
 }

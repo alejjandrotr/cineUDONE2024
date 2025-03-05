@@ -1,8 +1,67 @@
-<p>Hola, Cinefilo</p>
-<p>Su pago ha sido rechazado. Aquí están los detalles de la transacción que registró:</p>
-<ul>
-  <li>Monto: {{ monto }}</li>
-  <li>Fecha: {{ fecha }}</li>
-  <li>Referencia de Transacción: {{ referencia }}</li>
-</ul>
-<p>Para cualquier reclamo o inquietud, Ponganse en contacto con nosotros</p>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pago Rechazado - CineUDONE</title>
+</head>
+<body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
+    <table style="width: 100%; border-collapse: collapse;">
+        <!-- Header -->
+        <tr>
+            <td style="background-color: #1a1a1a; padding: 20px; text-align: center;">
+                <img src="https://drive.google.com/uc?export=view&id=1xpfulFtL_lcPQiy059Py49woC5akVvJW" alt="Cine Logo" style="max-width: 200px; height: auto;" role="presentation">
+            </td>
+        </tr>
+        
+        <!-- Contenido Principal -->
+        <tr>
+            <td style="padding: 30px 20px;">
+                <h1 style="color: #2c3e50; margin-bottom: 25px;">Verifique los datos enviados</h1>
+                
+                <!-- Detalles de la Orden -->
+                <div style="background-color: #f8f9fa; padding: 20px; border-radius: 5px; margin-bottom: 25px;">
+                    <h2 style="color: #e74c3c; margin-top: 0;">Información de pago proporcionada por usted:</h2>
+                    <table style="width: 100%;">
+                        <tr>
+                            <td style="width: 50%;">Referencia:</td>
+                            <td><strong>{{referencia}}</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Metodo de Pago:</td>
+                            <td>{{metodo}}</td>
+                        </tr>
+                        <tr>
+                            <td>Fecha:</td>
+                            <td>{{fechaPago}}</td>
+                        </tr>
+                        <tr>
+                            <td>Monto:</td>
+                            <td>{{monto}}</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- Información Adicional -->
+                <div style="border-top: 2px solid #eee; padding-top: 20px;">
+                    
+                    <p>Para cualquier reclamo o inquietud, Ponganse en contacto con nosotros</p>
+                    <p>📧 Contacto:<br>
+                    <a href="mailto: equipoalfadinamitaverde@gmail.com" style="color: #3498db;">equipoalfadinamitaverde@gmail.com</a></p>
+                </div>
+            </td>
+        </tr>
+
+        <!-- Footer -->
+        <tr>
+            <td style="background-color: #f8f9fa; padding: 20px; text-align: center; font-size: 12px;">
+                <p>©2025 CineUDONE. Todos los derechos reservados</p>
+                <p style="margin-top: 10px;">
+                    <a href="{{politicasUrl}}" style="color: #666; text-decoration: none; margin: 0 10px;">Políticas de Privacidad</a>
+                    <a href="{{terminosUrl}}" style="color: #666; text-decoration: none; margin: 0 10px;">Términos y Condiciones</a>
+                </p>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
