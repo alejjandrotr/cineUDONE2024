@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { Banco } from './banco.entity';
 import { CreateBancoDto } from './dto/create-banco.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -24,7 +24,12 @@ export class BancoService {
             if (!existeBanco) {
                 throw new NotFoundException(`Banco con codigo ${codigo} no encontrado`);
             }
-            return this.bancoRepository.delete({codigo});
+            try {
+                return await this.bancoRepository.delete({codigo});
+            } catch (error) {
+                console.error("Error:", error.message);
+                throw new ConflictException("No se puede eliminar el banco porque tiene cuentas asociadas");
+            } 
         }
 
         async updateBanco(codigo: string, banco: UpdateBancoDto){

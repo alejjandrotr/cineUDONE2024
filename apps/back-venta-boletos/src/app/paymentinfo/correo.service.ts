@@ -22,7 +22,7 @@ export class CorreoService {
     });
   }
 
-  async sendEmails(subject: string, plantilla: string, contexto: any) {
+  async sendEmails(subject: string, plantilla: string, contexto: any, to: string) {
     
     const projectRoot = process.cwd();
     const templatePath = path.join(projectRoot, `apps/back-venta-boletos/src/app/paymentinfo/templates/${plantilla}.hbs`);
@@ -32,7 +32,7 @@ export class CorreoService {
     const html = template(contexto);
 
     const mailOptions = {
-      to: this.configService.get<string>('MAIL_USER'),
+      to,
       subject,
       html: html,
     };

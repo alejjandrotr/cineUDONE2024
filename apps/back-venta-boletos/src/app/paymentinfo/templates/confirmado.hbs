@@ -1,8 +1,62 @@
-<p>Hola, Cinefilo</p>
-<p>Pago Confirmado. Gracias por su compra. Aquí están los detalles de su transacción:</p>
-<ul>
-  <li>Monto: {{ monto }}</li>
-  <li>Fecha: {{ fecha }}</li>
-  <li>Referencia de Transacción: {{ referencia }}</li>
-</ul>
-<p>¡Gracias por su preferencia!</p>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Confirmación de Compra - CineUDONE</title>
+</head>
+<body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
+    <table style="width: 100%; border-collapse: collapse;">
+        <!-- Header -->
+        <tr>
+            <td style="background-color: #1a1a1a; padding: 20px; text-align: center;">
+                <img src="https://drive.google.com/uc?export=view&id=1xpfulFtL_lcPQiy059Py49woC5akVvJW" alt="Cine Logo" style="max-width: 200px; height: auto;" role="presentation">
+            </td>
+        </tr>
+        
+        <!-- Contenido Principal -->
+        <tr>
+            <td style="padding: 30px 20px;">
+                <h1 style="color: #2c3e50; margin-bottom: 25px;">¡Gracias por su compra, Cinefilo!</h1>
+                
+                <!-- Detalles de la Orden -->
+                <div style="background-color: #f8f9fa; padding: 20px; border-radius: 5px; margin-bottom: 25px;">
+                    <h2 style="color: #e74c3c; margin-top: 0;">Detalles de su compra:</h2>
+                    <table style="width: 100%;">
+                        <tr>
+                            <td style="width: 50%;">Película:</td>
+                            <td><strong>{{pelicula}}</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Sala:</td>
+                            <td>{{sala}}</td>
+                        </tr>
+                        <tr>
+                            <td>Fecha:</td>
+                            <td>{{fechaFuncion}}</td>
+                        </tr>
+                        <tr>
+                            <td>Hora:</td>
+                            <td>{{horario}}</td>
+                        </tr>
+                        <tr>
+                            <td>Cantidad de Boletos:</td>
+                            <td>{{cantBoletos}}</td>
+                        </tr>
+                    </table>
+                </div>
+
+        <!-- Footer -->
+        <tr>
+            <td style="background-color: #f8f9fa; padding: 20px; text-align: center; font-size: 12px;">
+                <p>Este es un correo automático, por favor no respondas a esta dirección</p>
+                <p>©2025 CineUDONE. Todos los derechos reservados</p>
+                <p style="margin-top: 10px;">
+                    <a href="{{politicasUrl}}" style="color: #666; text-decoration: none; margin: 0 10px;">Políticas de Privacidad</a>
+                    <a href="{{terminosUrl}}" style="color: #666; text-decoration: none; margin: 0 10px;">Términos y Condiciones</a>
+                </p>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
