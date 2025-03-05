@@ -18,6 +18,8 @@ export class PaymentinfoService {
         try {
             const newPaymentinfo = this.paymentinfoRepository.create(paymentinfo);
             await this.paymentinfoRepository.save(newPaymentinfo);
+            if (newPaymentinfo.estado === "confirmado" || newPaymentinfo.estado === "rechazado")
+                this.eventEmitter.emit('enviar.correo', newPaymentinfo);
             return newPaymentinfo;
         } catch (error) {
             console.error("Error:", error.message);
