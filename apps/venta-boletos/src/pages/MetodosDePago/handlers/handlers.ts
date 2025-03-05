@@ -7,7 +7,9 @@ export const handleTipoPagoChange = (
   setNumeroTelefono: (telefono: string) => void,
   setNumeroTransferencia: (transferencia: string) => void,
   setCedula: (cedula: string) => void,
-  setCorreoPaypal: (correo: string) => void
+  setCorreoPaypal: (correo: string) => void,
+  setPagoEstado: (estado: 'pendiente' | 'confirmado' | 'rechazado' | null) => void,
+  setReferencia: (referencia: string) => void
 ) => {
   return (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedTipoPago = e.target.value;
@@ -17,6 +19,8 @@ export const handleTipoPagoChange = (
     setNumeroTransferencia('');
     setCedula('');
     setCorreoPaypal('');
+    setPagoEstado(null);
+    setReferencia('');
   };
 };
 
@@ -27,7 +31,9 @@ export const handleBancoChange = (
   setBancoSeleccionado: (banco: string) => void,
   setNumeroTelefono: (telefono: string) => void,
   setNumeroTransferencia: (transferencia: string) => void,
-  setCedula: (cedula: string) => void
+  setCedula: (cedula: string) => void,
+  setPagoEstado: (estado: 'pendiente' | 'confirmado' | 'rechazado' | null) => void,
+  setReferencia: (referencia: string) => void
 ) => {
   return (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedBanco = e.target.value;
@@ -48,77 +54,108 @@ export const handleBancoChange = (
         setCedula(dato.cedula || '');
       }
     }
-  };
-};
-
-export const handlePaypalChange = (
-  setCorreoPaypal: (correo: string) => void
-) => {
-  return (e: React.ChangeEvent<HTMLInputElement>) => {
-    setCorreoPaypal(e.target.value);
+    setPagoEstado(null);
+    setReferencia('');
   };
 };
 
 export const handleReferenciaChange = (
-  setReferencia: (referencia: string) => void
+  setReferencia: (referencia: string) => void,
+  setErrorReferencia: (error: string) => void
 ) => {
   return (e: React.ChangeEvent<HTMLInputElement>) => {
-    setReferencia(e.target.value);
+    const value = e.target.value;
+
+    if (/^\d{0,4}$/.test(value)) {
+      setReferencia(value);
+      setErrorReferencia('');
+    } else {
+      setErrorReferencia('La referencia debe ser un número de 4 dígitos.');
+    }
   };
 };
 
 export const handlePago = async (
-    referencia: string,
-    tipoPago: string,
-    bancoSeleccionado: string,
-    datosPagoMovil: PagoMovil[],
-    datosPagoTransferencia: PagoTransferencia[],
-    total: string | null
-  ) => {
-    try {
-      if (!referencia || referencia.length < 4 || isNaN(parseInt(referencia))) {
-        throw new Error(
-          'La referencia debe ser un número de al menos 4 dígitos.'
-        );
-      }
-  
-      const banco =
-        tipoPago === 'pagoMovil'
-          ? datosPagoMovil.find((d) => d.id === parseInt(bancoSeleccionado))
-          : datosPagoTransferencia.find(
-              (d) => d.id === parseInt(bancoSeleccionado)
-            );
-  
-      if (!banco) {
-        throw new Error('No se encontró el banco seleccionado.');
-      }
-  
-      if (!total || parseFloat(total) <= 0) {
-        throw new Error('El monto debe ser un número positivo.');
-      }
-  
-      const datosPago: DatosPago = {
-        referencia,
-        metodo: tipoPago === 'pagoMovil' ? 'Pago Movil' : 'Transferencia',
-        fecha: new Date(), // Enviar fecha como objeto Date
-        monto: parseFloat(total),
-        estado: 'pendiente',
-        bancoCodigo: banco.id.toString().padStart(4, '0'),
-      };
-  
-      const response = await axios.post(
-        'http://localhost:3002/api/paymentinfo',
-        datosPago
-      );
-      console.log('Pago procesado:', response.data);
-    } catch (error) {
-      if (axios.isAxiosError(error)) {
-        console.error('Error al procesar el pago:', error.message);
-        if (error.response) {
-          console.log('Error del servidor:', error.response.data);
-        }
-      } else {
-        console.error('Error inesperado:', error);
-      }
+  referencia: string,
+  tipoPago: string,
+  bancoSeleccionado: string,
+  datosPagoMovil: PagoMovil[],
+  datosPagoTransferencia: PagoTransferencia[],
+  total: string | null,
+  setPagoEstado: (estado: 'pendiente' | 'confirmado' | 'rechazado' | null) => void,
+  correo: string,
+  cantBoletos: string,
+  setErrorReferencia: (error: string) => void
+) => {
+  try {
+    // Validaciones
+    if (!/^\d{4}$/.test(referencia)) {
+      setErrorReferencia('La referencia debe tener exactamente 4 dígitos.');
+      return;
     }
-  };
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo)) {
+      setErrorReferencia('El correo electrónico no es válido.');
+      return;
+    }
+
+    if (!/^\d+$/.test(cantBoletos) || parseInt(cantBoletos) <= 0) {
+      setErrorReferencia('La cantidad de boletos debe ser un número entero positivo.');
+      return;
+    }
+
+    setPagoEstado('pendiente');
+
+    const banco =
+      tipoPago === 'pagoMovil'
+        ? datosPagoMovil.find((d) => d.id === parseInt(bancoSeleccionado))
+        : datosPagoTransferencia.find((d) => d.id === parseInt(bancoSeleccionado));
+
+    if (!banco) {
+      throw new Error('No se encontró el banco seleccionado.');
+    }
+
+    if (!total || parseFloat(total) <= 0) {
+      throw new Error('El monto debe ser un número positivo.');
+    }
+
+    const bancoCodigo = banco.codigoBanco.codigo;
+    const datosPago: DatosPago = {
+      referencia,
+      metodo: tipoPago === 'pagoMovil' ? 'Pago Movil' : 'Transferencia',
+      fecha: new Date(),
+      monto: parseFloat(total),
+      id: banco.id,
+      estado: 'confirmado', // Asegúrate de que el estado sea 'confirmado' aquí
+      codigoBanco: bancoCodigo,
+      correo,
+      cantBoletos: parseInt(cantBoletos),
+    };
+
+    console.log('Enviando solicitud con datos:', datosPago);
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+
+    const response = await axios.post(
+      'http://localhost:3002/api/paymentinfo',
+      datosPago,
+      config
+    );
+
+    console.log('Respuesta del servidor:', response.data);
+
+    // Si la respuesta del servidor indica que el pago fue exitoso, establece el estado en 'confirmado'
+    if (response.data.estado === 'confirmado') {
+      setPagoEstado('confirmado');
+    } else {
+      setPagoEstado('rechazado');
+    }
+  } catch (error) {
+    console.error('Error al procesar el pago:', error);
+    setPagoEstado('rechazado');
+  }
+};

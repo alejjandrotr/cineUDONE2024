@@ -2,20 +2,22 @@
   max-width: 600px;
   margin: 40px auto;
   padding: 20px;
-  background-color: #fff;
+  background-color: #1E1E1E;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border: 0.2px solid #ffffff17;
 }
 
 h1 {
   font-weight: 600;
   margin-bottom: 20px;
+  color: #fff;
 }
 
 label {
   display: block;
   margin-bottom: 10px;
   font-weight: 500;
+  color: #fff;
 }
 
 select,
@@ -23,21 +25,33 @@ input[type='text'] {
   width: 100%;
   padding: 10px;
   margin-bottom: 20px;
-  border: 1px solid #ddd;
+  border: 0.5px solid #ffffff17;
   border-radius: 5px;
+  background-color: transparent;
+  color: #fff;
+}
+select,
+input[type='email'] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 0.5px solid #ffffff17;
+  border-radius: 5px;
+  background-color: transparent;
+  color: #fff;
 }
 
 select:focus,
 input[type='text']:focus {
   outline: none;
-  border-color: #aaa;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  border-color: #7000FF;
 }
 
 .total-label {
   font-weight: 600;
   font-size: 18px;
   margin-bottom: 20px;
+  color: #fff;
 }
 
 /* Ajustes para el layout */
@@ -54,4 +68,50 @@ input[type='text']:focus {
 .payment-form select,
 .payment-form input[type='text'] {
   margin-bottom: 15px;
+}
+
+.pagar-button {
+  background-color: #7000FF;
+  padding: 10px 20px;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.pagar-button:hover {
+  background-color: #333;
+}
+
+select {
+  background: #1E1E1E;
+}
+
+.mensaje-pago {
+  font-size: 20px;
+  margin-top: 20px;
+  padding: 16px;
+  border-radius: 8px;
+  text-align: center;
+  background-color: #2B2B2B;
+  color: #fff;
+}
+
+.mensaje-pago.en_revision svg {
+  color: #fcbd00; 
+  font-size: 20px;/* Amarillo oscuro */
+}
+
+.mensaje-pago.exitoso svg {
+  color: #005eff;
+  font-size: 20px; /* Verde oscuro */
+}
+
+.mensaje-pago.rechazado svg {
+  color: #721c24; /* Rojo oscuro */
+}
+
+.error-message {
+  color: red;
+  font-size: 0.9em;
+  margin-top: 5px;
 }

@@ -1,55 +1,19 @@
 import React, { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import '../../styles/payment.css';
-<<<<<<< HEAD
-import { Banco, DatosTransferencia } from './types/index'
-
-const datos: DatosTransferencia = {
-  pagoMovil: [
-    {
-      id: 1,
-      nombreBanco: 'Banco de Venezuela',
-      numeroTelefono: '0412-1234567',
-      cedula: '29515775',
-    },
-    {
-      id: 2,
-      nombreBanco: 'Banesco',
-      numeroTelefono: '0414-7654321',
-      cedula: '29515776',
-    },
-  ],
-  transferencia: [
-    {
-      id: 1,
-      nombreBanco: 'Banco de Venezuela',
-      numeroTransferencia: '0102-12345678901234',
-      nombres: 'Brian',
-      apellidos: 'Gonzalez',
-      cedula: '29515775',
-      numeroTelefono: '0412-9876543',
-    },
-    {
-      id: 2,
-      nombreBanco: 'Banesco',
-      numeroTransferencia: '0105-98765432109876',
-      nombres: 'Juan',
-      apellidos: 'Pérez',
-      cedula: '29515776',
-      numeroTelefono: '0414-1234567',
-    },
-  ],
-};
-=======
 import useFetchPagos from './services/useFetchPagos';
 import {
   handleTipoPagoChange,
   handleBancoChange,
-  handlePaypalChange,
   handleReferenciaChange,
   handlePago,
 } from './handlers/handlers';
->>>>>>> 06fd643a685ce9b0efef958377cf71cf54b9516a
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faSpinner, // Ícono de carga (para "en revisión")
+  faCheckCircle, // Ícono de éxito
+  faTimesCircle, // Ícono de error
+} from '@fortawesome/free-solid-svg-icons';
 
 const Payment = () => {
   const [tipoPago, setTipoPago] = useState('');
@@ -60,7 +24,17 @@ const Payment = () => {
   const [correoPaypal, setCorreoPaypal] = useState('');
   const [searchParams] = useSearchParams();
   const total = searchParams.get('total');
+  const general = searchParams.get('general') || '0';
+  const children = searchParams.get('children') || '0';
+  const seniors = searchParams.get('seniors') || '0';
   const [referencia, setReferencia] = useState('');
+  const [pagoEstado, setPagoEstado] = useState<
+    'pendiente' | 'confirmado' | 'rechazado' | null
+  >(null);
+  const [errorReferencia, setErrorReferencia] = useState('');
+  const [correo, setCorreo] = useState('');
+
+  const cantBoletos = parseInt(general) + parseInt(children) + parseInt(seniors);
 
   const { datosPagoMovil, datosPagoTransferencia } = useFetchPagos();
 
@@ -70,7 +44,9 @@ const Payment = () => {
     setNumeroTelefono,
     setNumeroTransferencia,
     setCedula,
-    setCorreoPaypal
+    setCorreoPaypal,
+    setPagoEstado,
+    setReferencia
   );
 
   const handleBanco = handleBancoChange(
@@ -80,16 +56,21 @@ const Payment = () => {
     setBancoSeleccionado,
     setNumeroTelefono,
     setNumeroTransferencia,
-    setCedula
+    setCedula,
+    setPagoEstado,
+    setReferencia
   );
 
-  const handlePaypal = handlePaypalChange(setCorreoPaypal);
-  const handleReferencia = handleReferenciaChange(setReferencia);
+  const handleReferencia = handleReferenciaChange(
+    setReferencia,
+    setErrorReferencia
+  );
 
   return (
     <div className="container">
-      <h1>Datos de Transferencia</h1>
+      <h1>Escoge tu método de pago</h1>
       <label className="total-label">Total a Pagar: {total}</label>
+      <label className="total-label">Total de entradas: {cantBoletos}</label>
 
       <div className="payment-form">
         <label> Tipo de pago: </label>
@@ -97,7 +78,6 @@ const Payment = () => {
           <option value="">Seleccione un tipo de pago</option>
           <option value="pagoMovil">Pago Movil</option>
           <option value="transferencia">Transferencia</option>
-          <option value="paypal">PayPal</option>
         </select>
 
         {tipoPago === 'pagoMovil' && (
@@ -107,7 +87,7 @@ const Payment = () => {
               <option value="">Seleccione un banco</option>
               {datosPagoMovil.map((banco) => (
                 <option key={banco.id} value={banco.id.toString()}>
-                  Banco {banco.codigoBanco}
+                  {banco.codigoBanco.nombre}
                 </option>
               ))}
             </select>
@@ -130,7 +110,7 @@ const Payment = () => {
               <option value="">Seleccione un banco</option>
               {datosPagoTransferencia.map((banco) => (
                 <option key={banco.id} value={banco.id.toString()}>
-                  Banco {banco.codigoBanco}
+                  Banco {banco.codigoBanco.nombre}
                 </option>
               ))}
             </select>
@@ -146,21 +126,25 @@ const Payment = () => {
           </div>
         )}
 
-        {tipoPago === 'paypal' && (
-          <div>
-            <label>Correo electrónico de PayPal: </label>
-            <input type="text" value={correoPaypal} onChange={handlePaypal} />
-          </div>
-        )}
         <label>Referencia del pago: </label>
-        <input type="text" value={referencia} onChange={handleReferencia} />
+        <input
+          type="text"
+          value={referencia}
+          onChange={handleReferencia}
+          maxLength={4}
+          placeholder="Ingrese los 4 dígitos de la referencia"
+        />
+        {errorReferencia && <p className="error-message">{errorReferencia}</p>}
 
-<<<<<<< HEAD
+        <label>Correo electrónico: </label>
+        <input
+          type="email"
+          value={correo}
+          onChange={(e) => setCorreo(e.target.value)}
+          placeholder="Ingrese su correo electrónico"
+        />
 
-      {tipoPago && bancoSeleccionado && tipoPago !== "paypal" ? (
-          <button className="pagar-button" onClick={() => console.log("Pago procesado")}>
-=======
-        {tipoPago && bancoSeleccionado && tipoPago !== 'paypal' ? (
+        {tipoPago && bancoSeleccionado && tipoPago ? (
           <button
             className="pagar-button"
             onClick={() =>
@@ -170,21 +154,37 @@ const Payment = () => {
                 bancoSeleccionado,
                 datosPagoMovil,
                 datosPagoTransferencia,
-                total
+                total,
+                setPagoEstado,
+                correo,
+                cantBoletos.toString(),
+                setErrorReferencia
               )
             }
-          >
->>>>>>> 06fd643a685ce9b0efef958377cf71cf54b9516a
-            Pagar
-          </button>
-        ) : tipoPago === 'paypal' && correoPaypal ? (
-          <button
-            className="pagar-button"
-            onClick={() => console.log('Pago con PayPal procesado')}
+            disabled={!referencia || !correo || cantBoletos <= 0}
           >
             Pagar
           </button>
         ) : null}
+
+        {/* Mostrar mensajes según el estado del pago */}
+        {pagoEstado === 'pendiente' && (
+          <p className="mensaje-pago en_revision">
+            Pago se encuentra en revisión...{' '}
+            <FontAwesomeIcon icon={faSpinner} spin />
+          </p>
+        )}
+        {pagoEstado === 'confirmado' && (
+          <p className="mensaje-pago exitoso">
+            Pago realizado satisfactoriamente.{' '}
+            <FontAwesomeIcon icon={faCheckCircle} />
+          </p>
+        )}
+        {pagoEstado === 'rechazado' && (
+          <p className="mensaje-pago rechazado">
+            Pago rechazado. <FontAwesomeIcon icon={faTimesCircle} />
+          </p>
+        )}
       </div>
     </div>
   );
