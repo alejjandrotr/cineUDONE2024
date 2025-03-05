@@ -19,7 +19,7 @@ import { PrecioModule } from './precio/precio.module';
     }),
     typeORMConfig,
     EventEmitterModule.forRoot(),
-    PaymentinfoModule,PagoTransferenciaModule,PagoMovilModule,BancoModule,TarifaModule,FacturaModule, PrecioModule],
+    PaymentinfoModule,PagoTransferenciaModule,PagoMovilModule,BancoModule,TarifaModule,FacturaModule,PrecioModule],
   controllers: [AppController],
   providers: [AppService],
 })

@@ -32,6 +32,12 @@ export class Paymentinfo{
     })
     estado: string;
 
+    @Column()
+    cantBoletos: number;
+
+    @Column()
+    correo: string;
+
     @OneToMany(() => Factura, factura => factura.numFactura)
     facturas: Factura[];
 }

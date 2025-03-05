@@ -58,9 +58,19 @@ export class PaymentinfoService {
     enviarCorreo(paymentData: Paymentinfo){
         const subject = `Pago ${paymentData.estado}`;
         const referencia = paymentData.referencia;
+        const metodo = paymentData.metodo
         const monto = paymentData.monto;
-        const fecha = paymentData.fecha;
-        const contexto = { monto, fecha, referencia };
-        this.correoService.sendEmails(subject, paymentData.estado, contexto);
+        const fechaPago = paymentData.fecha;
+        const cantBoletos = paymentData.cantBoletos;
+        const contexto = { 
+            monto, fechaPago, referencia, metodo, cantBoletos,
+            logoUrl: "https://drive.google.com/file/d/1xpfulFtL_lcPQiy059Py49woC5akVvJW/view?usp=sharing",
+            pelicula: "Spiderman: No Way Home", 
+            fechaFuncion: "04/03/2025",
+            horario: "2:40pm",
+            sala: 2
+        };
+        const correo = paymentData.correo
+        this.correoService.sendEmails(subject, paymentData.estado, contexto, correo);
     }
 }
