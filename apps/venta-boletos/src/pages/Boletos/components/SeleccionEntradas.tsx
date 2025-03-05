@@ -8,7 +8,7 @@ export function SeleccionEntrada() {
   const {counts, handleIncrement, handleDecrement} = useTicketCounts();
 
   const { data } = useFetch('http://localhost:3002/api/precio');
-  const precio = data;
+  const precio = data?.precio || 0;
 
   const total = (precio * counts.general) + (precio * counts.children) + (precio * counts.seniors);
   const formattedTotal = parseFloat(total.toFixed(2));
@@ -20,7 +20,7 @@ export function SeleccionEntrada() {
           <tr>
             <th>Tipo de Boleto</th>
             <th>Cantidad</th>
-            <th>Precio</th>
+            <th>Precios</th>
           </tr>
         </thead>
         <tbody>

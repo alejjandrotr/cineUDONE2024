@@ -22,10 +22,12 @@ export interface PagoTransferencia {
 }
 
 export interface DatosPago {
+  id: number;
   referencia: string;
-  bancoCodigo: string;
+  codigoBanco: string;
   metodo: string;
   fecha: Date;
   monto: number;
   estado: string;
+  setPagoEstado: (estado: 'en_revision' | 'exitoso' | 'rechazado' | null) => void;
 }

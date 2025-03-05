@@ -75,3 +75,33 @@ input[type='text']:focus {
 select {
   background: #1E1E1E;
 }
+
+.mensaje-pago {
+  font-size: 20px;
+  margin-top: 20px;
+  padding: 16px;
+  border-radius: 8px;
+  text-align: center;
+  background-color: #2B2B2B;
+  color: #fff;
+}
+
+.mensaje-pago.en_revision svg {
+  color: #fcbd00; 
+  font-size: 20px;/* Amarillo oscuro */
+}
+
+.mensaje-pago.exitoso svg {
+  color: #005eff;
+  font-size: 20px; /* Verde oscuro */
+}
+
+.mensaje-pago.rechazado svg {
+  color: #721c24; /* Rojo oscuro */
+}
+
+.error-message {
+  color: red;
+  font-size: 0.9em;
+  margin-top: 5px;
+}

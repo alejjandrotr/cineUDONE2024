@@ -5,10 +5,15 @@ import useFetchPagos from './services/useFetchPagos';
 import {
   handleTipoPagoChange,
   handleBancoChange,
-  handlePaypalChange,
   handleReferenciaChange,
   handlePago,
 } from './handlers/handlers';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faSpinner, // Ícono de carga (para "en revisión")
+  faCheckCircle, // Ícono de éxito
+  faTimesCircle, // Ícono de error
+} from '@fortawesome/free-solid-svg-icons';
 
 const Payment = () => {
   const [tipoPago, setTipoPago] = useState('');
@@ -20,6 +25,14 @@ const Payment = () => {
   const [searchParams] = useSearchParams();
   const total = searchParams.get('total');
   const [referencia, setReferencia] = useState('');
+  const [pagoEstado, setPagoEstado] = useState<
+    'en_revision' | 'exitoso' | 'rechazado' | null
+  >(null);
+  const [errorReferencia, setErrorReferencia] = useState('');
+
+  const validarReferencia = (referencia: string): boolean => {
+    return /^\d{4}$/.test(referencia); // Verifica que sean exactamente 4 dígitos
+  };
 
   const { datosPagoMovil, datosPagoTransferencia } = useFetchPagos();
 
@@ -29,7 +42,9 @@ const Payment = () => {
     setNumeroTelefono,
     setNumeroTransferencia,
     setCedula,
-    setCorreoPaypal
+    setCorreoPaypal,
+    setPagoEstado,
+    setReferencia
   );
 
   const handleBanco = handleBancoChange(
@@ -39,11 +54,15 @@ const Payment = () => {
     setBancoSeleccionado,
     setNumeroTelefono,
     setNumeroTransferencia,
-    setCedula
+    setCedula,
+    setPagoEstado,
+    setReferencia
   );
 
-  const handlePaypal = handlePaypalChange(setCorreoPaypal);
-  const handleReferencia = handleReferenciaChange(setReferencia);
+  const handleReferencia = handleReferenciaChange(
+    setReferencia,
+    setErrorReferencia
+  );
 
   return (
     <div className="container">
@@ -56,7 +75,6 @@ const Payment = () => {
           <option value="">Seleccione un tipo de pago</option>
           <option value="pagoMovil">Pago Movil</option>
           <option value="transferencia">Transferencia</option>
-          <option value="paypal">PayPal</option>
         </select>
 
         {tipoPago === 'pagoMovil' && (
@@ -105,16 +123,17 @@ const Payment = () => {
           </div>
         )}
 
-        {tipoPago === 'paypal' && (
-          <div>
-            <label>Correo electrónico de PayPal: </label>
-            <input type="text" value={correoPaypal} onChange={handlePaypal} />
-          </div>
-        )}
         <label>Referencia del pago: </label>
-        <input type="text" value={referencia} onChange={handleReferencia} />
+        <input
+          type="text"
+          value={referencia}
+          onChange={handleReferencia}
+          maxLength={4}
+          placeholder='Ingrese los 4 dígitos de la referencia'
+        />
+        {errorReferencia && <p className="error-message">{errorReferencia}</p>}
 
-        {tipoPago && bancoSeleccionado && tipoPago !== 'paypal' ? (
+        {tipoPago && bancoSeleccionado && tipoPago ? (
           <button
             className="pagar-button"
             onClick={() =>
@@ -124,20 +143,47 @@ const Payment = () => {
                 bancoSeleccionado,
                 datosPagoMovil,
                 datosPagoTransferencia,
-                total
+                total,
+                setPagoEstado
               )
             }
+            disabled={!validarReferencia(referencia)}
           >
             Pagar
           </button>
         ) : tipoPago === 'paypal' && correoPaypal ? (
           <button
             className="pagar-button"
-            onClick={() => console.log('Pago con PayPal procesado')}
+            onClick={() => {
+              setPagoEstado('en_revision');
+              setTimeout(() => {
+                const pagoExitoso = Math.random() > 0.5; // Simular éxito o rechazo
+                setPagoEstado(pagoExitoso ? 'exitoso' : 'rechazado');
+              }, 3000);
+            }}
           >
             Pagar
           </button>
         ) : null}
+
+        {/* Mostrar mensajes según el estado del pago */}
+        {pagoEstado === 'en_revision' && (
+          <p className="mensaje-pago en_revision">
+            Pago se encuentra en revisión...{' '}
+            <FontAwesomeIcon icon={faSpinner} spin />
+          </p>
+        )}
+        {pagoEstado === 'exitoso' && (
+          <p className="mensaje-pago exitoso">
+            Pago realizado satisfactoriamente.{' '}
+            <FontAwesomeIcon icon={faCheckCircle} />
+          </p>
+        )}
+        {pagoEstado === 'rechazado' && (
+          <p className="mensaje-pago rechazado">
+            Pago rechazado. <FontAwesomeIcon icon={faTimesCircle} />
+          </p>
+        )}
       </div>
     </div>
   );
