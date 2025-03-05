@@ -24,15 +24,17 @@ const Payment = () => {
   const [correoPaypal, setCorreoPaypal] = useState('');
   const [searchParams] = useSearchParams();
   const total = searchParams.get('total');
+  const general = searchParams.get('general') || '0';
+  const children = searchParams.get('children') || '0';
+  const seniors = searchParams.get('seniors') || '0';
   const [referencia, setReferencia] = useState('');
   const [pagoEstado, setPagoEstado] = useState<
-    'en_revision' | 'exitoso' | 'rechazado' | null
+    'pendiente' | 'confirmado' | 'rechazado' | null
   >(null);
   const [errorReferencia, setErrorReferencia] = useState('');
+  const [correo, setCorreo] = useState('');
 
-  const validarReferencia = (referencia: string): boolean => {
-    return /^\d{4}$/.test(referencia); // Verifica que sean exactamente 4 dígitos
-  };
+  const cantBoletos = parseInt(general) + parseInt(children) + parseInt(seniors);
 
   const { datosPagoMovil, datosPagoTransferencia } = useFetchPagos();
 
@@ -68,6 +70,7 @@ const Payment = () => {
     <div className="container">
       <h1>Escoge tu método de pago</h1>
       <label className="total-label">Total a Pagar: {total}</label>
+      <label className="total-label">Total de entradas: {cantBoletos}</label>
 
       <div className="payment-form">
         <label> Tipo de pago: </label>
@@ -129,9 +132,17 @@ const Payment = () => {
           value={referencia}
           onChange={handleReferencia}
           maxLength={4}
-          placeholder='Ingrese los 4 dígitos de la referencia'
+          placeholder="Ingrese los 4 dígitos de la referencia"
         />
         {errorReferencia && <p className="error-message">{errorReferencia}</p>}
+
+        <label>Correo electrónico: </label>
+        <input
+          type="email"
+          value={correo}
+          onChange={(e) => setCorreo(e.target.value)}
+          placeholder="Ingrese su correo electrónico"
+        />
 
         {tipoPago && bancoSeleccionado && tipoPago ? (
           <button
@@ -144,36 +155,26 @@ const Payment = () => {
                 datosPagoMovil,
                 datosPagoTransferencia,
                 total,
-                setPagoEstado
+                setPagoEstado,
+                correo,
+                cantBoletos.toString(),
+                setErrorReferencia
               )
             }
-            disabled={!validarReferencia(referencia)}
-          >
-            Pagar
-          </button>
-        ) : tipoPago === 'paypal' && correoPaypal ? (
-          <button
-            className="pagar-button"
-            onClick={() => {
-              setPagoEstado('en_revision');
-              setTimeout(() => {
-                const pagoExitoso = Math.random() > 0.5; // Simular éxito o rechazo
-                setPagoEstado(pagoExitoso ? 'exitoso' : 'rechazado');
-              }, 3000);
-            }}
+            disabled={!referencia || !correo || cantBoletos <= 0}
           >
             Pagar
           </button>
         ) : null}
 
         {/* Mostrar mensajes según el estado del pago */}
-        {pagoEstado === 'en_revision' && (
+        {pagoEstado === 'pendiente' && (
           <p className="mensaje-pago en_revision">
             Pago se encuentra en revisión...{' '}
             <FontAwesomeIcon icon={faSpinner} spin />
           </p>
         )}
-        {pagoEstado === 'exitoso' && (
+        {pagoEstado === 'confirmado' && (
           <p className="mensaje-pago exitoso">
             Pago realizado satisfactoriamente.{' '}
             <FontAwesomeIcon icon={faCheckCircle} />

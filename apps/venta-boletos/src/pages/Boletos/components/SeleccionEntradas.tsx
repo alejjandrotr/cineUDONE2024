@@ -53,9 +53,9 @@ export function SeleccionEntrada() {
         </tbody>
         
       </table>
-      <Link to={`/payment?total=${formattedTotal}`}>
-      <button className="boton-pagar">Pagar</button>
-    </Link>
+      <Link to={`/payment?total=${formattedTotal}&general=${counts.general}&children=${counts.children}&seniors=${counts.seniors}`}>
+  <button className="boton-pagar">Pagar</button>
+</Link>
     </div>
   );
 }

@@ -29,5 +29,6 @@ export interface DatosPago {
   fecha: Date;
   monto: number;
   estado: string;
-  setPagoEstado: (estado: 'en_revision' | 'exitoso' | 'rechazado' | null) => void;
+  correo: string;
+  cantBoletos: number;
 }
