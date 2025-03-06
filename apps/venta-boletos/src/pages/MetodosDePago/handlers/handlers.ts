@@ -18,7 +18,6 @@ export const handleTipoPagoChange = (
     setNumeroTelefono('');
     setNumeroTransferencia('');
     setCedula('');
-    setCorreoPaypal('');
     setPagoEstado(null);
     setReferencia('');
   };
@@ -85,7 +84,9 @@ export const handlePago = async (
   setPagoEstado: (estado: 'pendiente' | 'confirmado' | 'rechazado' | null) => void,
   correo: string,
   cantBoletos: string,
-  setErrorReferencia: (error: string) => void
+  setErrorReferencia: (error: string) => void,
+  fecha: string, // Fecha seleccionada por el usuario (ej: "06-Feb")
+  hora: string // Hora seleccionada por el usuario (ej: "16:00")
 ) => {
   try {
     // Validaciones
@@ -123,7 +124,8 @@ export const handlePago = async (
     const datosPago: DatosPago = {
       referencia,
       metodo: tipoPago === 'pagoMovil' ? 'Pago Movil' : 'Transferencia',
-      fecha: new Date(),
+      fecha, // Fecha seleccionada por el usuario
+      hora, // Hora seleccionada por el usuario
       monto: parseFloat(total),
       id: banco.id,
       estado: 'confirmado', // Asegúrate de que el estado sea 'confirmado' aquí

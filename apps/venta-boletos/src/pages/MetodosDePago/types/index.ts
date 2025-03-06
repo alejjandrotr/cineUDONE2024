@@ -26,7 +26,8 @@ export interface DatosPago {
   referencia: string;
   codigoBanco: string;
   metodo: string;
-  fecha: Date;
+  fecha: string; 
+  hora: string;
   monto: number;
   estado: string;
   correo: string;

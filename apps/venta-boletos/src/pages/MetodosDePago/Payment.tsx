@@ -27,6 +27,8 @@ const Payment = () => {
   const general = searchParams.get('general') || '0';
   const children = searchParams.get('children') || '0';
   const seniors = searchParams.get('seniors') || '0';
+  const fecha = searchParams.get('date'); // Obtener la fecha seleccionada
+  const hora = searchParams.get('time'); // Obtener la hora seleccionada
   const [referencia, setReferencia] = useState('');
   const [pagoEstado, setPagoEstado] = useState<
     'pendiente' | 'confirmado' | 'rechazado' | null
@@ -69,8 +71,12 @@ const Payment = () => {
   return (
     <div className="container">
       <h1>Escoge tu método de pago</h1>
-      <label className="total-label">Total a Pagar: {total}</label>
+      <label className="total-label">Total a Pagar: {total}$</label>
       <label className="total-label">Total de entradas: {cantBoletos}</label>
+        <label className="total-label">
+          Fecha y Hora seleccionada: {fecha} a las {hora}
+        </label>
+  
 
       <div className="payment-form">
         <label> Tipo de pago: </label>
@@ -144,7 +150,7 @@ const Payment = () => {
           placeholder="Ingrese su correo electrónico"
         />
 
-        {tipoPago && bancoSeleccionado && tipoPago ? (
+{tipoPago && bancoSeleccionado && tipoPago ? (
           <button
             className="pagar-button"
             onClick={() =>
@@ -158,7 +164,9 @@ const Payment = () => {
                 setPagoEstado,
                 correo,
                 cantBoletos.toString(),
-                setErrorReferencia
+                setErrorReferencia,
+                fecha || '', // Pasar la fecha seleccionada
+                hora || '' // Pasar la hora seleccionada
               )
             }
             disabled={!referencia || !correo || cantBoletos <= 0}
