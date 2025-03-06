@@ -36,6 +36,12 @@ export class Paymentinfo{
     cantBoletos: number;
 
     @Column()
+    fechaFuncion: string;
+
+    @Column()
+    horaFuncion: string;
+
+    @Column()
     correo: string;
 
     @OneToMany(() => Factura, factura => factura.numFactura)

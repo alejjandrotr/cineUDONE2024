@@ -43,6 +43,16 @@ export class CreatePaymentinfoDto{
     @IsInt()
     cantBoletos: number;
 
+    @ApiProperty({example: '06 Mar', description: 'Fecha de la función'})
+    @IsNotEmpty()
+    @IsString()
+    fechaFuncion: string;
+
+    @ApiProperty({example: '16:00', description: 'Hora de la función'})
+    @IsNotEmpty()
+    @IsString()
+    horaFuncion: string;
+
     @ApiProperty({example: 'equipoalfadinamitaverde@gmail.com', description: 'Email del usuario para enviar el correo una vez confirmado o rechazado el pago'})
     @IsNotEmpty()
     @IsEmail()
