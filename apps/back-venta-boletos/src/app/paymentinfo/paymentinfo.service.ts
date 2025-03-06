@@ -64,12 +64,12 @@ export class PaymentinfoService {
         const monto = paymentData.monto;
         const fechaPago = paymentData.fecha;
         const cantBoletos = paymentData.cantBoletos;
+        const fechaFuncion = paymentData.fechaFuncion;
+        const horaFuncion = paymentData.horaFuncion;
         const contexto = { 
-            monto, fechaPago, referencia, metodo, cantBoletos,
+            monto, fechaPago, referencia, metodo, cantBoletos, fechaFuncion, horaFuncion,
             logoUrl: "https://drive.google.com/file/d/1xpfulFtL_lcPQiy059Py49woC5akVvJW/view?usp=sharing",
-            pelicula: "Spiderman: No Way Home", 
-            fechaFuncion: "04/03/2025",
-            horario: "2:40pm",
+            pelicula: "Spiderman: No Way Home",
             sala: 2
         };
         const correo = paymentData.correo
