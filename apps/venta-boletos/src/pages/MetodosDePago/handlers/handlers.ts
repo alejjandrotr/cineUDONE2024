@@ -85,8 +85,8 @@ export const handlePago = async (
   correo: string,
   cantBoletos: string,
   setErrorReferencia: (error: string) => void,
-  fecha: string, // Fecha seleccionada por el usuario (ej: "06-Feb")
-  hora: string // Hora seleccionada por el usuario (ej: "16:00")
+  fechaFuncion: string, // Fecha seleccionada por el usuario (ej: "06-Feb")
+  horaFuncion: string // Hora seleccionada por el usuario (ej: "16:00")
 ) => {
   try {
     // Validaciones
@@ -124,17 +124,18 @@ export const handlePago = async (
     const datosPago: DatosPago = {
       referencia,
       metodo: tipoPago === 'pagoMovil' ? 'Pago Movil' : 'Transferencia',
-      fecha, // Fecha seleccionada por el usuario
-      hora, // Hora seleccionada por el usuario
+      fechaFuncion, // Asegúrate de que este campo tenga un valor válido
+      horaFuncion, // Asegúrate de que este campo tenga un valor válido
       monto: parseFloat(total),
       id: banco.id,
-      estado: 'confirmado', // Asegúrate de que el estado sea 'confirmado' aquí
+      fecha: new Date(),
+      estado: 'confirmado',
       codigoBanco: bancoCodigo,
       correo,
       cantBoletos: parseInt(cantBoletos),
     };
-
-    console.log('Enviando solicitud con datos:', datosPago);
+    
+    console.log('Datos enviados a la API:', datosPago); 
 
     const config = {
       headers: {
