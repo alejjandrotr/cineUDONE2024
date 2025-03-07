@@ -2,7 +2,9 @@ import { TituloPelicula } from './components/TituloPelicula';
 import { DetallesPelicula } from './components/DetallesPelicula';
 import { SeleccionEntrada } from './components/SeleccionEntradas';
 import Horario from './components/Horario';
+import { HorarioProvider } from '../../context/HorarioContext'; // Importa el proveedor
 import '../../styles.css';
+
 const Home = () => {
   return (
     <div className="fondo">
@@ -15,8 +17,10 @@ const Home = () => {
           <DetallesPelicula />
         </div>
         <div className="gap-4 lg:order-2">
-          <Horario />
-          <SeleccionEntrada />
+          <HorarioProvider> {/* Envuelve los componentes con el proveedor */}
+            <Horario />
+            <SeleccionEntrada />
+          </HorarioProvider>
         </div>
       </div>
     </div>

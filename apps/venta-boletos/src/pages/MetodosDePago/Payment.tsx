@@ -10,7 +10,7 @@ import {
 } from './handlers/handlers';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faSpinner, // Ícono de carga (para "en revisión")
+  faSpinner, // Ícono de carga
   faCheckCircle, // Ícono de éxito
   faTimesCircle, // Ícono de error
 } from '@fortawesome/free-solid-svg-icons';
@@ -27,6 +27,8 @@ const Payment = () => {
   const general = searchParams.get('general') || '0';
   const children = searchParams.get('children') || '0';
   const seniors = searchParams.get('seniors') || '0';
+  const fechaFuncion = searchParams.get('date'); 
+  const horaFuncion = searchParams.get('time'); 
   const [referencia, setReferencia] = useState('');
   const [pagoEstado, setPagoEstado] = useState<
     'pendiente' | 'confirmado' | 'rechazado' | null
@@ -34,7 +36,8 @@ const Payment = () => {
   const [errorReferencia, setErrorReferencia] = useState('');
   const [correo, setCorreo] = useState('');
 
-  const cantBoletos = parseInt(general) + parseInt(children) + parseInt(seniors);
+  const cantBoletos =
+    parseInt(general) + parseInt(children) + parseInt(seniors);
 
   const { datosPagoMovil, datosPagoTransferencia } = useFetchPagos();
 
@@ -69,8 +72,11 @@ const Payment = () => {
   return (
     <div className="container">
       <h1>Escoge tu método de pago</h1>
-      <label className="total-label">Total a Pagar: {total}</label>
+      <label className="total-label">Total a Pagar: {total}$</label>
       <label className="total-label">Total de entradas: {cantBoletos}</label>
+      <label className="total-label">
+        Fecha y Hora seleccionada: {fechaFuncion} a las {horaFuncion}
+      </label>
 
       <div className="payment-form">
         <label> Tipo de pago: </label>
@@ -158,7 +164,9 @@ const Payment = () => {
                 setPagoEstado,
                 correo,
                 cantBoletos.toString(),
-                setErrorReferencia
+                setErrorReferencia,
+                fechaFuncion || '',
+                horaFuncion || ''
               )
             }
             disabled={!referencia || !correo || cantBoletos <= 0}

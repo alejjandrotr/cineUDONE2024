@@ -18,7 +18,6 @@ export const handleTipoPagoChange = (
     setNumeroTelefono('');
     setNumeroTransferencia('');
     setCedula('');
-    setCorreoPaypal('');
     setPagoEstado(null);
     setReferencia('');
   };
@@ -85,7 +84,9 @@ export const handlePago = async (
   setPagoEstado: (estado: 'pendiente' | 'confirmado' | 'rechazado' | null) => void,
   correo: string,
   cantBoletos: string,
-  setErrorReferencia: (error: string) => void
+  setErrorReferencia: (error: string) => void,
+  fechaFuncion: string, 
+  horaFuncion: string 
 ) => {
   try {
     // Validaciones
@@ -123,16 +124,18 @@ export const handlePago = async (
     const datosPago: DatosPago = {
       referencia,
       metodo: tipoPago === 'pagoMovil' ? 'Pago Movil' : 'Transferencia',
-      fecha: new Date(),
+      fechaFuncion, 
+      horaFuncion, 
       monto: parseFloat(total),
       id: banco.id,
-      estado: 'confirmado', // Asegúrate de que el estado sea 'confirmado' aquí
+      fecha: new Date(),
+      estado: 'confirmado',
       codigoBanco: bancoCodigo,
       correo,
       cantBoletos: parseInt(cantBoletos),
     };
-
-    console.log('Enviando solicitud con datos:', datosPago);
+    
+    console.log('Datos enviados a la API:', datosPago); 
 
     const config = {
       headers: {

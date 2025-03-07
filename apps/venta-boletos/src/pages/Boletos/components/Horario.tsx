@@ -1,5 +1,6 @@
-import React, { useState, useRef } from 'react';
-import '../../../styles/horario.css'; 
+import React, { useRef, useState } from 'react';
+import { useHorario } from '../../../context/HorarioContext'; // Importa el hook del contexto
+import '../../../styles/horario.css';
 
 const mockDates = [
   { id: 1, day: '06', month: 'Feb' },
@@ -22,28 +23,35 @@ const mockHours = [
 ];
 
 const Horario: React.FC = () => {
-
-  const [selectedDate, setSelectedDate] = useState<string>(mockDates[0].id.toString());
-  const [selectedHour, setSelectedHour] = useState<string>(mockHours[0].id.toString());
-
-
+  const { setSelectedDate, setSelectedHour } = useHorario(); // Usa el contexto
   const dateContainerRef = useRef<HTMLDivElement>(null);
   const hourContainerRef = useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
 
+  // Estados locales para rastrear la fecha y hora seleccionadas
+  const [selectedDateId, setSelectedDateId] = useState<number | null>(null);
+  const [selectedHourId, setSelectedHourId] = useState<number | null>(null);
 
-  const handleDateClick = (id: string) => {
-    setSelectedDate(id);
+  const handleDateClick = (date: {
+    id: number;
+    day: string;
+    month: string;
+  }) => {
+    setSelectedDate(`${date.day}-${date.month}`); // Actualiza la fecha en el contexto
+    setSelectedDateId(date.id); // Actualiza el estado local de la fecha seleccionada
   };
 
-  const handleHourClick = (id: string) => {
-    setSelectedHour(id);
+  const handleHourClick = (hour: { id: number; time: string }) => {
+    setSelectedHour(hour.time); // Actualiza la hora en el contexto
+    setSelectedHourId(hour.id); // Actualiza el estado local de la hora seleccionada
   };
 
-
-  const startDragging = (e: React.MouseEvent<HTMLDivElement>, ref: React.RefObject<HTMLDivElement>) => {
+  const startDragging = (
+    e: React.MouseEvent<HTMLDivElement>,
+    ref: React.RefObject<HTMLDivElement>
+  ) => {
     if (!ref.current) return;
     setIsDragging(true);
     setStartX(e.pageX - ref.current.offsetLeft);
@@ -54,17 +62,20 @@ const Horario: React.FC = () => {
     setIsDragging(false);
   };
 
-  const onDragging = (e: React.MouseEvent<HTMLDivElement>, ref: React.RefObject<HTMLDivElement>) => {
+  const onDragging = (
+    e: React.MouseEvent<HTMLDivElement>,
+    ref: React.RefObject<HTMLDivElement>
+  ) => {
     if (!isDragging || !ref.current) return;
     e.preventDefault();
     const x = e.pageX - ref.current.offsetLeft;
-    const walk = (x - startX) * 2; // Ajusta la velocidad del arrastre
+    const walk = (x - startX) * 2;
     ref.current.scrollLeft = scrollLeft - walk;
   };
 
   return (
     <div className="p-6 max-w-md mx-auto shadow-md fondo-horario">
-
+      {/* Contenedor de fechas */}
       <div
         ref={dateContainerRef}
         onMouseDown={(e) => startDragging(e, dateContainerRef)}
@@ -76,11 +87,9 @@ const Horario: React.FC = () => {
         {mockDates.map((date) => (
           <div
             key={date.id}
-            onClick={() => handleDateClick(date.id.toString())}
+            onClick={() => handleDateClick(date)}
             className={`flex flex-col items-center p-4 rounded-lg cursor-pointer ${
-              selectedDate === date.id.toString()
-                ? 'horario-dia--active'
-                : 'horario-dia'
+              selectedDateId === date.id ? 'horario-dia--active' : 'horario-dia'
             }`}
           >
             <span className="text-sm">{date.month}</span>
@@ -89,7 +98,7 @@ const Horario: React.FC = () => {
         ))}
       </div>
 
-
+      {/* Contenedor de horas */}
       <div
         ref={hourContainerRef}
         onMouseDown={(e) => startDragging(e, hourContainerRef)}
@@ -101,11 +110,9 @@ const Horario: React.FC = () => {
         {mockHours.map((hour) => (
           <span
             key={hour.id}
-            onClick={() => handleHourClick(hour.id.toString())}
+            onClick={() => handleHourClick(hour)}
             className={`hour ${
-              selectedHour === hour.id.toString()
-                ? 'hour--active'
-                : 'hour'
+              selectedHourId === hour.id ? 'hour--active' : 'hour'
             }`}
           >
             {hour.time}
