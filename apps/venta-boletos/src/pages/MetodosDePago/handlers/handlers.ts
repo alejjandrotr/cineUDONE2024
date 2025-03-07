@@ -85,8 +85,8 @@ export const handlePago = async (
   correo: string,
   cantBoletos: string,
   setErrorReferencia: (error: string) => void,
-  fechaFuncion: string, // Fecha seleccionada por el usuario (ej: "06-Feb")
-  horaFuncion: string // Hora seleccionada por el usuario (ej: "16:00")
+  fechaFuncion: string, 
+  horaFuncion: string 
 ) => {
   try {
     // Validaciones
@@ -124,8 +124,8 @@ export const handlePago = async (
     const datosPago: DatosPago = {
       referencia,
       metodo: tipoPago === 'pagoMovil' ? 'Pago Movil' : 'Transferencia',
-      fechaFuncion, // Asegúrate de que este campo tenga un valor válido
-      horaFuncion, // Asegúrate de que este campo tenga un valor válido
+      fechaFuncion, 
+      horaFuncion, 
       monto: parseFloat(total),
       id: banco.id,
       fecha: new Date(),

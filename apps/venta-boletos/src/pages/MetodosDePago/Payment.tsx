@@ -10,7 +10,7 @@ import {
 } from './handlers/handlers';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faSpinner, // Ícono de carga (para "en revisión")
+  faSpinner, // Ícono de carga
   faCheckCircle, // Ícono de éxito
   faTimesCircle, // Ícono de error
 } from '@fortawesome/free-solid-svg-icons';
@@ -27,8 +27,8 @@ const Payment = () => {
   const general = searchParams.get('general') || '0';
   const children = searchParams.get('children') || '0';
   const seniors = searchParams.get('seniors') || '0';
-  const fechaFuncion = searchParams.get('date'); // Obtener la fecha seleccionada
-  const horaFuncion = searchParams.get('time'); // Obtener la hora seleccionada
+  const fechaFuncion = searchParams.get('date'); 
+  const horaFuncion = searchParams.get('time'); 
   const [referencia, setReferencia] = useState('');
   const [pagoEstado, setPagoEstado] = useState<
     'pendiente' | 'confirmado' | 'rechazado' | null
@@ -36,7 +36,8 @@ const Payment = () => {
   const [errorReferencia, setErrorReferencia] = useState('');
   const [correo, setCorreo] = useState('');
 
-  const cantBoletos = parseInt(general) + parseInt(children) + parseInt(seniors);
+  const cantBoletos =
+    parseInt(general) + parseInt(children) + parseInt(seniors);
 
   const { datosPagoMovil, datosPagoTransferencia } = useFetchPagos();
 
@@ -76,7 +77,6 @@ const Payment = () => {
       <label className="total-label">
         Fecha y Hora seleccionada: {fechaFuncion} a las {horaFuncion}
       </label>
-  
 
       <div className="payment-form">
         <label> Tipo de pago: </label>
@@ -150,7 +150,7 @@ const Payment = () => {
           placeholder="Ingrese su correo electrónico"
         />
 
-{tipoPago && bancoSeleccionado && tipoPago ? (
+        {tipoPago && bancoSeleccionado && tipoPago ? (
           <button
             className="pagar-button"
             onClick={() =>
@@ -165,8 +165,8 @@ const Payment = () => {
                 correo,
                 cantBoletos.toString(),
                 setErrorReferencia,
-                fechaFuncion || '', // Pasar la fecha seleccionada
-                horaFuncion || '' // Pasar la hora seleccionada
+                fechaFuncion || '',
+                horaFuncion || ''
               )
             }
             disabled={!referencia || !correo || cantBoletos <= 0}
